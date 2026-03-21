@@ -5,6 +5,9 @@ EDPA Full Simulation -- Medical Platform (kashealth.cz)
 Simulates 2 Planning Intervals of EDPA-managed delivery with realistic Git history,
 runs the EDPA engine per iteration, and produces audit-ready reports and snapshots.
 
+Models realistic estimation: ~80% planning capacity with delivery variance across
+iterations (under-delivery, good delivery, over-delivery scenarios).
+
 Usage:
     python scripts/simulate.py --dry-run          # Print plan without executing
     python scripts/simulate.py --pi 1             # Simulate PI-1 only
@@ -46,22 +49,56 @@ ITERATION_DAYS = 14  # 2-week cadence
 RANDOM_SEED = 42
 
 # ---------------------------------------------------------------------------
+# Planning & delivery variance
+# ---------------------------------------------------------------------------
+
+PLANNING_FACTOR = 0.80  # Plan to ~80% of capacity (story points)
+
+# Delivery scenarios: (factor, label, description)
+# factor = fraction of planned SP actually delivered
+DELIVERY_SCENARIOS = [
+    (0.65, "UNDER", "Blockers + sick days, 2 stories postponed"),
+    (0.75, "UNDER", "Dependencies delayed, 1 story not started"),
+    (0.85, "GOOD",  "Slight overestimation, buffer absorbed"),
+    (0.90, "GOOD",  "Well planned, minor adjustments"),
+    (0.95, "GOOD",  "Nearly perfect sprint"),
+    (1.00, "EXACT", "All planned work delivered"),
+    (1.10, "OVER",  "Team picked up 1 unplanned story"),
+    (1.20, "OVER",  "Fast iteration, 2 extra stories completed"),
+]
+
+# Fixed scenario assignment per iteration (deterministic, models team learning)
+# Key: (pi_num, iter_num) -> index into DELIVERY_SCENARIOS
+ITERATION_SCENARIO_MAP = {
+    # PI-1: team is learning
+    (1, 1): 0,  # 0.65 UNDER -- first iteration, team overestimates
+    (1, 2): 2,  # 0.85 GOOD  -- adjusting
+    (1, 3): 4,  # 0.95 GOOD  -- improving
+    (1, 4): 6,  # 1.10 OVER  -- confident, picks up extra
+    # PI-2: team improved
+    (2, 1): 3,  # 0.90 GOOD  -- strong start
+    (2, 2): 1,  # 0.75 UNDER -- unexpected blocker
+    (2, 3): 4,  # 0.95 GOOD  -- back on track
+    (2, 4): 5,  # 1.00 EXACT -- well-calibrated
+}
+
+# ---------------------------------------------------------------------------
 # Team definition (loaded from config but also inlined for commit authoring)
 # ---------------------------------------------------------------------------
 
 TEAM = [
     {
-        "id": "novak", "name": "Jan Novák", "role": "BO",
+        "id": "novak", "name": "Jan Novak", "role": "BO",
         "fte": 0.30, "capacity": 24, "email": "novak@kashealth.cz",
         "team": "Management",
     },
     {
-        "id": "kralova", "name": "Marie Králová", "role": "PM",
+        "id": "kralova", "name": "Marie Kralova", "role": "PM",
         "fte": 0.50, "capacity": 40, "email": "kralova@kashealth.cz",
         "team": "Management",
     },
     {
-        "id": "urbanek", "name": "Jaroslav Urbánek", "role": "Arch",
+        "id": "urbanek", "name": "Jaroslav Urbanek", "role": "Arch",
         "fte": 0.70, "capacity": 56, "email": "urbanek@kashealth.cz",
         "team": "Core",
     },
@@ -71,17 +108,17 @@ TEAM = [
         "team": "Core",
     },
     {
-        "id": "cerny", "name": "Tomáš Černý", "role": "Dev",
+        "id": "cerny", "name": "Tomas Cerny", "role": "Dev",
         "fte": 1.00, "capacity": 80, "email": "cerny@kashealth.cz",
         "team": "Core",
     },
     {
-        "id": "tuma", "name": "Ondřej Tůma", "role": "DevSecOps",
+        "id": "tuma", "name": "Ondrej Tuma", "role": "DevSecOps",
         "fte": 0.80, "capacity": 64, "email": "tuma@kashealth.cz",
         "team": "Platform",
     },
     {
-        "id": "nemcova", "name": "Kateřina Němcová", "role": "QA",
+        "id": "nemcova", "name": "Katerina Nemcova", "role": "QA",
         "fte": 1.20, "capacity": 96, "email": "nemcova@kashealth.cz",
         "team": "Platform",
     },
@@ -96,34 +133,34 @@ TEAM_CAPACITY = sum(m["capacity"] for m in TEAM)  # 440h
 
 PI1_EPICS = [
     {
-        "id": "E-10", "title": "Anonymizační modul", "js": 13,
+        "id": "E-10", "title": "Anonymizacni modul", "js": 13,
         "features": [
             {
                 "id": "F-100", "title": "K-anonymity engine", "js": 8,
                 "stories": [
                     {"id": "S-1001", "title": "Implementace QI detekce", "js": 5,
                      "owner": "svoboda", "contributors": ["urbanek", "nemcova"]},
-                    {"id": "S-1002", "title": "Generalizační hierarchie", "js": 3,
+                    {"id": "S-1002", "title": "Generalizacni hierarchie", "js": 3,
                      "owner": "svoboda", "contributors": ["cerny"]},
-                    {"id": "S-1003", "title": "K-anonymity validátor", "js": 5,
+                    {"id": "S-1003", "title": "K-anonymity validator", "js": 5,
                      "owner": "cerny", "contributors": ["nemcova"]},
                     {"id": "S-1004", "title": "Unit testy anonymizace", "js": 2,
                      "owner": "nemcova", "contributors": ["svoboda"]},
                 ],
             },
             {
-                "id": "F-101", "title": "L-diversity rozšíření", "js": 5,
+                "id": "F-101", "title": "L-diversity rozsireni", "js": 5,
                 "stories": [
                     {"id": "S-1005", "title": "L-diversity algoritmus", "js": 5,
                      "owner": "cerny", "contributors": ["urbanek"]},
-                    {"id": "S-1006", "title": "Konfigurace citlivých atributů", "js": 3,
+                    {"id": "S-1006", "title": "Konfigurace citlivych atributu", "js": 3,
                      "owner": "svoboda", "contributors": ["tuma"]},
-                    {"id": "S-1007", "title": "Benchmark výkonu anonymizace", "js": 2,
+                    {"id": "S-1007", "title": "Benchmark vykonu anonymizace", "js": 2,
                      "owner": "nemcova", "contributors": ["cerny"]},
                 ],
             },
             {
-                "id": "F-102", "title": "Anonymizační pipeline", "js": 8,
+                "id": "F-102", "title": "Anonymizacni pipeline", "js": 8,
                 "stories": [
                     {"id": "S-1008", "title": "Celery task pro anonymizaci", "js": 5,
                      "owner": "tuma", "contributors": ["svoboda", "cerny"]},
@@ -131,45 +168,45 @@ PI1_EPICS = [
                      "owner": "tuma", "contributors": ["nemcova"]},
                     {"id": "S-1010", "title": "Error handling a retry logika", "js": 3,
                      "owner": "cerny", "contributors": ["tuma"]},
-                    {"id": "S-1011", "title": "Integrační testy pipeline", "js": 3,
+                    {"id": "S-1011", "title": "Integracni testy pipeline", "js": 3,
                      "owner": "nemcova", "contributors": ["tuma", "svoboda"]},
                 ],
             },
         ],
     },
     {
-        "id": "E-11", "title": "Datový e-shop API", "js": 8,
+        "id": "E-11", "title": "Datovy e-shop API", "js": 8,
         "features": [
             {
-                "id": "F-110", "title": "Katalog datasetů", "js": 5,
+                "id": "F-110", "title": "Katalog datasetu", "js": 5,
                 "stories": [
                     {"id": "S-1101", "title": "REST endpoint /datasets", "js": 5,
                      "owner": "svoboda", "contributors": ["urbanek"]},
-                    {"id": "S-1102", "title": "Filtrování a stránkování", "js": 3,
+                    {"id": "S-1102", "title": "Filtrovani a strankovani", "js": 3,
                      "owner": "cerny", "contributors": ["svoboda"]},
                     {"id": "S-1103", "title": "OpenAPI specifikace katalogu", "js": 2,
                      "owner": "urbanek", "contributors": ["kralova"]},
                 ],
             },
             {
-                "id": "F-111", "title": "Objednávkový proces", "js": 5,
+                "id": "F-111", "title": "Objednavkovy proces", "js": 5,
                 "stories": [
-                    {"id": "S-1104", "title": "Nákupní košík API", "js": 5,
+                    {"id": "S-1104", "title": "Nakupni kosik API", "js": 5,
                      "owner": "cerny", "contributors": ["svoboda"]},
-                    {"id": "S-1105", "title": "Platební integrace mock", "js": 3,
+                    {"id": "S-1105", "title": "Platebni integrace mock", "js": 3,
                      "owner": "svoboda", "contributors": ["tuma"]},
-                    {"id": "S-1106", "title": "E2E testy objednávky", "js": 3,
+                    {"id": "S-1106", "title": "E2E testy objednavky", "js": 3,
                      "owner": "nemcova", "contributors": ["cerny", "svoboda"]},
                 ],
             },
             {
-                "id": "F-112", "title": "Autorizace a přístupová práva", "js": 5,
+                "id": "F-112", "title": "Autorizace a pristupova prava", "js": 5,
                 "stories": [
                     {"id": "S-1107", "title": "RBAC model pro e-shop", "js": 5,
                      "owner": "tuma", "contributors": ["urbanek"]},
                     {"id": "S-1108", "title": "JWT token management", "js": 3,
                      "owner": "tuma", "contributors": ["cerny"]},
-                    {"id": "S-1109", "title": "Audit log přístupů", "js": 3,
+                    {"id": "S-1109", "title": "Audit log pristupu", "js": 3,
                      "owner": "tuma", "contributors": ["nemcova"]},
                 ],
             },
@@ -179,22 +216,22 @@ PI1_EPICS = [
         "id": "E-12", "title": "OMOP CDM integrace", "js": 5,
         "features": [
             {
-                "id": "F-120", "title": "OMOP schéma migrace", "js": 5,
+                "id": "F-120", "title": "OMOP schema migrace", "js": 5,
                 "stories": [
                     {"id": "S-1201", "title": "Alembic migrace OMOP tabulek", "js": 5,
                      "owner": "urbanek", "contributors": ["svoboda"]},
-                    {"id": "S-1202", "title": "ETL transformace zdrojových dat", "js": 5,
+                    {"id": "S-1202", "title": "ETL transformace zdrojovych dat", "js": 5,
                      "owner": "svoboda", "contributors": ["urbanek", "cerny"]},
                     {"id": "S-1203", "title": "Validace OMOP integrity", "js": 3,
                      "owner": "nemcova", "contributors": ["urbanek"]},
                 ],
             },
             {
-                "id": "F-121", "title": "OMOP vocabulář služba", "js": 3,
+                "id": "F-121", "title": "OMOP vocabular sluzba", "js": 3,
                 "stories": [
                     {"id": "S-1204", "title": "Vocabulary lookup API", "js": 3,
                      "owner": "cerny", "contributors": ["urbanek"]},
-                    {"id": "S-1205", "title": "Concept mapping nástroj", "js": 3,
+                    {"id": "S-1205", "title": "Concept mapping nastroj", "js": 3,
                      "owner": "svoboda", "contributors": ["cerny"]},
                     {"id": "S-1206", "title": "Cache vrstva pro vocabulary", "js": 2,
                      "owner": "tuma", "contributors": ["cerny"]},
@@ -210,23 +247,23 @@ PI1_EPICS = [
 
 PI2_EPICS = [
     {
-        "id": "E-20", "title": "Pokročilá analytika", "js": 8,
+        "id": "E-20", "title": "Pokrocila analytika", "js": 8,
         "features": [
             {
-                "id": "F-200", "title": "Statistický engine", "js": 5,
+                "id": "F-200", "title": "Statisticky engine", "js": 5,
                 "stories": [
-                    {"id": "S-2001", "title": "Deskriptivní statistiky modul", "js": 5,
+                    {"id": "S-2001", "title": "Deskriptivni statistiky modul", "js": 5,
                      "owner": "cerny", "contributors": ["urbanek"]},
-                    {"id": "S-2002", "title": "Korelační analýza služba", "js": 5,
+                    {"id": "S-2002", "title": "Korelacni analyza sluzba", "js": 5,
                      "owner": "svoboda", "contributors": ["cerny"]},
-                    {"id": "S-2003", "title": "Regresní model API", "js": 5,
+                    {"id": "S-2003", "title": "Regresni model API", "js": 5,
                      "owner": "cerny", "contributors": ["svoboda", "urbanek"]},
-                    {"id": "S-2004", "title": "Statistické testy modul", "js": 3,
+                    {"id": "S-2004", "title": "Statisticke testy modul", "js": 3,
                      "owner": "nemcova", "contributors": ["cerny"]},
                 ],
             },
             {
-                "id": "F-201", "title": "Vizualizační služba", "js": 5,
+                "id": "F-201", "title": "Vizualizacni sluzba", "js": 5,
                 "stories": [
                     {"id": "S-2005", "title": "Chart rendering engine", "js": 5,
                      "owner": "svoboda", "contributors": ["cerny"]},
@@ -237,13 +274,13 @@ PI2_EPICS = [
                 ],
             },
             {
-                "id": "F-202", "title": "Analytický sandbox", "js": 5,
+                "id": "F-202", "title": "Analyticky sandbox", "js": 5,
                 "stories": [
                     {"id": "S-2008", "title": "Jupyter notebook integrace", "js": 5,
                      "owner": "tuma", "contributors": ["urbanek", "svoboda"]},
                     {"id": "S-2009", "title": "Sandbox izolace a limity", "js": 3,
                      "owner": "tuma", "contributors": ["cerny"]},
-                    {"id": "S-2010", "title": "Sdílení notebooků API", "js": 3,
+                    {"id": "S-2010", "title": "Sdileni notebooku API", "js": 3,
                      "owner": "cerny", "contributors": ["tuma"]},
                 ],
             },
@@ -270,7 +307,7 @@ PI2_EPICS = [
                 "stories": [
                     {"id": "S-2105", "title": "Retention policy model", "js": 5,
                      "owner": "urbanek", "contributors": ["tuma"]},
-                    {"id": "S-2106", "title": "Automatická expirační služba", "js": 5,
+                    {"id": "S-2106", "title": "Automaticka expiracni sluzba", "js": 5,
                      "owner": "tuma", "contributors": ["cerny"]},
                     {"id": "S-2107", "title": "Retention reporting dashboard", "js": 3,
                      "owner": "svoboda", "contributors": ["nemcova"]},
@@ -279,7 +316,7 @@ PI2_EPICS = [
         ],
     },
     {
-        "id": "E-22", "title": "Platformová stabilizace", "js": 5,
+        "id": "E-22", "title": "Platformova stabilizace", "js": 5,
         "features": [
             {
                 "id": "F-220", "title": "Observabilita", "js": 5,
@@ -330,6 +367,58 @@ PI2_ITERATION_STORIES = {
     4: ["S-2009", "S-2010", "S-2009", "S-2207"],  # lighter iteration before IP
     5: [],  # IP iteration
 }
+
+# ---------------------------------------------------------------------------
+# Unplanned story templates (used when delivery_factor > 1.0)
+# ---------------------------------------------------------------------------
+
+# Counter for generating unique unplanned story IDs
+_unplanned_counter = {"value": 9000}
+
+
+def make_unplanned_story(pi_num, iter_num, rng, all_stories):
+    """Generate an unplanned small story (JS 1-3) for over-delivery scenarios."""
+    _unplanned_counter["value"] += 1
+    sid = f"S-{_unplanned_counter['value']}"
+
+    templates = [
+        ("Hotfix: oprava validace vstupu", "svoboda"),
+        ("Refactor: cleanup utility modulu", "cerny"),
+        ("Chore: aktualizace CI pipeline", "tuma"),
+        ("Fix: oprava race condition v cache", "svoboda"),
+        ("Chore: migrace konfiguracnich souboru", "tuma"),
+        ("Fix: timeout handling v API klientu", "cerny"),
+        ("Refactor: typove anotace modulu", "svoboda"),
+        ("Chore: upgrade zavislosti", "tuma"),
+    ]
+    title, owner = rng.choice(templates)
+    js = rng.choice([1, 2, 2, 3])
+
+    # Pick a contributor from the team (not the owner)
+    possible = [m["id"] for m in TEAM if m["id"] != owner and m["role"] in ("Dev", "DevSecOps", "QA")]
+    contributor = rng.choice(possible) if possible else "nemcova"
+
+    # Attach to a plausible epic/feature from the PI
+    epics = PI1_EPICS if pi_num == 1 else PI2_EPICS
+    epic = rng.choice(epics)
+    feature = rng.choice(epic["features"])
+
+    story = {
+        "id": sid,
+        "title": title,
+        "js": js,
+        "owner": owner,
+        "contributors": [contributor],
+        "unplanned": True,
+        "epic_id": epic["id"],
+        "epic_title": epic["title"],
+        "feature_id": feature["id"],
+        "feature_title": feature["title"],
+        "feature_js": feature["js"],
+        "epic_js": epic["js"],
+    }
+    return story
+
 
 # ---------------------------------------------------------------------------
 # Code generation templates (realistic file content per role/type)
@@ -542,6 +631,50 @@ def random_time_in_range(start_dt, end_dt, rng):
     delta = (end_dt - start_dt).total_seconds()
     offset = rng.uniform(0, delta)
     return start_dt + timedelta(seconds=offset)
+
+
+def get_scenario(pi_num, iter_num):
+    """Get the delivery scenario for a given PI and iteration."""
+    idx = ITERATION_SCENARIO_MAP.get((pi_num, iter_num))
+    if idx is not None:
+        return DELIVERY_SCENARIOS[idx]
+    # Fallback: good delivery
+    return (0.90, "GOOD", "Well planned, minor adjustments")
+
+
+def select_spillover_stories(story_ids, all_stories, target_sp_to_spill, rng):
+    """
+    Select stories to mark as spillover so that approximately target_sp_to_spill
+    SP are removed. Prefers removing stories from the end of the list (later planned)
+    and smaller stories first to be realistic.
+
+    Returns (delivered_ids, spillover_ids).
+    """
+    if target_sp_to_spill <= 0:
+        return list(story_ids), []
+
+    # Build list with JS, prefer spilling from end
+    candidates = []
+    for sid in story_ids:
+        story = all_stories.get(sid)
+        if story:
+            candidates.append((sid, story["js"]))
+
+    # Sort by position (reverse -- later stories spill first)
+    # then by JS ascending (smaller stories spill first for partial)
+    candidates_indexed = list(enumerate(candidates))
+    candidates_indexed.sort(key=lambda x: (-x[0], x[1][1]))
+
+    spilled_sp = 0
+    spillover_ids = []
+    for _orig_idx, (sid, js) in candidates_indexed:
+        if spilled_sp >= target_sp_to_spill:
+            break
+        spillover_ids.append(sid)
+        spilled_sp += js
+
+    delivered_ids = [sid for sid in story_ids if sid not in spillover_ids]
+    return delivered_ids, spillover_ids
 
 
 def determine_commit_plan(story, rng):
@@ -816,7 +949,8 @@ def run_edpa_engine(items, iteration_id, mode="simple"):
 # ---------------------------------------------------------------------------
 
 
-def save_iteration_report(results, iteration_id, items, commit_log):
+def save_iteration_report(results, iteration_id, items, commit_log,
+                          scenario_info=None):
     """Save JSON report and per-person vykaz for an iteration."""
     report_dir = REPORTS_DIR / f"iteration-{iteration_id}"
     report_dir.mkdir(parents=True, exist_ok=True)
@@ -835,6 +969,10 @@ def save_iteration_report(results, iteration_id, items, commit_log):
         "items_count": len(items),
         "commit_count": len(commit_log),
     }
+
+    # Include scenario info if provided
+    if scenario_info:
+        report["scenario"] = scenario_info
 
     # Save JSON report
     report_path = report_dir / "edpa_results.json"
@@ -884,7 +1022,7 @@ def save_iteration_report(results, iteration_id, items, commit_log):
     return report_path
 
 
-def save_snapshot(results, iteration_id, items, commit_log):
+def save_snapshot(results, iteration_id, items, commit_log, scenario_info=None):
     """Save a frozen snapshot of the iteration state."""
     SNAPSHOTS_DIR.mkdir(parents=True, exist_ok=True)
     snapshot_path = SNAPSHOTS_DIR / f"iteration-{iteration_id}.json"
@@ -909,6 +1047,9 @@ def save_snapshot(results, iteration_id, items, commit_log):
             },
         },
     }
+
+    if scenario_info:
+        snapshot["scenario"] = scenario_info
 
     with open(snapshot_path, "w") as f:
         json.dump(snapshot, f, indent=2, ensure_ascii=False)
@@ -1027,11 +1168,54 @@ def generate_ground_truth(commit_log, all_stories, pi_label):
 # ---------------------------------------------------------------------------
 
 
-def print_iteration_summary(results, iteration_id, items_count, commit_count):
+def print_iteration_summary(results, iteration_id, items_count, commit_count,
+                            scenario_info=None):
     """Print a human-readable summary table for an iteration."""
     print(f"\n{'='*74}")
     print(f"  EDPA Iteration {iteration_id}")
-    print(f"  Items: {items_count}  |  Commits: {commit_count}")
+
+    if scenario_info:
+        factor = scenario_info["delivery_factor"]
+        label = scenario_info["label"]
+        desc = scenario_info["description"]
+        planned_sp = scenario_info["planned_sp"]
+        delivered_sp = scenario_info["delivered_sp"]
+        planned_count = scenario_info["planned_stories"]
+        delivered_count = scenario_info["delivered_stories"]
+        spillover_count = scenario_info["spillover_count"]
+        unplanned_count = scenario_info["unplanned_count"]
+        capacity_sp = scenario_info["capacity_sp"]
+        predictability = (delivered_sp / planned_sp * 100) if planned_sp > 0 else 0
+
+        print(f"  Planning: {PLANNING_FACTOR:.0%} capacity -> "
+              f"{planned_sp} SP planned (of {capacity_sp} SP capacity)")
+        print(f"  Delivery: {factor:.0%} ({label} -- {desc})")
+        print(f"  Planned:  {planned_count} stories ({planned_sp} SP)")
+        print(f"  Delivered: {delivered_count} stories ({delivered_sp} SP)")
+        if spillover_count > 0:
+            spill_info = scenario_info.get("spillover_details", [])
+            spill_str = ", ".join(
+                f"{s['id']}, JS={s['js']}" for s in spill_info
+            )
+            print(f"  Spillover: {spillover_count} "
+                  f"{'story' if spillover_count == 1 else 'stories'} "
+                  f"({spill_str}) -> next iteration")
+        else:
+            print(f"  Spillover: 0")
+        if unplanned_count > 0:
+            unpl_info = scenario_info.get("unplanned_details", [])
+            unpl_str = ", ".join(
+                f"{s['id']}, JS={s['js']}" for s in unpl_info
+            )
+            print(f"  Unplanned: {unplanned_count} "
+                  f"{'story' if unplanned_count == 1 else 'stories'} "
+                  f"({unpl_str})")
+        else:
+            print(f"  Unplanned: 0")
+        print(f"  FlowPredictability: {predictability:.1f}%")
+    else:
+        print(f"  Items: {items_count}  |  Commits: {commit_count}")
+
     print(f"{'='*74}")
     print(f"  {'Person':<25} {'Role':<10} {'Cap':>5} {'Derived':>8} {'Items':>6} {'OK':>4}")
     print(f"  {'-'*70}")
@@ -1062,7 +1246,55 @@ def print_final_evaluation(all_iteration_data):
     print(f"  FINAL EVALUATION")
     print(f"{'#'*74}")
 
-    # Velocity trend
+    # ---- Predictability table (new) ----
+    print(f"\n  Delivery Predictability:")
+    print(f"  {'Iteration':<20} {'Planned':>8} {'Delivered':>10} "
+          f"{'Predictability':>15} {'Scenario':>10}")
+    print(f"  {'-'*68}")
+
+    pi_groups = {}  # pi_num -> list of iteration entries
+    for entry in all_iteration_data:
+        iid = entry["iteration_id"]
+        scenario = entry.get("scenario_info")
+        if not scenario or entry["items_count"] == 0:
+            # IP iterations
+            continue
+
+        # Determine PI number from iteration_id (e.g. PI-2026-1.2 -> 1)
+        pi_num = int(iid.split("-")[2].split(".")[0])
+        pi_groups.setdefault(pi_num, []).append(entry)
+
+        planned_sp = scenario["planned_sp"]
+        delivered_sp = scenario["delivered_sp"]
+        pred = (delivered_sp / planned_sp * 100) if planned_sp > 0 else 0
+        label = scenario["label"]
+
+        print(f"  {iid:<20} {planned_sp:>5} SP  {delivered_sp:>7} SP  "
+              f"{pred:>13.1f}%  {label:>10}")
+
+    # Per-PI summary
+    for pi_num in sorted(pi_groups.keys()):
+        entries = pi_groups[pi_num]
+        preds = []
+        total_spillover = 0
+        total_planned_stories = 0
+        for e in entries:
+            sc = e["scenario_info"]
+            p_sp = sc["planned_sp"]
+            d_sp = sc["delivered_sp"]
+            if p_sp > 0:
+                preds.append(d_sp / p_sp * 100)
+            total_spillover += sc["spillover_count"]
+            total_planned_stories += sc["planned_stories"]
+
+        avg_pred = sum(preds) / len(preds) if preds else 0
+        spill_rate = (total_spillover / total_planned_stories * 100) if total_planned_stories > 0 else 0
+        print(f"  ---")
+        print(f"  PI-{pi_num} avg predictability:   {avg_pred:>7.1f}%")
+        print(f"  PI-{pi_num} spillover rate:       {spill_rate:>7.1f}%")
+        print()
+
+    # ---- Velocity trend (original, enhanced) ----
     print(f"\n  Velocity Trend (story points delivered per iteration):")
     print(f"  {'Iteration':<20} {'Stories':>8} {'Points':>8} {'Capacity':>10} {'Util%':>8}")
     print(f"  {'-'*60}")
@@ -1104,9 +1336,11 @@ def print_final_evaluation(all_iteration_data):
 
 
 def simulate_iteration(pi_num, iter_num, pi_start, story_ids, all_stories, rng,
-                       dry_run=False):
+                       dry_run=False, spillover_from_prev=None):
     """
-    Simulate a single iteration.
+    Simulate a single iteration with planning factor and delivery variance.
+
+    spillover_from_prev: list of story IDs that spilled over from previous iteration
 
     Returns: dict with iteration results and metadata.
     """
@@ -1118,6 +1352,9 @@ def simulate_iteration(pi_num, iter_num, pi_start, story_ids, all_stories, rng,
         print(f"\n--- {iteration_id} (IP -- Innovation & Planning) ---")
         print(f"    Period: {iter_start.date()} to {iter_end.date()}")
         print(f"    No new stories. Hardening, retrospective, next PI planning.")
+        if spillover_from_prev:
+            print(f"    Note: {len(spillover_from_prev)} spillover stories from prev "
+                  f"iteration carried to next PI backlog")
         if dry_run:
             return {
                 "iteration_id": iteration_id,
@@ -1126,42 +1363,169 @@ def simulate_iteration(pi_num, iter_num, pi_start, story_ids, all_stories, rng,
                 "team_derived": 0,
                 "all_passed": True,
                 "commit_count": 0,
+                "spillover_out": [],
+                "scenario_info": None,
             }
-    else:
-        print(f"\n--- {iteration_id} ---")
-        print(f"    Period: {iter_start.date()} to {iter_end.date()}")
-        print(f"    Stories: {len(story_ids)}")
 
-    if dry_run:
-        total_js = 0
-        for sid in story_ids:
-            s = all_stories.get(sid)
-            if s:
-                total_js += s["js"]
-                plan = determine_commit_plan(s, rng)
-                print(f"      {sid} ({s['title']}) -- JS={s['js']}, "
-                      f"owner={s['owner']}, commits={len(plan)}")
-        print(f"    Total job size: {total_js}")
+    # Merge spillover stories from previous iteration into this iteration's plan
+    effective_story_ids = list(story_ids)
+    if spillover_from_prev:
+        # Add spillover at the start (highest priority)
+        for sid in spillover_from_prev:
+            if sid not in effective_story_ids:
+                effective_story_ids.insert(0, sid)
+
+    # Deduplicate
+    effective_story_ids = list(dict.fromkeys(effective_story_ids))
+
+    if is_ip:
+        # IP iteration: no delivery work
         return {
             "iteration_id": iteration_id,
-            "items_count": len(story_ids),
-            "total_js": total_js,
+            "items_count": 0,
+            "total_js": 0,
             "team_derived": 0,
             "all_passed": True,
             "commit_count": 0,
+            "spillover_out": spillover_from_prev or [],
+            "scenario_info": None,
         }
 
-    # --- Live simulation ---
-    commit_log = []
-    total_js = 0
+    # --- Determine scenario for this iteration ---
+    delivery_factor, scenario_label, scenario_desc = get_scenario(pi_num, iter_num)
 
-    for sid in story_ids:
+    # Calculate total planned SP
+    planned_sp = 0
+    for sid in effective_story_ids:
+        s = all_stories.get(sid)
+        if s:
+            planned_sp += s["js"]
+
+    # Capacity in SP (approximate: we use the raw planned SP from the backlog)
+    # The planning_factor is conceptual -- the iteration_stories already represent
+    # ~80% of what the team COULD take on. We report it for transparency.
+    capacity_sp = round(planned_sp / PLANNING_FACTOR) if PLANNING_FACTOR > 0 else planned_sp
+
+    # --- Apply delivery variance ---
+    delivered_ids = list(effective_story_ids)
+    spillover_ids = []
+    unplanned_stories = []
+
+    if delivery_factor < 1.0:
+        # Under-delivery or good-but-not-perfect: some stories spill
+        target_delivered_sp = round(planned_sp * delivery_factor)
+        target_spill_sp = planned_sp - target_delivered_sp
+        delivered_ids, spillover_ids = select_spillover_stories(
+            effective_story_ids, all_stories, target_spill_sp, rng
+        )
+    elif delivery_factor > 1.0:
+        # Over-delivery: team picks up extra unplanned stories
+        extra_sp_budget = round(planned_sp * (delivery_factor - 1.0))
+        added_sp = 0
+        while added_sp < extra_sp_budget:
+            unplanned = make_unplanned_story(pi_num, iter_num, rng, all_stories)
+            if added_sp + unplanned["js"] > extra_sp_budget + 2:
+                # Don't overshoot by too much
+                break
+            unplanned_stories.append(unplanned)
+            # Register in all_stories so EDPA can find it
+            all_stories[unplanned["id"]] = unplanned
+            delivered_ids.append(unplanned["id"])
+            added_sp += unplanned["js"]
+
+    # Calculate actual delivered SP
+    delivered_sp = sum(all_stories[sid]["js"] for sid in delivered_ids if sid in all_stories)
+    spillover_sp = sum(all_stories[sid]["js"] for sid in spillover_ids if sid in all_stories)
+
+    # Build scenario info dict
+    spillover_details = []
+    for sid in spillover_ids:
+        s = all_stories.get(sid)
+        if s:
+            spillover_details.append({"id": sid, "js": s["js"], "title": s["title"]})
+
+    unplanned_details = []
+    for s in unplanned_stories:
+        unplanned_details.append({"id": s["id"], "js": s["js"], "title": s["title"]})
+
+    scenario_info = {
+        "delivery_factor": delivery_factor,
+        "label": scenario_label,
+        "description": scenario_desc,
+        "planning_factor": PLANNING_FACTOR,
+        "capacity_sp": capacity_sp,
+        "planned_sp": planned_sp,
+        "delivered_sp": delivered_sp,
+        "planned_stories": len(effective_story_ids),
+        "delivered_stories": len(delivered_ids),
+        "spillover_count": len(spillover_ids),
+        "spillover_sp": spillover_sp,
+        "spillover_details": spillover_details,
+        "unplanned_count": len(unplanned_stories),
+        "unplanned_details": unplanned_details,
+    }
+
+    print(f"\n--- {iteration_id} ---")
+    print(f"    Period: {iter_start.date()} to {iter_end.date()}")
+    print(f"    Planning: {PLANNING_FACTOR:.0%} capacity -> "
+          f"{planned_sp} SP planned (of {capacity_sp} SP capacity)")
+    print(f"    Delivery: {delivery_factor:.0%} "
+          f"({scenario_label} -- {scenario_desc})")
+    print(f"    Planned:  {len(effective_story_ids)} stories ({planned_sp} SP)")
+    print(f"    Delivered: {len(delivered_ids)} stories ({delivered_sp} SP)")
+
+    if spillover_ids:
+        spill_str = ", ".join(
+            f"{sid} JS={all_stories[sid]['js']}" for sid in spillover_ids if sid in all_stories
+        )
+        print(f"    Spillover: {len(spillover_ids)} "
+              f"{'story' if len(spillover_ids) == 1 else 'stories'} "
+              f"({spill_str}) -> next iteration")
+    else:
+        print(f"    Spillover: 0")
+
+    if unplanned_stories:
+        unpl_str = ", ".join(f"{s['id']} JS={s['js']}" for s in unplanned_stories)
+        print(f"    Unplanned: {len(unplanned_stories)} "
+              f"{'story' if len(unplanned_stories) == 1 else 'stories'} ({unpl_str})")
+    else:
+        print(f"    Unplanned: 0")
+
+    if dry_run:
+        # Show story details in dry-run
+        for sid in delivered_ids:
+            s = all_stories.get(sid)
+            if s:
+                tag = " [UNPLANNED]" if s.get("unplanned") else ""
+                plan = determine_commit_plan(s, rng)
+                print(f"      {sid} ({s['title']}) -- JS={s['js']}, "
+                      f"owner={s['owner']}, commits={len(plan)}{tag}")
+        for sid in spillover_ids:
+            s = all_stories.get(sid)
+            if s:
+                print(f"      {sid} ({s['title']}) -- JS={s['js']}, "
+                      f"status=Spillover")
+
+        return {
+            "iteration_id": iteration_id,
+            "items_count": len(delivered_ids),
+            "total_js": delivered_sp,
+            "team_derived": 0,
+            "all_passed": True,
+            "commit_count": 0,
+            "spillover_out": spillover_ids,
+            "scenario_info": scenario_info,
+        }
+
+    # --- Live simulation: only commit delivered stories ---
+    commit_log = []
+
+    for sid in delivered_ids:
         story = all_stories.get(sid)
         if not story:
             print(f"    WARNING: Story {sid} not found, skipping")
             continue
 
-        total_js += story["js"]
         branch_name = f"feature/{sid}-{slugify(story['title'])}"
 
         # Create feature branch
@@ -1217,10 +1581,10 @@ def simulate_iteration(pi_num, iter_num, pi_start, story_ids, all_stories, rng,
         git(["branch", "-d", branch_name])
 
     print(f"    Commits generated: {len(commit_log)}")
-    print(f"    Total job size: {total_js}")
+    print(f"    Total delivered job size: {delivered_sp}")
 
-    # Build items for EDPA engine
-    edpa_items = build_edpa_items(story_ids, all_stories, commit_log)
+    # Build items for EDPA engine -- ONLY delivered stories
+    edpa_items = build_edpa_items(delivered_ids, all_stories, commit_log)
 
     # Run EDPA engine
     results = run_edpa_engine(edpa_items, iteration_id)
@@ -1229,33 +1593,44 @@ def simulate_iteration(pi_num, iter_num, pi_start, story_ids, all_stories, rng,
         print(f"    WARNING: EDPA engine returned no results")
         return {
             "iteration_id": iteration_id,
-            "items_count": len(story_ids),
-            "total_js": total_js,
+            "items_count": len(delivered_ids),
+            "total_js": delivered_sp,
             "team_derived": 0,
             "all_passed": False,
             "commit_count": len(commit_log),
+            "spillover_out": spillover_ids,
+            "scenario_info": scenario_info,
         }
 
     # Save reports
-    report_path = save_iteration_report(results, iteration_id, edpa_items, commit_log)
-    snapshot_path = save_snapshot(results, iteration_id, edpa_items, commit_log)
+    report_path = save_iteration_report(
+        results, iteration_id, edpa_items, commit_log, scenario_info=scenario_info
+    )
+    snapshot_path = save_snapshot(
+        results, iteration_id, edpa_items, commit_log, scenario_info=scenario_info
+    )
     print(f"    Report:   {report_path}")
     print(f"    Snapshot: {snapshot_path}")
 
     # Print summary
-    print_iteration_summary(results, iteration_id, len(edpa_items), len(commit_log))
+    print_iteration_summary(
+        results, iteration_id, len(edpa_items), len(commit_log),
+        scenario_info=scenario_info,
+    )
 
     all_passed = all(r["invariant_ok"] for r in results if r["items"])
     team_derived = sum(r["total_derived"] for r in results)
 
     return {
         "iteration_id": iteration_id,
-        "items_count": len(story_ids),
-        "total_js": total_js,
+        "items_count": len(delivered_ids),
+        "total_js": delivered_sp,
         "team_derived": team_derived,
         "all_passed": all_passed,
         "commit_count": len(commit_log),
         "commit_log": commit_log,
+        "spillover_out": spillover_ids,
+        "scenario_info": scenario_info,
     }
 
 
@@ -1270,10 +1645,12 @@ def simulate_pi(pi_num, epics, iteration_stories, pi_start, rng, dry_run=False):
     all_stories = flatten_stories(epics)
     total_stories = len(all_stories)
     print(f"  Features: {features}  |  Stories: {total_stories}")
+    print(f"  Planning factor: {PLANNING_FACTOR:.0%}")
     print(f"{'='*74}")
 
     iteration_data = []
     all_commit_logs = []
+    spillover_carry = []  # Stories spilling from previous iteration
 
     for iter_num in range(1, 6):
         story_ids = iteration_stories.get(iter_num, [])
@@ -1283,8 +1660,12 @@ def simulate_pi(pi_num, epics, iteration_stories, pi_start, rng, dry_run=False):
         result = simulate_iteration(
             pi_num, iter_num, pi_start, story_ids, all_stories, rng,
             dry_run=dry_run,
+            spillover_from_prev=spillover_carry if spillover_carry else None,
         )
         iteration_data.append(result)
+
+        # Carry spillover to next iteration
+        spillover_carry = result.get("spillover_out", [])
 
         if "commit_log" in result:
             all_commit_logs.extend(result["commit_log"])
@@ -1303,7 +1684,7 @@ def simulate_pi(pi_num, epics, iteration_stories, pi_start, rng, dry_run=False):
         if n_records >= 20:
             print(f"    === Karpathy Calibration Analysis ===")
             if gt_stats['mad'] > 0.05:
-                print(f"    MAD={gt_stats['mad']:.4f} — calibration RECOMMENDED")
+                print(f"    MAD={gt_stats['mad']:.4f} -- calibration RECOMMENDED")
                 print(f"    Systematic biases detected:")
                 with open(gt_path) as f:
                     gt_data = yaml.safe_load(f)
@@ -1319,9 +1700,9 @@ def simulate_pi(pi_num, epics, iteration_stories, pi_start, rng, dry_run=False):
                 for role, biases in sorted(role_bias.items()):
                     avg_bias = sum(biases) / len(biases)
                     direction = "UNDERVALUED (increase CW)" if avg_bias > 0 else "OVERVALUED (decrease CW)"
-                    print(f"      {role}: avg bias {avg_bias:+.3f} — {direction} ({len(biases)} corrections)")
+                    print(f"      {role}: avg bias {avg_bias:+.3f} -- {direction} ({len(biases)} corrections)")
             else:
-                print(f"    MAD={gt_stats['mad']:.4f} — heuristic is WELL CALIBRATED")
+                print(f"    MAD={gt_stats['mad']:.4f} -- heuristic is WELL CALIBRATED")
         else:
             print(f"    Insufficient records for evaluation (need >=20, got {n_records})")
     elif dry_run:
@@ -1356,8 +1737,20 @@ def main():
     print(f"  Mode: {'DRY RUN' if args.dry_run else 'LIVE'}")
     print(f"  PI scope: {args.pi}")
     print(f"  Team: {len(TEAM)} members, {TEAM_CAPACITY}h/iteration")
+    print(f"  Planning factor: {PLANNING_FACTOR:.0%}")
     print(f"  Seed: {args.seed}")
     print("=" * 74)
+
+    if args.dry_run:
+        # Show scenario assignment overview
+        print(f"\n  Scenario Assignment:")
+        print(f"  {'Iteration':<20} {'Factor':>8} {'Label':>8} {'Description'}")
+        print(f"  {'-'*70}")
+        for (pi, it), idx in sorted(ITERATION_SCENARIO_MAP.items()):
+            factor, label, desc = DELIVERY_SCENARIOS[idx]
+            iid = f"PI-2026-{pi}.{it}"
+            print(f"  {iid:<20} {factor:>7.0%} {label:>8}   {desc}")
+        print()
 
     if not args.dry_run:
         ensure_main_branch()
@@ -1400,11 +1793,17 @@ def main():
         total_js = sum(e["total_js"] for e in all_iteration_data)
         delivery_iters = [e for e in all_iteration_data if e["items_count"] > 0]
         ip_iters = [e for e in all_iteration_data if e["items_count"] == 0]
+
+        total_spillover = sum(
+            len(e.get("spillover_out", [])) for e in all_iteration_data
+        )
         print(f"  Delivery iterations: {len(delivery_iters)}")
         print(f"  IP iterations:       {len(ip_iters)}")
-        print(f"  Total stories:       {total_stories}")
-        print(f"  Total job size:      {total_js} points")
+        print(f"  Total stories delivered: {total_stories}")
+        print(f"  Total job size delivered: {total_js} points")
+        print(f"  Total spillover stories: {total_spillover}")
         print(f"  Team capacity/iter:  {TEAM_CAPACITY}h")
+        print(f"  Planning factor:     {PLANNING_FACTOR:.0%}")
         print()
 
     return 0
