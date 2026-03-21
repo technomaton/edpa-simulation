@@ -1,0 +1,75 @@
+{
+  "iteration": "PI-2026-1.5",
+  "mode": "simple",
+  "computed_at": "2026-03-21T22:15:14.215800+00:00",
+  "methodology": "EDPA v1.0.0",
+  "people": [
+    {
+      "id": "novak",
+      "name": "Jan Novák",
+      "role": "BO",
+      "capacity": 24,
+      "total_derived": 0,
+      "items": [],
+      "invariant_ok": true
+    },
+    {
+      "id": "kralova",
+      "name": "Marie Králová",
+      "role": "PM",
+      "capacity": 40,
+      "total_derived": 0,
+      "items": [],
+      "invariant_ok": true
+    },
+    {
+      "id": "urbanek",
+      "name": "Jaroslav Urbánek",
+      "role": "Arch",
+      "capacity": 56,
+      "total_derived": 0,
+      "items": [],
+      "invariant_ok": true
+    },
+    {
+      "id": "svoboda",
+      "name": "Petr Svoboda",
+      "role": "Dev",
+      "capacity": 80,
+      "total_derived": 0,
+      "items": [],
+      "invariant_ok": true
+    },
+    {
+      "id": "cerny",
+      "name": "Tomáš Černý",
+      "role": "Dev",
+      "capacity": 80,
+      "total_derived": 0,
+      "items": [],
+      "invariant_ok": true
+    },
+    {
+      "id": "tuma",
+      "name": "Ondřej Tůma",
+      "role": "DevSecOps",
+      "capacity": 64,
+      "total_derived": 0,
+      "items": [],
+      "invariant_ok": true
+    },
+    {
+      "id": "nemcova",
+      "name": "Kateřina Němcová",
+      "role": "QA",
+      "capacity": 96,
+      "total_derived": 0,
+      "items": [],
+      "invariant_ok": true
+    }
+  ],
+  "team_total": 0,
+  "all_invariants_passed": true,
+  "items_count": 0,
+  "commit_count": 0
+}
