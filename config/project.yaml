@@ -1,0 +1,24 @@
+project:
+  name: "Medical Platform & Datový e-shop"
+  registration: "CZ.01.01.01/01/24_062/0007440"
+  program: "OP TAK"
+  organization: "ČVUT FBMI + Medicalc s.r.o."
+  domain: kashealth.cz
+
+governance:
+  methodology: "EDPA v1.0.0"
+  calculation_mode: simple
+  audit_mode: full
+
+naming:
+  pi_pattern: "PI-{YYYY}-{N}"
+  iteration_pattern: "PI-{YYYY}-{N}.{I}"
+  branch_pattern: "{type}/{ITEM_ID}-{description}"
+
+item_prefixes:
+  I: Initiative
+  E: Epic
+  F: Feature
+  S: Story
+  T: Task
+  B: Bug

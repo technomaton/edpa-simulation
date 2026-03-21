@@ -1,0 +1,56 @@
+cadence:
+  iteration_weeks: 2
+  pi_weeks: 10
+  delivery_iterations_per_pi: 4
+  ip_iterations_per_pi: 1
+
+team:
+  - id: novak
+    name: "Jan Novák"
+    role: BO
+    team: Management
+    fte: 0.30
+    capacity_per_iteration: 24
+    email: novak@kashealth.cz
+  - id: kralova
+    name: "Marie Králová"
+    role: PM
+    team: Management
+    fte: 0.50
+    capacity_per_iteration: 40
+    email: kralova@kashealth.cz
+  - id: urbanek
+    name: "Jaroslav Urbánek"
+    role: Arch
+    team: Core
+    fte: 0.70
+    capacity_per_iteration: 56
+    email: urbanek@kashealth.cz
+  - id: svoboda
+    name: "Petr Svoboda"
+    role: Dev
+    team: Core
+    fte: 1.00
+    capacity_per_iteration: 80
+    email: svoboda@kashealth.cz
+  - id: cerny
+    name: "Tomáš Černý"
+    role: Dev
+    team: Core
+    fte: 1.00
+    capacity_per_iteration: 80
+    email: cerny@kashealth.cz
+  - id: tuma
+    name: "Ondřej Tůma"
+    role: DevSecOps
+    team: Platform
+    fte: 0.80
+    capacity_per_iteration: 64
+    email: tuma@kashealth.cz
+  - id: nemcova
+    name: "Kateřina Němcová"
+    role: QA
+    team: Platform
+    fte: 1.20
+    capacity_per_iteration: 96
+    email: nemcova@kashealth.cz

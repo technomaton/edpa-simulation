@@ -1,0 +1,19 @@
+role_weights:
+  owner: 1.0
+  key: 0.6
+  reviewer: 0.25
+  consulted: 0.15
+
+signal_weights:
+  assignee: 4.0
+  contribute_command: 3.0
+  pr_author: 2.0
+  commit_author: 1.0
+  pr_reviewer: 1.0
+  issue_comment: 0.5
+
+rules:
+  highest_signal_wins: true
+  manual_override_priority: true
+  commit_count_is_not_time: true
+  in_progress_items_excluded: true
