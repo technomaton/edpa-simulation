@@ -922,10 +922,30 @@ def save_snapshot(results, iteration_id, items, commit_log):
 
 
 def generate_ground_truth(commit_log, all_stories, pi_label):
-    """Generate ground truth YAML for CW calibration evaluation."""
+    """Generate ground truth YAML with realistic team corrections.
+
+    The confirmed_cw DIFFERS from auto_cw to simulate real retro feedback:
+    - Arch/PM/BO systematically undervalued by auto-detection
+    - QA sometimes over-detected (many test commits inflate CW)
+    - Dev pair-programming under-detected
+    """
+    rng = random.Random(hash(pi_label) + 7)
     records = []
 
-    # Group commits by (person, story)
+    correction_patterns = {
+        ("Arch", "reviewer"): (0.65, "up", [0.35, 0.40, 0.50, 0.60]),
+        ("Arch", "consulted"): (0.50, "up", [0.25, 0.30, 0.40]),
+        ("PM", "consulted"): (0.70, "up", [0.25, 0.30, 0.40, 0.50]),
+        ("PM", "reviewer"): (0.40, "up", [0.35, 0.40]),
+        ("BO", "consulted"): (0.80, "up", [0.30, 0.35, 0.40, 0.50]),
+        ("QA", "owner"): (0.35, "down", [0.60, 0.70, 0.80]),
+        ("QA", "key"): (0.25, "down", [0.40, 0.50]),
+        ("Dev", "reviewer"): (0.30, "up", [0.35, 0.40, 0.50, 0.60]),
+        ("Dev", "consulted"): (0.20, "up", [0.25, 0.30]),
+        ("DevSecOps", "consulted"): (0.45, "up", [0.25, 0.30, 0.40]),
+        ("DevSecOps", "reviewer"): (0.35, "up", [0.35, 0.40, 0.50]),
+    }
+
     pairs = {}
     for c in commit_log:
         key = (c["person_id"], c["story_id"])
@@ -938,35 +958,59 @@ def generate_ground_truth(commit_log, all_stories, pi_label):
 
         owner = story["owner"]
         contributors = story.get("contributors", [])
+        member = TEAM_BY_ID.get(pid, {})
+        role = member.get("role", "")
 
-        # Determine evidence role
         if pid == owner:
             evidence_role = "owner"
-            confirmed_cw = 1.0
+            auto_cw = 1.0
         elif pid in contributors:
             evidence_role = "key"
-            confirmed_cw = 0.6
+            auto_cw = 0.6
         else:
-            member = TEAM_BY_ID.get(pid, {})
-            role = member.get("role", "")
             if role in ("Arch", "QA"):
                 evidence_role = "reviewer"
-                confirmed_cw = 0.25
+                auto_cw = 0.25
             else:
                 evidence_role = "consulted"
-                confirmed_cw = 0.15
+                auto_cw = 0.15
+
+        confirmed_cw = auto_cw
+        correction_key = (role, evidence_role)
+        if correction_key in correction_patterns:
+            prob, direction, values = correction_patterns[correction_key]
+            if rng.random() < prob:
+                corrected = rng.choice(values)
+                if direction == "up":
+                    confirmed_cw = max(auto_cw, corrected)
+                else:
+                    confirmed_cw = min(auto_cw, corrected)
 
         records.append({
             "person": pid,
             "item": sid,
             "evidence_role": evidence_role,
-            "confirmed_cw": confirmed_cw,
+            "auto_cw": round(auto_cw, 2),
+            "confirmed_cw": round(confirmed_cw, 2),
+            "deviation": round(abs(auto_cw - confirmed_cw), 3),
             "commit_count": len(commits),
         })
+
+    deviations = [r["deviation"] for r in records]
+    mad = sum(deviations) / len(deviations) if deviations else 0
+    corrected_count = sum(1 for d in deviations if d > 0)
 
     gt = {
         "pi": pi_label,
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "stats": {
+            "total_records": len(records),
+            "corrected_records": corrected_count,
+            "correction_rate": round(corrected_count / len(records) * 100, 1) if records else 0,
+            "mad": round(mad, 4),
+            "total_deviation": round(sum(deviations), 4),
+            "max_deviation": round(max(deviations), 3) if deviations else 0,
+        },
         "records": records,
     }
 
@@ -975,7 +1019,7 @@ def generate_ground_truth(commit_log, all_stories, pi_label):
     with open(gt_path, "w") as f:
         yaml.dump(gt, f, default_flow_style=False, allow_unicode=True)
 
-    return gt_path, len(records)
+    return gt_path, len(records), gt["stats"]
 
 
 # ---------------------------------------------------------------------------
@@ -1245,27 +1289,39 @@ def simulate_pi(pi_num, epics, iteration_stories, pi_start, rng, dry_run=False):
         if "commit_log" in result:
             all_commit_logs.extend(result["commit_log"])
 
-    # Between-PI evaluation
+    # Between-PI evaluation with Karpathy calibration analysis
     if not dry_run and all_commit_logs:
         print(f"\n--- CW Evaluation for {pi_label} ---")
-        gt_path, n_records = generate_ground_truth(all_commit_logs, all_stories, pi_label)
+        gt_path, n_records, gt_stats = generate_ground_truth(all_commit_logs, all_stories, pi_label)
         print(f"    Ground truth: {gt_path} ({n_records} records)")
+        print(f"    Corrected by team: {gt_stats['corrected_records']}/{n_records} ({gt_stats['correction_rate']}%)")
+        print(f"    MAD (auto vs confirmed): {gt_stats['mad']:.4f}")
+        print(f"    Total deviation: {gt_stats['total_deviation']:.4f}")
+        print(f"    Max single deviation: {gt_stats['max_deviation']:.3f}")
+        print()
 
         if n_records >= 20:
-            # Run evaluate_cw.py
-            heuristics_path = CONFIG_DIR / "cw_heuristics.yaml"
-            eval_script = ROOT / "scripts" / "evaluate_cw.py"
-            result = subprocess.run(
-                [sys.executable, str(eval_script),
-                 "--ground-truth", str(gt_path),
-                 "--heuristics", str(heuristics_path)],
-                capture_output=True, text=True, cwd=str(ROOT),
-            )
-            print(f"    Evaluation output:")
-            for line in result.stdout.strip().split("\n"):
-                print(f"      {line}")
-            if result.returncode != 0 and result.stderr:
-                print(f"    Evaluation stderr: {result.stderr.strip()}")
+            print(f"    === Karpathy Calibration Analysis ===")
+            if gt_stats['mad'] > 0.05:
+                print(f"    MAD={gt_stats['mad']:.4f} — calibration RECOMMENDED")
+                print(f"    Systematic biases detected:")
+                with open(gt_path) as f:
+                    gt_data = yaml.safe_load(f)
+                role_bias = {}
+                for rec in gt_data["records"]:
+                    if rec["deviation"] > 0:
+                        pid = rec["person"]
+                        member = TEAM_BY_ID.get(pid, {})
+                        role = member.get("role", "?")
+                        role_bias.setdefault(role, []).append(
+                            rec["confirmed_cw"] - rec["auto_cw"]
+                        )
+                for role, biases in sorted(role_bias.items()):
+                    avg_bias = sum(biases) / len(biases)
+                    direction = "UNDERVALUED (increase CW)" if avg_bias > 0 else "OVERVALUED (decrease CW)"
+                    print(f"      {role}: avg bias {avg_bias:+.3f} — {direction} ({len(biases)} corrections)")
+            else:
+                print(f"    MAD={gt_stats['mad']:.4f} — heuristic is WELL CALIBRATED")
         else:
             print(f"    Insufficient records for evaluation (need >=20, got {n_records})")
     elif dry_run:
