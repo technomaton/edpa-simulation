@@ -1,0 +1,132 @@
+# EDPA CW Heuristics -- Monte Carlo Calibration
+# Generated: 2026-03-21 23:30 UTC
+# Scenarios: 50, Records: 3,288
+# MAD reduction: 8.5%
+#
+# role_weights: single-value defaults (backward compatible)
+# role_overrides: per-team-role weights (simple)
+# role_overrides_detailed: weights with confidence and sample size
+
+role_weights:
+  owner: 1.0
+  key: 0.6
+  reviewer: 0.25
+  consulted: 0.25
+role_overrides:
+  Arch:
+    key: 0.6
+    reviewer: 0.3
+  BO:
+    consulted: 0.3
+    reviewer: 0.25
+  Dev:
+    key: 0.6
+    owner: 1.0
+    reviewer: 0.25
+  DevSecOps:
+    key: 0.6
+    owner: 1.0
+    reviewer: 0.25
+  PM:
+    consulted: 0.2
+    reviewer: 0.25
+  QA:
+    key: 0.6
+    reviewer: 0.25
+role_overrides_detailed:
+  Arch:
+    key:
+      weight: 0.6
+      confidence: LOW
+      sample_size: 68
+      std_dev: 0.0355
+    reviewer:
+      weight: 0.3
+      confidence: MEDIUM
+      sample_size: 136
+      std_dev: 0.106
+  BO:
+    consulted:
+      weight: 0.3
+      confidence: LOW
+      sample_size: 98
+      std_dev: 0.1092
+    reviewer:
+      weight: 0.25
+      confidence: LOW
+      sample_size: 11
+      std_dev: 0.0932
+  Dev:
+    key:
+      weight: 0.6
+      confidence: HIGH
+      sample_size: 710
+      std_dev: 0.041
+    owner:
+      weight: 1.0
+      confidence: HIGH
+      sample_size: 906
+      std_dev: 0.0317
+    reviewer:
+      weight: 0.25
+      confidence: MEDIUM
+      sample_size: 301
+      std_dev: 0.0677
+  DevSecOps:
+    key:
+      weight: 0.6
+      confidence: LOW
+      sample_size: 45
+      std_dev: 0.0285
+    owner:
+      weight: 1.0
+      confidence: LOW
+      sample_size: 86
+      std_dev: 0.035
+    reviewer:
+      weight: 0.25
+      confidence: LOW
+      sample_size: 54
+      std_dev: 0.0865
+  PM:
+    consulted:
+      weight: 0.2
+      confidence: MEDIUM
+      sample_size: 296
+      std_dev: 0.1186
+    reviewer:
+      weight: 0.25
+      confidence: LOW
+      sample_size: 57
+      std_dev: 0.0541
+  QA:
+    key:
+      weight: 0.6
+      confidence: MEDIUM
+      sample_size: 156
+      std_dev: 0.0694
+    reviewer:
+      weight: 0.25
+      confidence: MEDIUM
+      sample_size: 364
+      std_dev: 0.0314
+signal_weights:
+  assignee: 4.0
+  contribute_command: 3.0
+  pr_author: 2.0
+  commit_author: 1.0
+  pr_reviewer: 1.0
+  issue_comment: 0.5
+rules:
+  highest_signal_wins: true
+  manual_override_priority: true
+  commit_count_is_not_time: true
+  in_progress_items_excluded: true
+calibration:
+  method: Monte Carlo statistical calibration
+  scenarios: 50
+  total_records: 3288
+  mad_before: 0.030824
+  mad_after: 0.028209
+  mad_reduction_pct: 8.5
+  calibrated_at: '2026-03-21T23:30:14.750768+00:00'
