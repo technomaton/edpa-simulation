@@ -1,9 +1,79 @@
 {
   "iteration": "PI-2026-2.3",
-  "frozen_at": "2026-03-21T22:15:19.422353+00:00",
+  "frozen_at": "2026-03-21T22:59:54.056128+00:00",
   "methodology": "EDPA v1.0.0",
   "team_capacity": 440,
   "items": [
+    {
+      "id": "S-2106",
+      "level": "Story",
+      "job_size": 5,
+      "assignees": [
+        {
+          "login": "tuma"
+        }
+      ],
+      "body": "",
+      "pr_author": "tuma",
+      "commit_authors": [
+        "tuma",
+        "kralova",
+        "cerny",
+        "nemcova"
+      ],
+      "pr_reviewers": [
+        "nemcova"
+      ],
+      "commenters": [
+        "kralova"
+      ]
+    },
+    {
+      "id": "S-2202",
+      "level": "Story",
+      "job_size": 3,
+      "assignees": [
+        {
+          "login": "tuma"
+        }
+      ],
+      "body": "",
+      "pr_author": "tuma",
+      "commit_authors": [
+        "novak",
+        "tuma",
+        "nemcova"
+      ],
+      "pr_reviewers": [
+        "nemcova"
+      ],
+      "commenters": [
+        "novak"
+      ]
+    },
+    {
+      "id": "S-2205",
+      "level": "Story",
+      "job_size": 3,
+      "assignees": [
+        {
+          "login": "svoboda"
+        }
+      ],
+      "body": "",
+      "pr_author": "svoboda",
+      "commit_authors": [
+        "tuma",
+        "kralova",
+        "svoboda"
+      ],
+      "pr_reviewers": [
+        "urbanek"
+      ],
+      "commenters": [
+        "kralova"
+      ]
+    },
     {
       "id": "S-2006",
       "level": "Story",
@@ -17,10 +87,12 @@
       "pr_author": "cerny",
       "commit_authors": [
         "cerny",
-        "nemcova",
-        "kralova"
+        "kralova",
+        "urbanek",
+        "nemcova"
       ],
       "pr_reviewers": [
+        "urbanek",
         "nemcova"
       ],
       "commenters": [
@@ -39,16 +111,15 @@
       "body": "",
       "pr_author": "svoboda",
       "commit_authors": [
-        "svoboda",
         "nemcova",
-        "kralova"
+        "urbanek",
+        "svoboda"
       ],
       "pr_reviewers": [
-        "nemcova"
+        "nemcova",
+        "urbanek"
       ],
-      "commenters": [
-        "kralova"
-      ]
+      "commenters": []
     },
     {
       "id": "S-2008",
@@ -62,17 +133,16 @@
       "body": "",
       "pr_author": "tuma",
       "commit_authors": [
-        "svoboda",
         "tuma",
         "urbanek",
-        "novak"
+        "svoboda",
+        "nemcova"
       ],
       "pr_reviewers": [
-        "urbanek"
+        "urbanek",
+        "nemcova"
       ],
-      "commenters": [
-        "novak"
-      ]
+      "commenters": []
     },
     {
       "id": "S-2104",
@@ -86,9 +156,9 @@
       "body": "",
       "pr_author": "cerny",
       "commit_authors": [
-        "nemcova",
         "cerny",
-        "tuma"
+        "tuma",
+        "nemcova"
       ],
       "pr_reviewers": [
         "nemcova"
@@ -107,9 +177,9 @@
       "body": "",
       "pr_author": "svoboda",
       "commit_authors": [
-        "svoboda",
         "nemcova",
-        "urbanek"
+        "urbanek",
+        "svoboda"
       ],
       "pr_reviewers": [
         "nemcova",
@@ -129,48 +199,69 @@
       "body": "",
       "pr_author": "tuma",
       "commit_authors": [
-        "nemcova",
         "cerny",
-        "tuma"
-      ],
-      "pr_reviewers": [
-        "nemcova"
-      ],
-      "commenters": []
-    },
-    {
-      "id": "S-2206",
-      "level": "Story",
-      "job_size": 3,
-      "assignees": [
-        {
-          "login": "nemcova"
-        }
-      ],
-      "body": "",
-      "pr_author": "nemcova",
-      "commit_authors": [
-        "cerny",
-        "nemcova",
-        "tuma"
+        "kralova",
+        "tuma",
+        "novak"
       ],
       "pr_reviewers": [
         "urbanek"
       ],
-      "commenters": []
+      "commenters": [
+        "novak",
+        "kralova"
+      ]
     }
   ],
-  "commit_count": 66,
+  "commit_count": 84,
   "results": [
     {
       "id": "novak",
-      "name": "Jan Novák",
+      "name": "Jan Novak",
       "role": "BO",
       "capacity": 24,
       "total_derived": 24.0,
       "items": [
         {
-          "id": "S-2008",
+          "id": "S-2202",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "commit_author",
+            "issue_comment"
+          ],
+          "ratio": 0.5,
+          "hours": 12.0
+        },
+        {
+          "id": "S-2203",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "commit_author",
+            "issue_comment"
+          ],
+          "ratio": 0.5,
+          "hours": 12.0
+        }
+      ],
+      "invariant_ok": true
+    },
+    {
+      "id": "kralova",
+      "name": "Marie Kralova",
+      "role": "PM",
+      "capacity": 40,
+      "total_derived": 40.0,
+      "items": [
+        {
+          "id": "S-2106",
           "level": "Story",
           "js": 5,
           "cw": 0.25,
@@ -180,19 +271,23 @@
             "commit_author",
             "issue_comment"
           ],
-          "ratio": 1.0,
-          "hours": 24.0
-        }
-      ],
-      "invariant_ok": true
-    },
-    {
-      "id": "kralova",
-      "name": "Marie Králová",
-      "role": "PM",
-      "capacity": 40,
-      "total_derived": 40.0,
-      "items": [
+          "ratio": 0.357143,
+          "hours": 14.29
+        },
+        {
+          "id": "S-2205",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "commit_author",
+            "issue_comment"
+          ],
+          "ratio": 0.214286,
+          "hours": 8.57
+        },
         {
           "id": "S-2006",
           "level": "Story",
@@ -204,8 +299,59 @@
             "commit_author",
             "issue_comment"
           ],
-          "ratio": 0.5,
-          "hours": 20.0
+          "ratio": 0.214286,
+          "hours": 8.57
+        },
+        {
+          "id": "S-2203",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "commit_author",
+            "issue_comment"
+          ],
+          "ratio": 0.214286,
+          "hours": 8.57
+        }
+      ],
+      "invariant_ok": true
+    },
+    {
+      "id": "urbanek",
+      "name": "Jaroslav Urbanek",
+      "role": "Arch",
+      "capacity": 56,
+      "total_derived": 56.0,
+      "items": [
+        {
+          "id": "S-2205",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "pr_reviewer"
+          ],
+          "ratio": 0.15,
+          "hours": 8.4
+        },
+        {
+          "id": "S-2006",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "commit_author",
+            "pr_reviewer"
+          ],
+          "ratio": 0.15,
+          "hours": 8.4
         },
         {
           "id": "S-2007",
@@ -216,21 +362,11 @@
           "score": 0.75,
           "evidence": [
             "commit_author",
-            "issue_comment"
+            "pr_reviewer"
           ],
-          "ratio": 0.5,
-          "hours": 20.0
-        }
-      ],
-      "invariant_ok": true
-    },
-    {
-      "id": "urbanek",
-      "name": "Jaroslav Urbánek",
-      "role": "Arch",
-      "capacity": 56,
-      "total_derived": 55.99,
-      "items": [
+          "ratio": 0.15,
+          "hours": 8.4
+        },
         {
           "id": "S-2008",
           "level": "Story",
@@ -242,8 +378,8 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.454545,
-          "hours": 25.45
+          "ratio": 0.25,
+          "hours": 14.0
         },
         {
           "id": "S-2107",
@@ -256,11 +392,11 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.272727,
-          "hours": 15.27
+          "ratio": 0.15,
+          "hours": 8.4
         },
         {
-          "id": "S-2206",
+          "id": "S-2203",
           "level": "Story",
           "js": 3,
           "cw": 0.25,
@@ -269,11 +405,11 @@
           "evidence": [
             "pr_reviewer"
           ],
-          "ratio": 0.272727,
-          "hours": 15.27
+          "ratio": 0.15,
+          "hours": 8.4
         }
       ],
-      "invariant_ok": false
+      "invariant_ok": true
     },
     {
       "id": "svoboda",
@@ -283,6 +419,21 @@
       "total_derived": 79.99,
       "items": [
         {
+          "id": "S-2205",
+          "level": "Story",
+          "js": 3,
+          "cw": 1.0,
+          "rs": 1.0,
+          "score": 3.0,
+          "evidence": [
+            "assignee",
+            "pr_author",
+            "commit_author"
+          ],
+          "ratio": 0.292683,
+          "hours": 23.41
+        },
+        {
           "id": "S-2007",
           "level": "Story",
           "js": 3,
@@ -294,8 +445,8 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.413793,
-          "hours": 33.1
+          "ratio": 0.292683,
+          "hours": 23.41
         },
         {
           "id": "S-2008",
@@ -307,8 +458,8 @@
           "evidence": [
             "commit_author"
           ],
-          "ratio": 0.172414,
-          "hours": 13.79
+          "ratio": 0.121951,
+          "hours": 9.76
         },
         {
           "id": "S-2107",
@@ -322,19 +473,32 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.413793,
-          "hours": 33.1
+          "ratio": 0.292683,
+          "hours": 23.41
         }
       ],
-      "invariant_ok": true
+      "invariant_ok": false
     },
     {
       "id": "cerny",
-      "name": "Tomáš Černý",
+      "name": "Tomas Cerny",
       "role": "Dev",
       "capacity": 80,
       "total_derived": 80.0,
       "items": [
+        {
+          "id": "S-2106",
+          "level": "Story",
+          "js": 5,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 1.25,
+          "evidence": [
+            "commit_author"
+          ],
+          "ratio": 0.15625,
+          "hours": 12.5
+        },
         {
           "id": "S-2006",
           "level": "Story",
@@ -347,8 +511,8 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.4,
-          "hours": 32.0
+          "ratio": 0.375,
+          "hours": 30.0
         },
         {
           "id": "S-2104",
@@ -362,8 +526,8 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.4,
-          "hours": 32.0
+          "ratio": 0.375,
+          "hours": 30.0
         },
         {
           "id": "S-2203",
@@ -375,11 +539,51 @@
           "evidence": [
             "commit_author"
           ],
-          "ratio": 0.1,
-          "hours": 8.0
+          "ratio": 0.09375,
+          "hours": 7.5
+        }
+      ],
+      "invariant_ok": true
+    },
+    {
+      "id": "tuma",
+      "name": "Ondrej Tuma",
+      "role": "DevSecOps",
+      "capacity": 64,
+      "total_derived": 64.0,
+      "items": [
+        {
+          "id": "S-2106",
+          "level": "Story",
+          "js": 5,
+          "cw": 1.0,
+          "rs": 1.0,
+          "score": 5.0,
+          "evidence": [
+            "assignee",
+            "pr_author",
+            "commit_author"
+          ],
+          "ratio": 0.285714,
+          "hours": 18.29
         },
         {
-          "id": "S-2206",
+          "id": "S-2202",
+          "level": "Story",
+          "js": 3,
+          "cw": 1.0,
+          "rs": 1.0,
+          "score": 3.0,
+          "evidence": [
+            "assignee",
+            "pr_author",
+            "commit_author"
+          ],
+          "ratio": 0.171429,
+          "hours": 10.97
+        },
+        {
+          "id": "S-2205",
           "level": "Story",
           "js": 3,
           "cw": 0.25,
@@ -388,19 +592,9 @@
           "evidence": [
             "commit_author"
           ],
-          "ratio": 0.1,
-          "hours": 8.0
-        }
-      ],
-      "invariant_ok": true
-    },
-    {
-      "id": "tuma",
-      "name": "Ondřej Tůma",
-      "role": "DevSecOps",
-      "capacity": 64,
-      "total_derived": 63.99,
-      "items": [
+          "ratio": 0.042857,
+          "hours": 2.74
+        },
         {
           "id": "S-2008",
           "level": "Story",
@@ -413,8 +607,8 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.526316,
-          "hours": 33.68
+          "ratio": 0.285714,
+          "hours": 18.29
         },
         {
           "id": "S-2104",
@@ -426,8 +620,8 @@
           "evidence": [
             "commit_author"
           ],
-          "ratio": 0.078947,
-          "hours": 5.05
+          "ratio": 0.042857,
+          "hours": 2.74
         },
         {
           "id": "S-2203",
@@ -441,32 +635,47 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.315789,
-          "hours": 20.21
-        },
-        {
-          "id": "S-2206",
-          "level": "Story",
-          "js": 3,
-          "cw": 0.25,
-          "rs": 1.0,
-          "score": 0.75,
-          "evidence": [
-            "commit_author"
-          ],
-          "ratio": 0.078947,
-          "hours": 5.05
+          "ratio": 0.171429,
+          "hours": 10.97
         }
       ],
       "invariant_ok": true
     },
     {
       "id": "nemcova",
-      "name": "Kateřina Němcová",
+      "name": "Katerina Nemcova",
       "role": "QA",
       "capacity": 96,
-      "total_derived": 96.02,
+      "total_derived": 96.0,
       "items": [
+        {
+          "id": "S-2106",
+          "level": "Story",
+          "js": 5,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 1.25,
+          "evidence": [
+            "commit_author",
+            "pr_reviewer"
+          ],
+          "ratio": 0.2,
+          "hours": 19.2
+        },
+        {
+          "id": "S-2202",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "commit_author",
+            "pr_reviewer"
+          ],
+          "ratio": 0.12,
+          "hours": 11.52
+        },
         {
           "id": "S-2006",
           "level": "Story",
@@ -478,8 +687,8 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.111111,
-          "hours": 10.67
+          "ratio": 0.12,
+          "hours": 11.52
         },
         {
           "id": "S-2007",
@@ -492,8 +701,22 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.111111,
-          "hours": 10.67
+          "ratio": 0.12,
+          "hours": 11.52
+        },
+        {
+          "id": "S-2008",
+          "level": "Story",
+          "js": 5,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 1.25,
+          "evidence": [
+            "commit_author",
+            "pr_reviewer"
+          ],
+          "ratio": 0.2,
+          "hours": 19.2
         },
         {
           "id": "S-2104",
@@ -506,8 +729,8 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.111111,
-          "hours": 10.67
+          "ratio": 0.12,
+          "hours": 11.52
         },
         {
           "id": "S-2107",
@@ -520,52 +743,23 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.111111,
-          "hours": 10.67
-        },
-        {
-          "id": "S-2203",
-          "level": "Story",
-          "js": 3,
-          "cw": 0.25,
-          "rs": 1.0,
-          "score": 0.75,
-          "evidence": [
-            "commit_author",
-            "pr_reviewer"
-          ],
-          "ratio": 0.111111,
-          "hours": 10.67
-        },
-        {
-          "id": "S-2206",
-          "level": "Story",
-          "js": 3,
-          "cw": 1.0,
-          "rs": 1.0,
-          "score": 3.0,
-          "evidence": [
-            "assignee",
-            "pr_author",
-            "commit_author"
-          ],
-          "ratio": 0.444444,
-          "hours": 42.67
+          "ratio": 0.12,
+          "hours": 11.52
         }
       ],
-      "invariant_ok": false
+      "invariant_ok": true
     }
   ],
   "invariants": {
     "all_passed": false,
     "ratio_sums": {
       "novak": 1.0,
-      "kralova": 1.0,
-      "urbanek": 0.999999,
+      "kralova": 1.000001,
+      "urbanek": 1.0,
       "svoboda": 1.0,
       "cerny": 1.0,
-      "tuma": 0.999999,
-      "nemcova": 0.999999
+      "tuma": 1.0,
+      "nemcova": 1.0
     },
     "capacity_match": {
       "novak": true,
@@ -574,7 +768,29 @@
       "svoboda": false,
       "cerny": true,
       "tuma": true,
-      "nemcova": false
+      "nemcova": true
     }
+  },
+  "scenario": {
+    "delivery_factor": 0.95,
+    "label": "GOOD",
+    "description": "Nearly perfect sprint",
+    "planning_factor": 0.8,
+    "capacity_sp": 42,
+    "planned_sp": 34,
+    "delivered_sp": 31,
+    "planned_stories": 10,
+    "delivered_stories": 9,
+    "spillover_count": 1,
+    "spillover_sp": 3,
+    "spillover_details": [
+      {
+        "id": "S-2206",
+        "js": 3,
+        "title": "Load testing sada"
+      }
+    ],
+    "unplanned_count": 0,
+    "unplanned_details": []
   }
 }

@@ -1,4 +1,4 @@
-# Vykaz -- Jan Novák
+# Vykaz -- Jan Novak
 
 - **Iterace:** PI-2026-1.1
 - **Role:** BO

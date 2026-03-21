@@ -1,18 +1,18 @@
 {
   "iteration": "PI-2026-2.4",
   "mode": "simple",
-  "computed_at": "2026-03-21T22:15:20.147389+00:00",
+  "computed_at": "2026-03-21T22:59:55.185687+00:00",
   "methodology": "EDPA v1.0.0",
   "people": [
     {
       "id": "novak",
-      "name": "Jan Novák",
+      "name": "Jan Novak",
       "role": "BO",
       "capacity": 24,
       "total_derived": 24.0,
       "items": [
         {
-          "id": "S-2009",
+          "id": "S-2010",
           "level": "Story",
           "js": 3,
           "cw": 0.25,
@@ -30,7 +30,7 @@
     },
     {
       "id": "kralova",
-      "name": "Marie Králová",
+      "name": "Marie Kralova",
       "role": "PM",
       "capacity": 40,
       "total_derived": 40.0,
@@ -46,19 +46,46 @@
             "commit_author",
             "issue_comment"
           ],
-          "ratio": 1.0,
-          "hours": 40.0
+          "ratio": 0.5,
+          "hours": 20.0
+        },
+        {
+          "id": "S-2010",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "commit_author",
+            "issue_comment"
+          ],
+          "ratio": 0.5,
+          "hours": 20.0
         }
       ],
       "invariant_ok": true
     },
     {
       "id": "urbanek",
-      "name": "Jaroslav Urbánek",
+      "name": "Jaroslav Urbanek",
       "role": "Arch",
       "capacity": 56,
-      "total_derived": 56.0,
+      "total_derived": 55.99,
       "items": [
+        {
+          "id": "S-2206",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "pr_reviewer"
+          ],
+          "ratio": 0.272727,
+          "hours": 15.27
+        },
         {
           "id": "S-2009",
           "level": "Story",
@@ -69,8 +96,8 @@
           "evidence": [
             "pr_reviewer"
           ],
-          "ratio": 0.375,
-          "hours": 21.0
+          "ratio": 0.272727,
+          "hours": 15.27
         },
         {
           "id": "S-2010",
@@ -83,8 +110,8 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.375,
-          "hours": 21.0
+          "ratio": 0.272727,
+          "hours": 15.27
         },
         {
           "id": "S-2207",
@@ -96,11 +123,11 @@
           "evidence": [
             "pr_reviewer"
           ],
-          "ratio": 0.25,
-          "hours": 14.0
+          "ratio": 0.181818,
+          "hours": 10.18
         }
       ],
-      "invariant_ok": true
+      "invariant_ok": false
     },
     {
       "id": "svoboda",
@@ -127,11 +154,24 @@
     },
     {
       "id": "cerny",
-      "name": "Tomáš Černý",
+      "name": "Tomas Cerny",
       "role": "Dev",
       "capacity": 80,
-      "total_derived": 80.0,
+      "total_derived": 79.99,
       "items": [
+        {
+          "id": "S-2206",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "commit_author"
+          ],
+          "ratio": 0.166667,
+          "hours": 13.33
+        },
         {
           "id": "S-2009",
           "level": "Story",
@@ -142,8 +182,8 @@
           "evidence": [
             "commit_author"
           ],
-          "ratio": 0.2,
-          "hours": 16.0
+          "ratio": 0.166667,
+          "hours": 13.33
         },
         {
           "id": "S-2010",
@@ -157,19 +197,32 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.8,
-          "hours": 64.0
+          "ratio": 0.666667,
+          "hours": 53.33
         }
       ],
-      "invariant_ok": true
+      "invariant_ok": false
     },
     {
       "id": "tuma",
-      "name": "Ondřej Tůma",
+      "name": "Ondrej Tuma",
       "role": "DevSecOps",
       "capacity": 64,
-      "total_derived": 64.0,
+      "total_derived": 64.01,
       "items": [
+        {
+          "id": "S-2206",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "commit_author"
+          ],
+          "ratio": 0.166667,
+          "hours": 10.67
+        },
         {
           "id": "S-2009",
           "level": "Story",
@@ -182,8 +235,8 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.8,
-          "hours": 51.2
+          "ratio": 0.666667,
+          "hours": 42.67
         },
         {
           "id": "S-2010",
@@ -195,19 +248,34 @@
           "evidence": [
             "commit_author"
           ],
-          "ratio": 0.2,
-          "hours": 12.8
+          "ratio": 0.166667,
+          "hours": 10.67
         }
       ],
-      "invariant_ok": true
+      "invariant_ok": false
     },
     {
       "id": "nemcova",
-      "name": "Kateřina Němcová",
+      "name": "Katerina Nemcova",
       "role": "QA",
       "capacity": 96,
       "total_derived": 96.0,
       "items": [
+        {
+          "id": "S-2206",
+          "level": "Story",
+          "js": 3,
+          "cw": 1.0,
+          "rs": 1.0,
+          "score": 3.0,
+          "evidence": [
+            "assignee",
+            "pr_author",
+            "commit_author"
+          ],
+          "ratio": 0.6,
+          "hours": 57.6
+        },
         {
           "id": "S-2207",
           "level": "Story",
@@ -220,15 +288,31 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 1.0,
-          "hours": 96.0
+          "ratio": 0.4,
+          "hours": 38.4
         }
       ],
       "invariant_ok": true
     }
   ],
-  "team_total": 440.0,
-  "all_invariants_passed": true,
-  "items_count": 3,
-  "commit_count": 24
+  "team_total": 439.99,
+  "all_invariants_passed": false,
+  "items_count": 4,
+  "commit_count": 38,
+  "scenario": {
+    "delivery_factor": 1.0,
+    "label": "EXACT",
+    "description": "All planned work delivered",
+    "planning_factor": 0.8,
+    "capacity_sp": 14,
+    "planned_sp": 11,
+    "delivered_sp": 11,
+    "planned_stories": 4,
+    "delivered_stories": 4,
+    "spillover_count": 0,
+    "spillover_sp": 0,
+    "spillover_details": [],
+    "unplanned_count": 0,
+    "unplanned_details": []
+  }
 }

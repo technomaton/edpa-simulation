@@ -1,4 +1,4 @@
-# Vykaz -- Ondřej Tůma
+# Vykaz -- Ondrej Tuma
 
 - **Iterace:** PI-2026-2.1
 - **Role:** DevSecOps

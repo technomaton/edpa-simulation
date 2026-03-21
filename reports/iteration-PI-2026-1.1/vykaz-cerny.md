@@ -1,4 +1,4 @@
-# Vykaz -- Tomáš Černý
+# Vykaz -- Tomas Cerny
 
 - **Iterace:** PI-2026-1.1
 - **Role:** Dev

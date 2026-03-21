@@ -11,12 +11,10 @@
 
 | Polozka | Uroven | JS | CW | Score | Podil | Hodiny |
 |---------|--------|----|----|-------|-------|--------|
-| S-2002 | Story | 5 | 1.00 | 5.00 | 54.1% | 43.2h |
-| S-2102 | Story | 3 | 1.00 | 3.00 | 32.4% | 25.9h |
-| S-2204 | Story | 5 | 0.25 | 1.25 | 13.5% | 10.8h |
+| S-2002 | Story | 5 | 1.00 | 5.00 | 62.5% | 50.0h |
+| S-2102 | Story | 3 | 1.00 | 3.00 | 37.5% | 30.0h |
 
 ## Evidence
 
 - **S-2002**: assignee, pr_author, commit_author
 - **S-2102**: assignee, pr_author, commit_author
-- **S-2204**: commit_author

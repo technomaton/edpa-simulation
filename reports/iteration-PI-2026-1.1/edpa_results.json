@@ -1,12 +1,12 @@
 {
   "iteration": "PI-2026-1.1",
   "mode": "simple",
-  "computed_at": "2026-03-21T22:15:09.941965+00:00",
+  "computed_at": "2026-03-21T22:59:42.877652+00:00",
   "methodology": "EDPA v1.0.0",
   "people": [
     {
       "id": "novak",
-      "name": "Jan Novák",
+      "name": "Jan Novak",
       "role": "BO",
       "capacity": 24,
       "total_derived": 24.0,
@@ -30,7 +30,7 @@
     },
     {
       "id": "kralova",
-      "name": "Marie Králová",
+      "name": "Marie Kralova",
       "role": "PM",
       "capacity": 40,
       "total_derived": 40.0,
@@ -46,8 +46,8 @@
             "commit_author",
             "issue_comment"
           ],
-          "ratio": 0.3,
-          "hours": 12.0
+          "ratio": 0.375,
+          "hours": 15.0
         },
         {
           "id": "S-1101",
@@ -60,32 +60,18 @@
             "commit_author",
             "issue_comment"
           ],
-          "ratio": 0.5,
-          "hours": 20.0
-        },
-        {
-          "id": "S-1103",
-          "level": "Story",
-          "js": 2,
-          "cw": 0.25,
-          "rs": 1.0,
-          "score": 0.5,
-          "evidence": [
-            "commit_author",
-            "issue_comment"
-          ],
-          "ratio": 0.2,
-          "hours": 8.0
+          "ratio": 0.625,
+          "hours": 25.0
         }
       ],
       "invariant_ok": true
     },
     {
       "id": "urbanek",
-      "name": "Jaroslav Urbánek",
+      "name": "Jaroslav Urbanek",
       "role": "Arch",
       "capacity": 56,
-      "total_derived": 55.99,
+      "total_derived": 56.0,
       "items": [
         {
           "id": "S-1001",
@@ -98,8 +84,8 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.102041,
-          "hours": 5.71
+          "ratio": 0.3125,
+          "hours": 17.5
         },
         {
           "id": "S-1002",
@@ -112,8 +98,8 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.061224,
-          "hours": 3.43
+          "ratio": 0.1875,
+          "hours": 10.5
         },
         {
           "id": "S-1101",
@@ -126,8 +112,8 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.102041,
-          "hours": 5.71
+          "ratio": 0.3125,
+          "hours": 17.5
         },
         {
           "id": "S-1102",
@@ -140,52 +126,8 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.061224,
-          "hours": 3.43
-        },
-        {
-          "id": "S-1201",
-          "level": "Story",
-          "js": 5,
-          "cw": 1.0,
-          "rs": 1.0,
-          "score": 5.0,
-          "evidence": [
-            "assignee",
-            "pr_author",
-            "commit_author"
-          ],
-          "ratio": 0.408163,
-          "hours": 22.86
-        },
-        {
-          "id": "S-1103",
-          "level": "Story",
-          "js": 2,
-          "cw": 1.0,
-          "rs": 1.0,
-          "score": 2.0,
-          "evidence": [
-            "assignee",
-            "pr_author",
-            "commit_author"
-          ],
-          "ratio": 0.163265,
-          "hours": 9.14
-        },
-        {
-          "id": "S-1107",
-          "level": "Story",
-          "js": 5,
-          "cw": 0.25,
-          "rs": 1.0,
-          "score": 1.25,
-          "evidence": [
-            "commit_author",
-            "pr_reviewer"
-          ],
-          "ratio": 0.102041,
-          "hours": 5.71
+          "ratio": 0.1875,
+          "hours": 10.5
         }
       ],
       "invariant_ok": true
@@ -195,7 +137,7 @@
       "name": "Petr Svoboda",
       "role": "Dev",
       "capacity": 80,
-      "total_derived": 80.01,
+      "total_derived": 79.99,
       "items": [
         {
           "id": "S-1001",
@@ -209,8 +151,8 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.333333,
-          "hours": 26.67
+          "ratio": 0.363636,
+          "hours": 29.09
         },
         {
           "id": "S-1002",
@@ -224,8 +166,8 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.2,
-          "hours": 16.0
+          "ratio": 0.218182,
+          "hours": 17.45
         },
         {
           "id": "S-1101",
@@ -239,8 +181,8 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.333333,
-          "hours": 26.67
+          "ratio": 0.363636,
+          "hours": 29.09
         },
         {
           "id": "S-1102",
@@ -252,28 +194,15 @@
           "evidence": [
             "commit_author"
           ],
-          "ratio": 0.05,
-          "hours": 4.0
-        },
-        {
-          "id": "S-1201",
-          "level": "Story",
-          "js": 5,
-          "cw": 0.25,
-          "rs": 1.0,
-          "score": 1.25,
-          "evidence": [
-            "commit_author"
-          ],
-          "ratio": 0.083333,
-          "hours": 6.67
+          "ratio": 0.054545,
+          "hours": 4.36
         }
       ],
       "invariant_ok": false
     },
     {
       "id": "cerny",
-      "name": "Tomáš Černý",
+      "name": "Tomas Cerny",
       "role": "Dev",
       "capacity": 80,
       "total_derived": 80.0,
@@ -311,32 +240,16 @@
     },
     {
       "id": "tuma",
-      "name": "Ondřej Tůma",
+      "name": "Ondrej Tuma",
       "role": "DevSecOps",
       "capacity": 64,
-      "total_derived": 64.0,
-      "items": [
-        {
-          "id": "S-1107",
-          "level": "Story",
-          "js": 5,
-          "cw": 1.0,
-          "rs": 1.0,
-          "score": 5.0,
-          "evidence": [
-            "assignee",
-            "pr_author",
-            "commit_author"
-          ],
-          "ratio": 1.0,
-          "hours": 64.0
-        }
-      ],
+      "total_derived": 0,
+      "items": [],
       "invariant_ok": true
     },
     {
       "id": "nemcova",
-      "name": "Kateřina Němcová",
+      "name": "Katerina Nemcova",
       "role": "QA",
       "capacity": 96,
       "total_derived": 96.0,
@@ -352,8 +265,8 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.333333,
-          "hours": 32.0
+          "ratio": 0.625,
+          "hours": 60.0
         },
         {
           "id": "S-1002",
@@ -366,43 +279,47 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.2,
-          "hours": 19.2
-        },
-        {
-          "id": "S-1103",
-          "level": "Story",
-          "js": 2,
-          "cw": 0.25,
-          "rs": 1.0,
-          "score": 0.5,
-          "evidence": [
-            "commit_author",
-            "pr_reviewer"
-          ],
-          "ratio": 0.133333,
-          "hours": 12.8
-        },
-        {
-          "id": "S-1107",
-          "level": "Story",
-          "js": 5,
-          "cw": 0.25,
-          "rs": 1.0,
-          "score": 1.25,
-          "evidence": [
-            "commit_author",
-            "pr_reviewer"
-          ],
-          "ratio": 0.333333,
-          "hours": 32.0
+          "ratio": 0.375,
+          "hours": 36.0
         }
       ],
       "invariant_ok": true
     }
   ],
-  "team_total": 440.0,
+  "team_total": 375.99,
   "all_invariants_passed": false,
-  "items_count": 7,
-  "commit_count": 55
+  "items_count": 4,
+  "commit_count": 34,
+  "scenario": {
+    "delivery_factor": 0.65,
+    "label": "UNDER",
+    "description": "Blockers + sick days, 2 stories postponed",
+    "planning_factor": 0.8,
+    "capacity_sp": 35,
+    "planned_sp": 28,
+    "delivered_sp": 16,
+    "planned_stories": 7,
+    "delivered_stories": 4,
+    "spillover_count": 3,
+    "spillover_sp": 12,
+    "spillover_details": [
+      {
+        "id": "S-1107",
+        "js": 5,
+        "title": "RBAC model pro e-shop"
+      },
+      {
+        "id": "S-1103",
+        "js": 2,
+        "title": "OpenAPI specifikace katalogu"
+      },
+      {
+        "id": "S-1201",
+        "js": 5,
+        "title": "Alembic migrace OMOP tabulek"
+      }
+    ],
+    "unplanned_count": 0,
+    "unplanned_details": []
+  }
 }
