@@ -1,0 +1,54 @@
+# EDPA CW Heuristics -- Calibrated via multi-scenario analysis
+# Generated: 2026-03-21 22:32 UTC
+# MAD reduction: 7.1%
+#
+# role_weights: single-value defaults (backward compatible)
+# role_overrides: per-team-role fine-tuned weights
+
+role_weights:
+  owner: 1.0
+  key: 0.6
+  reviewer: 0.3
+  consulted: 0.3
+role_overrides:
+  Arch:
+    key: 0.6
+    owner: 1.0
+    reviewer: 0.35
+  BO:
+    consulted: 0.3
+    reviewer: 0.3
+  Dev:
+    key: 0.6
+    owner: 1.0
+    reviewer: 0.3
+  DevSecOps:
+    key: 0.6
+    owner: 1.0
+    reviewer: 0.3
+  PM:
+    consulted: 0.25
+    reviewer: 0.25
+  QA:
+    key: 0.55
+    reviewer: 0.25
+signal_weights:
+  assignee: 4.0
+  contribute_command: 3.0
+  pr_author: 2.0
+  commit_author: 1.0
+  pr_reviewer: 1.0
+  issue_comment: 0.5
+rules:
+  highest_signal_wins: true
+  manual_override_priority: true
+  commit_count_is_not_time: true
+  in_progress_items_excluded: true
+calibration:
+  method: multi-scenario statistical calibration
+  scenarios: 8
+  records_analyzed: see calibration_report.json
+  mad_before: 0.043837
+  mad_after: 0.040712
+  mad_reduction_pct: 7.1
+  calibrated_at: '2026-03-21T22:32:38.379539+00:00'
