@@ -1,0 +1,51 @@
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "E-10", "field": "status", "old": "Todo", "new": "Active", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "E-10", "field": "owner", "new": "urbanek", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "E-11", "field": "status", "old": "Todo", "new": "Active", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "E-11", "field": "owner", "new": "pm", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "E-12", "field": "status", "old": "Todo", "new": "Active", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "E-12", "field": "owner", "new": "tuma", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-100", "field": "status", "old": "Todo", "new": "Done", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-100", "field": "js", "new": "8", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-100", "field": "bv", "new": "8", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-100", "field": "tc", "new": "5", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-100", "field": "rr", "new": "5", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-100", "field": "wsjf", "new": "2.25", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-100", "field": "owner", "new": "urbanek", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-101", "field": "status", "old": "Todo", "new": "Done", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-101", "field": "js", "new": "5", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-101", "field": "bv", "new": "5", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-101", "field": "tc", "new": "8", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-101", "field": "rr", "new": "3", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-101", "field": "wsjf", "new": "3.2", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-101", "field": "owner", "new": "tuma", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-102", "field": "status", "old": "Todo", "new": "Active", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-102", "field": "title", "old": "Anonymizační engine", "new": "Anonymizacni engine", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-102", "field": "js", "new": "13", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-102", "field": "bv", "new": "13", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-102", "field": "tc", "new": "13", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-102", "field": "rr", "new": "8", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-102", "field": "wsjf", "new": "2.62", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-102", "field": "owner", "new": "urbanek", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-110", "field": "status", "old": "Todo", "new": "Active", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-110", "field": "title", "old": "Katalog datasetů", "new": "Katalog datasetu", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-110", "field": "js", "new": "8", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-110", "field": "bv", "new": "8", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-110", "field": "tc", "new": "8", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-110", "field": "rr", "new": "3", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-110", "field": "wsjf", "new": "2.38", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-110", "field": "owner", "new": "matousek", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-111", "field": "status", "old": "Todo", "new": "Active", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-111", "field": "title", "old": "Objednávkový systém", "new": "Objednavkovy system", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-111", "field": "js", "new": "5", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-111", "field": "bv", "new": "5", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-111", "field": "tc", "new": "13", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-111", "field": "rr", "new": "5", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-111", "field": "wsjf", "new": "4.6", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-111", "field": "owner", "new": "d1", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-120", "field": "status", "old": "Todo", "new": "Active", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-120", "field": "js", "new": "8", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-120", "field": "bv", "new": "5", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-120", "field": "tc", "new": "5", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-120", "field": "rr", "new": "13", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-120", "field": "wsjf", "new": "2.88", "actor": "sync-bot"}
+{"ts": "2026-03-22T16:09:36Z", "source": "git", "action": "field_change", "item": "F-120", "field": "owner", "new": "tuma", "actor": "sync-bot"}

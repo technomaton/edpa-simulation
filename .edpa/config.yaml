@@ -1,0 +1,28 @@
+# EDPA Sync Configuration — edpa-simulation
+capacity: config/capacity.yaml
+heuristics: config/cw_heuristics.yaml
+project: config/project.yaml
+
+backlog_file: .edpa/backlog.yaml
+iterations_dir: .edpa/iterations/
+
+sync:
+  github_org: "technomaton"
+  github_project_number: 4
+  sync_interval: "15m"
+  auto_commit: true
+  fields_mapping:
+    js: "Job Size"
+    bv: "Business Value"
+    tc: "Time Criticality"
+    rr: "Risk Reduction"
+    wsjf: "WSJF Score"
+    issue_type: "Issue Type"
+    team: "Team"
+
+evidence:
+  sources:
+    - type: git_commits
+      pattern: "feat|fix|refactor|test|docs"
+    - type: branch_naming
+      pattern: "{type}/{ITEM_ID}-{description}"
