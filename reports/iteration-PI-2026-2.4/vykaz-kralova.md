@@ -11,10 +11,8 @@
 
 | Polozka | Uroven | JS | CW | Score | Podil | Hodiny |
 |---------|--------|----|----|-------|-------|--------|
-| S-2009 | Story | 3 | 0.25 | 0.75 | 50.0% | 20.0h |
-| S-2010 | Story | 3 | 0.25 | 0.75 | 50.0% | 20.0h |
+| S-2207 | Story | 2 | 0.25 | 0.50 | 100.0% | 40.0h |
 
 ## Evidence
 
-- **S-2009**: commit_author, issue_comment
-- **S-2010**: commit_author, issue_comment
+- **S-2207**: commit_author, issue_comment

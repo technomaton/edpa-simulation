@@ -23,6 +23,6 @@
 - **S-2001**: commit_author, pr_reviewer
 - **S-2002**: commit_author, pr_reviewer
 - **S-2101**: assignee, pr_author, commit_author
-- **S-2102**: commit_author, pr_reviewer
+- **S-2102**: pr_reviewer
 - **S-2201**: commit_author, pr_reviewer
 - **S-2105**: assignee, pr_author, commit_author

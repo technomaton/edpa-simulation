@@ -1,7 +1,7 @@
 {
   "iteration": "PI-2026-2.2",
   "mode": "simple",
-  "computed_at": "2026-03-21T22:59:51.581430+00:00",
+  "computed_at": "2026-03-22T18:49:41.189909+00:00",
   "methodology": "EDPA v1.0.0",
   "people": [
     {
@@ -12,7 +12,21 @@
       "total_derived": 24.0,
       "items": [
         {
-          "id": "S-2103",
+          "id": "S-2003",
+          "level": "Story",
+          "js": 5,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 1.25,
+          "evidence": [
+            "commit_author",
+            "issue_comment"
+          ],
+          "ratio": 0.625,
+          "hours": 15.0
+        },
+        {
+          "id": "S-2004",
           "level": "Story",
           "js": 3,
           "cw": 0.25,
@@ -22,8 +36,8 @@
             "commit_author",
             "issue_comment"
           ],
-          "ratio": 1.0,
-          "hours": 24.0
+          "ratio": 0.375,
+          "hours": 9.0
         }
       ],
       "invariant_ok": true
@@ -253,6 +267,20 @@
       "total_derived": 96.0,
       "items": [
         {
+          "id": "S-2003",
+          "level": "Story",
+          "js": 5,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 1.25,
+          "evidence": [
+            "commit_author",
+            "pr_reviewer"
+          ],
+          "ratio": 0.2,
+          "hours": 19.2
+        },
+        {
           "id": "S-2004",
           "level": "Story",
           "js": 3,
@@ -264,8 +292,8 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.6,
-          "hours": 57.6
+          "ratio": 0.48,
+          "hours": 46.08
         },
         {
           "id": "S-2005",
@@ -278,8 +306,8 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.25,
-          "hours": 24.0
+          "ratio": 0.2,
+          "hours": 19.2
         },
         {
           "id": "S-2103",
@@ -292,8 +320,8 @@
             "commit_author",
             "pr_reviewer"
           ],
-          "ratio": 0.15,
-          "hours": 14.4
+          "ratio": 0.12,
+          "hours": 11.52
         }
       ],
       "invariant_ok": true
@@ -302,7 +330,7 @@
   "team_total": 439.98,
   "all_invariants_passed": false,
   "items_count": 5,
-  "commit_count": 44,
+  "commit_count": 42,
   "scenario": {
     "delivery_factor": 0.75,
     "label": "UNDER",

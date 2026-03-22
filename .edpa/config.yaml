@@ -1,28 +1,31 @@
-# EDPA Sync Configuration — edpa-simulation
-capacity: config/capacity.yaml
-heuristics: config/cw_heuristics.yaml
-project: config/project.yaml
-
 backlog_file: .edpa/backlog.yaml
-iterations_dir: .edpa/iterations/
-
-sync:
-  github_org: "technomaton"
-  github_project_number: 4
-  sync_interval: "15m"
-  auto_commit: true
-  fields_mapping:
-    js: "Job Size"
-    bv: "Business Value"
-    tc: "Time Criticality"
-    rr: "Risk Reduction"
-    wsjf: "WSJF Score"
-    issue_type: "Issue Type"
-    team: "Team"
-
+capacity: config/capacity.yaml
 evidence:
   sources:
-    - type: git_commits
-      pattern: "feat|fix|refactor|test|docs"
-    - type: branch_naming
-      pattern: "{type}/{ITEM_ID}-{description}"
+  - pattern: feat|fix|refactor|test|docs
+    type: git_commits
+  - pattern: '{type}/{ITEM_ID}-{description}'
+    type: branch_naming
+heuristics: config/cw_heuristics.yaml
+iterations_dir: .edpa/iterations/
+project: config/project.yaml
+sync:
+  auto_commit: true
+  fields_mapping:
+    bv: Business Value
+    issue_type: Issue Type
+    js: Job Size
+    rr: Risk Reduction
+    tc: Time Criticality
+    team: Team
+    wsjf: WSJF Score
+  github_org: technomaton
+  github_project_number: 4
+  issue_types:
+    Defect: Defekt v existující funkcionalitě
+    Epic: Strategický cíl, 6-9 měsíců
+    Feature: Musí se vejít do Planning Intervalu
+    Initiative: Business case, investiční záměr
+    Story: Dodáváno v iteraci
+    Task: Technická práce
+  sync_interval: 15m

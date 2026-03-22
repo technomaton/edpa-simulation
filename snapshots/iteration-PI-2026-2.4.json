@@ -1,6 +1,6 @@
 {
   "iteration": "PI-2026-2.4",
-  "frozen_at": "2026-03-21T22:59:55.186765+00:00",
+  "frozen_at": "2026-03-22T18:49:44.132158+00:00",
   "methodology": "EDPA v1.0.0",
   "team_capacity": 440,
   "items": [
@@ -17,8 +17,8 @@
       "pr_author": "nemcova",
       "commit_authors": [
         "tuma",
-        "cerny",
-        "nemcova"
+        "nemcova",
+        "cerny"
       ],
       "pr_reviewers": [
         "urbanek"
@@ -37,16 +37,16 @@
       "body": "",
       "pr_author": "tuma",
       "commit_authors": [
-        "cerny",
-        "kralova",
-        "tuma"
+        "nemcova",
+        "tuma",
+        "urbanek",
+        "cerny"
       ],
       "pr_reviewers": [
+        "nemcova",
         "urbanek"
       ],
-      "commenters": [
-        "kralova"
-      ]
+      "commenters": []
     },
     {
       "id": "S-2010",
@@ -60,18 +60,15 @@
       "body": "",
       "pr_author": "cerny",
       "commit_authors": [
-        "kralova",
         "novak",
         "tuma",
-        "cerny",
-        "urbanek"
+        "cerny"
       ],
       "pr_reviewers": [
         "urbanek"
       ],
       "commenters": [
-        "novak",
-        "kralova"
+        "novak"
       ]
     },
     {
@@ -86,16 +83,19 @@
       "body": "",
       "pr_author": "nemcova",
       "commit_authors": [
-        "nemcova",
-        "svoboda"
+        "svoboda",
+        "kralova",
+        "nemcova"
       ],
       "pr_reviewers": [
         "urbanek"
       ],
-      "commenters": []
+      "commenters": [
+        "kralova"
+      ]
     }
   ],
-  "commit_count": 38,
+  "commit_count": 39,
   "results": [
     {
       "id": "novak",
@@ -129,32 +129,18 @@
       "total_derived": 40.0,
       "items": [
         {
-          "id": "S-2009",
+          "id": "S-2207",
           "level": "Story",
-          "js": 3,
+          "js": 2,
           "cw": 0.25,
           "rs": 1.0,
-          "score": 0.75,
+          "score": 0.5,
           "evidence": [
             "commit_author",
             "issue_comment"
           ],
-          "ratio": 0.5,
-          "hours": 20.0
-        },
-        {
-          "id": "S-2010",
-          "level": "Story",
-          "js": 3,
-          "cw": 0.25,
-          "rs": 1.0,
-          "score": 0.75,
-          "evidence": [
-            "commit_author",
-            "issue_comment"
-          ],
-          "ratio": 0.5,
-          "hours": 20.0
+          "ratio": 1.0,
+          "hours": 40.0
         }
       ],
       "invariant_ok": true
@@ -187,6 +173,7 @@
           "rs": 1.0,
           "score": 0.75,
           "evidence": [
+            "commit_author",
             "pr_reviewer"
           ],
           "ratio": 0.272727,
@@ -200,7 +187,6 @@
           "rs": 1.0,
           "score": 0.75,
           "evidence": [
-            "commit_author",
             "pr_reviewer"
           ],
           "ratio": 0.272727,
@@ -366,8 +352,22 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.6,
-          "hours": 57.6
+          "ratio": 0.521739,
+          "hours": 50.09
+        },
+        {
+          "id": "S-2009",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "commit_author",
+            "pr_reviewer"
+          ],
+          "ratio": 0.130435,
+          "hours": 12.52
         },
         {
           "id": "S-2207",
@@ -381,8 +381,8 @@
             "pr_author",
             "commit_author"
           ],
-          "ratio": 0.4,
-          "hours": 38.4
+          "ratio": 0.347826,
+          "hours": 33.39
         }
       ],
       "invariant_ok": true

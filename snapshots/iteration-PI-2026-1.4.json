@@ -1,6 +1,6 @@
 {
   "iteration": "PI-2026-1.4",
-  "frozen_at": "2026-03-21T22:59:48.854838+00:00",
+  "frozen_at": "2026-03-22T18:49:14.237817+00:00",
   "methodology": "EDPA v1.0.0",
   "team_capacity": 440,
   "items": [
@@ -16,13 +16,13 @@
       "body": "",
       "pr_author": "tuma",
       "commit_authors": [
-        "nemcova",
+        "tuma",
         "urbanek",
-        "tuma"
+        "nemcova"
       ],
       "pr_reviewers": [
-        "nemcova",
-        "urbanek"
+        "urbanek",
+        "nemcova"
       ],
       "commenters": []
     },
@@ -38,8 +38,8 @@
       "body": "",
       "pr_author": "tuma",
       "commit_authors": [
-        "nemcova",
-        "tuma"
+        "tuma",
+        "nemcova"
       ],
       "pr_reviewers": [
         "nemcova"
@@ -58,8 +58,8 @@
       "body": "",
       "pr_author": "cerny",
       "commit_authors": [
-        "cerny",
-        "tuma"
+        "tuma",
+        "cerny"
       ],
       "pr_reviewers": [
         "urbanek"
@@ -78,9 +78,9 @@
       "body": "",
       "pr_author": "nemcova",
       "commit_authors": [
-        "nemcova",
         "tuma",
-        "svoboda"
+        "svoboda",
+        "nemcova"
       ],
       "pr_reviewers": [
         "urbanek"
@@ -99,10 +99,10 @@
       "body": "",
       "pr_author": "svoboda",
       "commit_authors": [
-        "nemcova",
-        "kralova",
+        "svoboda",
         "cerny",
-        "svoboda"
+        "kralova",
+        "nemcova"
       ],
       "pr_reviewers": [
         "nemcova"
@@ -145,8 +145,8 @@
       "pr_author": "tuma",
       "commit_authors": [
         "tuma",
-        "kralova",
         "svoboda",
+        "kralova",
         "nemcova"
       ],
       "pr_reviewers": [

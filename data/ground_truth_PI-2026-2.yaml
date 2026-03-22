@@ -1,85 +1,99 @@
-generated_at: '2026-03-21T22:59:55.187407+00:00'
+generated_at: '2026-03-22T18:49:44.132692+00:00'
 pi: PI-2026-2
 records:
 - auto_cw: 1.0
-  commit_count: 6
+  commit_count: 5
   confirmed_cw: 1.0
   deviation: 0.0
   evidence_role: owner
   item: S-2001
-  person: cerny
-- auto_cw: 0.6
-  commit_count: 1
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2001
-  person: urbanek
-- auto_cw: 0.6
-  commit_count: 3
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2002
   person: cerny
 - auto_cw: 0.25
   commit_count: 1
   confirmed_cw: 0.25
   deviation: 0.0
   evidence_role: reviewer
-  item: S-2002
+  item: S-2001
+  person: nemcova
+- auto_cw: 0.15
+  commit_count: 1
+  confirmed_cw: 0.15
+  deviation: 0.0
+  evidence_role: consulted
+  item: S-2001
+  person: novak
+- auto_cw: 0.6
+  commit_count: 1
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2001
   person: urbanek
+- auto_cw: 1.0
+  commit_count: 5
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2002
+  person: svoboda
 - auto_cw: 0.15
   commit_count: 1
   confirmed_cw: 0.15
   deviation: 0.0
   evidence_role: consulted
   item: S-2002
-  person: novak
-- auto_cw: 0.25
-  commit_count: 1
-  confirmed_cw: 0.25
-  deviation: 0.0
-  evidence_role: reviewer
-  item: S-2002
-  person: nemcova
-- auto_cw: 1.0
-  commit_count: 7
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2002
-  person: svoboda
-- auto_cw: 1.0
-  commit_count: 3
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2101
-  person: urbanek
-- auto_cw: 0.25
-  commit_count: 1
-  confirmed_cw: 0.25
-  deviation: 0.0
-  evidence_role: reviewer
-  item: S-2101
-  person: nemcova
+  person: kralova
 - auto_cw: 0.6
+  commit_count: 2
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2002
+  person: cerny
+- auto_cw: 0.25
   commit_count: 1
+  confirmed_cw: 0.25
+  deviation: 0.0
+  evidence_role: reviewer
+  item: S-2002
+  person: nemcova
+- auto_cw: 0.25
+  commit_count: 1
+  confirmed_cw: 0.35
+  deviation: 0.1
+  evidence_role: reviewer
+  item: S-2002
+  person: urbanek
+- auto_cw: 0.6
+  commit_count: 3
   confirmed_cw: 0.6
   deviation: 0.0
   evidence_role: key
   item: S-2101
   person: tuma
-- auto_cw: 0.25
-  commit_count: 1
-  confirmed_cw: 0.25
-  deviation: 0.0
-  evidence_role: reviewer
-  item: S-2102
-  person: urbanek
 - auto_cw: 1.0
-  commit_count: 7
+  commit_count: 5
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2101
+  person: urbanek
+- auto_cw: 0.15
+  commit_count: 1
+  confirmed_cw: 0.3
+  deviation: 0.15
+  evidence_role: consulted
+  item: S-2101
+  person: kralova
+- auto_cw: 0.15
+  commit_count: 1
+  confirmed_cw: 0.35
+  deviation: 0.2
+  evidence_role: consulted
+  item: S-2101
+  person: novak
+- auto_cw: 1.0
+  commit_count: 5
   confirmed_cw: 1.0
   deviation: 0.0
   evidence_role: owner
@@ -92,22 +106,8 @@ records:
   evidence_role: key
   item: S-2102
   person: kralova
-- auto_cw: 0.25
-  commit_count: 1
-  confirmed_cw: 0.25
-  deviation: 0.0
-  evidence_role: reviewer
-  item: S-2102
-  person: nemcova
-- auto_cw: 0.6
-  commit_count: 3
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2201
-  person: urbanek
 - auto_cw: 1.0
-  commit_count: 6
+  commit_count: 5
   confirmed_cw: 1.0
   deviation: 0.0
   evidence_role: owner
@@ -126,452 +126,480 @@ records:
   deviation: 0.25
   evidence_role: consulted
   item: S-2201
-  person: kralova
-- auto_cw: 1.0
-  commit_count: 4
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2105
-  person: urbanek
-- auto_cw: 0.25
-  commit_count: 1
-  confirmed_cw: 0.25
-  deviation: 0.0
-  evidence_role: reviewer
-  item: S-2105
-  person: nemcova
-- auto_cw: 0.15
-  commit_count: 1
-  confirmed_cw: 0.15
-  deviation: 0.0
-  evidence_role: consulted
-  item: S-2105
-  person: kralova
-- auto_cw: 0.6
-  commit_count: 1
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2105
-  person: tuma
-- auto_cw: 0.6
-  commit_count: 1
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2204
-  person: svoboda
-- auto_cw: 1.0
-  commit_count: 6
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2204
-  person: cerny
-- auto_cw: 0.6
-  commit_count: 3
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2204
-  person: urbanek
-- auto_cw: 0.6
-  commit_count: 2
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2003
-  person: svoboda
-- auto_cw: 1.0
-  commit_count: 6
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2003
-  person: cerny
-- auto_cw: 0.6
-  commit_count: 1
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2003
-  person: urbanek
-- auto_cw: 1.0
-  commit_count: 4
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2004
-  person: nemcova
-- auto_cw: 0.6
-  commit_count: 1
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2004
-  person: cerny
-- auto_cw: 1.0
-  commit_count: 8
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2005
-  person: svoboda
-- auto_cw: 0.6
-  commit_count: 2
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2005
-  person: cerny
-- auto_cw: 0.25
-  commit_count: 1
-  confirmed_cw: 0.25
-  deviation: 0.0
-  evidence_role: reviewer
-  item: S-2005
-  person: nemcova
-- auto_cw: 0.15
-  commit_count: 1
-  confirmed_cw: 0.15
-  deviation: 0.0
-  evidence_role: consulted
-  item: S-2103
-  person: kralova
-- auto_cw: 1.0
-  commit_count: 6
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2103
-  person: tuma
-- auto_cw: 0.6
-  commit_count: 1
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2103
-  person: nemcova
-- auto_cw: 0.15
-  commit_count: 1
-  confirmed_cw: 0.15
-  deviation: 0.0
-  evidence_role: consulted
-  item: S-2103
   person: novak
-- auto_cw: 1.0
-  commit_count: 6
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2106
-  person: tuma
 - auto_cw: 0.6
-  commit_count: 3
+  commit_count: 1
   confirmed_cw: 0.6
   deviation: 0.0
   evidence_role: key
-  item: S-2106
-  person: cerny
-- auto_cw: 0.15
-  commit_count: 1
-  confirmed_cw: 0.25
-  deviation: 0.1
-  evidence_role: consulted
-  item: S-2106
-  person: kralova
-- auto_cw: 0.25
-  commit_count: 1
-  confirmed_cw: 0.25
-  deviation: 0.0
-  evidence_role: reviewer
-  item: S-2106
-  person: nemcova
-- auto_cw: 0.15
-  commit_count: 1
-  confirmed_cw: 0.5
-  deviation: 0.35
-  evidence_role: consulted
-  item: S-2202
-  person: novak
-- auto_cw: 1.0
-  commit_count: 6
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2202
-  person: tuma
-- auto_cw: 0.6
-  commit_count: 2
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2202
-  person: nemcova
+  item: S-2201
+  person: urbanek
 - auto_cw: 1.0
   commit_count: 5
   confirmed_cw: 1.0
   deviation: 0.0
   evidence_role: owner
-  item: S-2205
-  person: svoboda
-- auto_cw: 0.6
-  commit_count: 3
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2205
-  person: tuma
+  item: S-2105
+  person: urbanek
 - auto_cw: 0.15
-  commit_count: 1
-  confirmed_cw: 0.15
-  deviation: 0.0
-  evidence_role: consulted
-  item: S-2205
-  person: kralova
-- auto_cw: 0.25
   commit_count: 1
   confirmed_cw: 0.4
-  deviation: 0.15
-  evidence_role: reviewer
-  item: S-2006
-  person: urbanek
-- auto_cw: 1.0
-  commit_count: 6
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2006
-  person: cerny
+  deviation: 0.25
+  evidence_role: consulted
+  item: S-2105
+  person: novak
 - auto_cw: 0.25
   commit_count: 1
   confirmed_cw: 0.25
   deviation: 0.0
   evidence_role: reviewer
-  item: S-2006
+  item: S-2105
   person: nemcova
 - auto_cw: 0.6
-  commit_count: 1
+  commit_count: 3
   confirmed_cw: 0.6
   deviation: 0.0
   evidence_role: key
-  item: S-2006
-  person: kralova
-- auto_cw: 1.0
-  commit_count: 8
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2007
-  person: svoboda
-- auto_cw: 0.6
-  commit_count: 1
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2007
-  person: nemcova
-- auto_cw: 0.25
-  commit_count: 1
-  confirmed_cw: 0.25
-  deviation: 0.0
-  evidence_role: reviewer
-  item: S-2007
-  person: urbanek
-- auto_cw: 1.0
-  commit_count: 6
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2008
+  item: S-2105
   person: tuma
-- auto_cw: 0.6
-  commit_count: 1
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2008
-  person: svoboda
-- auto_cw: 0.6
-  commit_count: 2
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2008
-  person: urbanek
-- auto_cw: 0.25
-  commit_count: 1
-  confirmed_cw: 0.25
-  deviation: 0.0
-  evidence_role: reviewer
-  item: S-2008
-  person: nemcova
-- auto_cw: 1.0
-  commit_count: 6
-  confirmed_cw: 1.0
-  deviation: 0.0
-  evidence_role: owner
-  item: S-2104
-  person: cerny
-- auto_cw: 0.6
-  commit_count: 1
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2104
-  person: tuma
-- auto_cw: 0.6
-  commit_count: 2
-  confirmed_cw: 0.5
-  deviation: 0.1
-  evidence_role: key
-  item: S-2104
-  person: nemcova
 - auto_cw: 1.0
   commit_count: 5
   confirmed_cw: 1.0
   deviation: 0.0
   evidence_role: owner
-  item: S-2107
-  person: svoboda
+  item: S-2204
+  person: cerny
 - auto_cw: 0.6
-  commit_count: 3
+  commit_count: 2
   confirmed_cw: 0.6
   deviation: 0.0
   evidence_role: key
-  item: S-2107
-  person: nemcova
-- auto_cw: 0.25
-  commit_count: 1
-  confirmed_cw: 0.6
-  deviation: 0.35
-  evidence_role: reviewer
-  item: S-2107
+  item: S-2204
   person: urbanek
 - auto_cw: 0.6
   commit_count: 2
   confirmed_cw: 0.6
   deviation: 0.0
   evidence_role: key
-  item: S-2203
-  person: cerny
+  item: S-2204
+  person: svoboda
+- auto_cw: 0.25
+  commit_count: 1
+  confirmed_cw: 0.25
+  deviation: 0.0
+  evidence_role: reviewer
+  item: S-2003
+  person: nemcova
 - auto_cw: 1.0
-  commit_count: 4
+  commit_count: 6
   confirmed_cw: 1.0
   deviation: 0.0
   evidence_role: owner
-  item: S-2203
-  person: tuma
+  item: S-2003
+  person: cerny
 - auto_cw: 0.15
   commit_count: 1
-  confirmed_cw: 0.3
-  deviation: 0.15
+  confirmed_cw: 0.4
+  deviation: 0.25
   evidence_role: consulted
-  item: S-2203
+  item: S-2003
   person: novak
-- auto_cw: 0.15
-  commit_count: 1
-  confirmed_cw: 0.3
-  deviation: 0.15
-  evidence_role: consulted
-  item: S-2203
-  person: kralova
 - auto_cw: 0.6
-  commit_count: 3
+  commit_count: 1
   confirmed_cw: 0.6
   deviation: 0.0
   evidence_role: key
-  item: S-2206
-  person: tuma
+  item: S-2003
+  person: svoboda
+- auto_cw: 0.6
+  commit_count: 1
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2003
+  person: urbanek
+- auto_cw: 0.6
+  commit_count: 1
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2004
+  person: cerny
 - auto_cw: 1.0
   commit_count: 4
   confirmed_cw: 0.6
   deviation: 0.4
   evidence_role: owner
-  item: S-2206
+  item: S-2004
+  person: nemcova
+- auto_cw: 0.15
+  commit_count: 1
+  confirmed_cw: 0.3
+  deviation: 0.15
+  evidence_role: consulted
+  item: S-2004
+  person: novak
+- auto_cw: 1.0
+  commit_count: 8
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2005
+  person: svoboda
+- auto_cw: 0.6
+  commit_count: 1
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2005
+  person: cerny
+- auto_cw: 0.25
+  commit_count: 1
+  confirmed_cw: 0.25
+  deviation: 0.0
+  evidence_role: reviewer
+  item: S-2005
+  person: nemcova
+- auto_cw: 0.6
+  commit_count: 2
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2103
+  person: nemcova
+- auto_cw: 1.0
+  commit_count: 4
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2103
+  person: tuma
+- auto_cw: 0.15
+  commit_count: 1
+  confirmed_cw: 0.15
+  deviation: 0.0
+  evidence_role: consulted
+  item: S-2103
+  person: kralova
+- auto_cw: 1.0
+  commit_count: 4
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2106
+  person: tuma
+- auto_cw: 0.25
+  commit_count: 1
+  confirmed_cw: 0.25
+  deviation: 0.0
+  evidence_role: reviewer
+  item: S-2106
   person: nemcova
 - auto_cw: 0.6
   commit_count: 3
   confirmed_cw: 0.6
   deviation: 0.0
   evidence_role: key
-  item: S-2206
-  person: cerny
-- auto_cw: 0.6
-  commit_count: 2
-  confirmed_cw: 0.6
-  deviation: 0.0
-  evidence_role: key
-  item: S-2009
+  item: S-2106
   person: cerny
 - auto_cw: 1.0
-  commit_count: 6
+  commit_count: 5
   confirmed_cw: 1.0
   deviation: 0.0
   evidence_role: owner
-  item: S-2009
+  item: S-2202
   person: tuma
-- auto_cw: 0.15
-  commit_count: 1
-  confirmed_cw: 0.5
-  deviation: 0.35
-  evidence_role: consulted
-  item: S-2009
-  person: kralova
 - auto_cw: 0.6
   commit_count: 3
   confirmed_cw: 0.6
   deviation: 0.0
   evidence_role: key
-  item: S-2010
+  item: S-2202
+  person: nemcova
+- auto_cw: 0.15
+  commit_count: 1
+  confirmed_cw: 0.15
+  deviation: 0.0
+  evidence_role: consulted
+  item: S-2202
+  person: kralova
+- auto_cw: 1.0
+  commit_count: 5
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2205
+  person: svoboda
+- auto_cw: 0.25
+  commit_count: 1
+  confirmed_cw: 0.25
+  deviation: 0.0
+  evidence_role: reviewer
+  item: S-2205
+  person: nemcova
+- auto_cw: 0.6
+  commit_count: 3
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2205
   person: tuma
 - auto_cw: 1.0
   commit_count: 5
   confirmed_cw: 1.0
   deviation: 0.0
   evidence_role: owner
-  item: S-2010
+  item: S-2006
   person: cerny
-- auto_cw: 0.15
-  commit_count: 1
-  confirmed_cw: 0.15
+- auto_cw: 0.6
+  commit_count: 2
+  confirmed_cw: 0.6
   deviation: 0.0
-  evidence_role: consulted
-  item: S-2010
+  evidence_role: key
+  item: S-2006
   person: kralova
 - auto_cw: 0.15
   commit_count: 1
   confirmed_cw: 0.35
   deviation: 0.2
   evidence_role: consulted
-  item: S-2010
+  item: S-2006
   person: novak
+- auto_cw: 1.0
+  commit_count: 5
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2007
+  person: svoboda
+- auto_cw: 0.6
+  commit_count: 1
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2007
+  person: nemcova
 - auto_cw: 0.25
   commit_count: 1
-  confirmed_cw: 0.4
-  deviation: 0.15
+  confirmed_cw: 0.6
+  deviation: 0.35
   evidence_role: reviewer
-  item: S-2010
+  item: S-2007
+  person: urbanek
+- auto_cw: 0.15
+  commit_count: 1
+  confirmed_cw: 0.15
+  deviation: 0.0
+  evidence_role: consulted
+  item: S-2008
+  person: novak
+- auto_cw: 0.6
+  commit_count: 2
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2008
+  person: svoboda
+- auto_cw: 1.0
+  commit_count: 4
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2008
+  person: tuma
+- auto_cw: 0.15
+  commit_count: 1
+  confirmed_cw: 0.25
+  deviation: 0.1
+  evidence_role: consulted
+  item: S-2008
+  person: kralova
+- auto_cw: 0.6
+  commit_count: 1
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2008
+  person: urbanek
+- auto_cw: 0.25
+  commit_count: 1
+  confirmed_cw: 0.25
+  deviation: 0.0
+  evidence_role: reviewer
+  item: S-2008
+  person: nemcova
+- auto_cw: 0.6
+  commit_count: 2
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2104
+  person: nemcova
+- auto_cw: 1.0
+  commit_count: 8
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2104
+  person: cerny
+- auto_cw: 0.6
+  commit_count: 3
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2104
+  person: tuma
+- auto_cw: 0.25
+  commit_count: 1
+  confirmed_cw: 0.35
+  deviation: 0.1
+  evidence_role: reviewer
+  item: S-2104
   person: urbanek
 - auto_cw: 1.0
   commit_count: 7
   confirmed_cw: 1.0
   deviation: 0.0
   evidence_role: owner
-  item: S-2207
+  item: S-2107
+  person: svoboda
+- auto_cw: 0.15
+  commit_count: 1
+  confirmed_cw: 0.4
+  deviation: 0.25
+  evidence_role: consulted
+  item: S-2107
+  person: novak
+- auto_cw: 0.15
+  commit_count: 1
+  confirmed_cw: 0.4
+  deviation: 0.25
+  evidence_role: consulted
+  item: S-2107
+  person: kralova
+- auto_cw: 0.6
+  commit_count: 2
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2107
+  person: nemcova
+- auto_cw: 0.25
+  commit_count: 1
+  confirmed_cw: 0.5
+  deviation: 0.25
+  evidence_role: reviewer
+  item: S-2107
+  person: urbanek
+- auto_cw: 1.0
+  commit_count: 4
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2203
+  person: tuma
+- auto_cw: 0.6
+  commit_count: 3
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2203
+  person: cerny
+- auto_cw: 1.0
+  commit_count: 6
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2206
   person: nemcova
 - auto_cw: 0.6
   commit_count: 1
   confirmed_cw: 0.6
   deviation: 0.0
   evidence_role: key
+  item: S-2206
+  person: cerny
+- auto_cw: 0.6
+  commit_count: 1
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2206
+  person: tuma
+- auto_cw: 1.0
+  commit_count: 6
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2009
+  person: tuma
+- auto_cw: 0.25
+  commit_count: 1
+  confirmed_cw: 0.6
+  deviation: 0.35
+  evidence_role: reviewer
+  item: S-2009
+  person: urbanek
+- auto_cw: 0.25
+  commit_count: 1
+  confirmed_cw: 0.25
+  deviation: 0.0
+  evidence_role: reviewer
+  item: S-2009
+  person: nemcova
+- auto_cw: 0.6
+  commit_count: 2
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2009
+  person: cerny
+- auto_cw: 1.0
+  commit_count: 8
+  confirmed_cw: 1.0
+  deviation: 0.0
+  evidence_role: owner
+  item: S-2010
+  person: cerny
+- auto_cw: 0.15
+  commit_count: 1
+  confirmed_cw: 0.5
+  deviation: 0.35
+  evidence_role: consulted
+  item: S-2010
+  person: novak
+- auto_cw: 0.6
+  commit_count: 3
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
+  item: S-2010
+  person: tuma
+- auto_cw: 0.15
+  commit_count: 1
+  confirmed_cw: 0.15
+  deviation: 0.0
+  evidence_role: consulted
+  item: S-2207
+  person: kralova
+- auto_cw: 0.6
+  commit_count: 2
+  confirmed_cw: 0.6
+  deviation: 0.0
+  evidence_role: key
   item: S-2207
   person: svoboda
+- auto_cw: 1.0
+  commit_count: 6
+  confirmed_cw: 0.6
+  deviation: 0.4
+  evidence_role: owner
+  item: S-2207
+  person: nemcova
 stats:
-  corrected_records: 12
-  correction_rate: 14.8
-  mad: 0.0333
+  corrected_records: 18
+  correction_rate: 21.2
+  mad: 0.0512
   max_deviation: 0.4
-  total_deviation: 2.7
-  total_records: 81
+  total_deviation: 4.35
+  total_records: 85
