@@ -1,7 +1,7 @@
 {
   "iteration": "PI-2026-2.3",
   "mode": "simple",
-  "computed_at": "2026-03-22T18:49:43.192079+00:00",
+  "computed_at": "2026-03-22T22:52:10.245546+00:00",
   "methodology": "EDPA v1.0.0",
   "people": [
     {
@@ -9,59 +9,7 @@
       "name": "Jan Novak",
       "role": "BO",
       "capacity": 24,
-      "total_derived": 24.01,
-      "items": [
-        {
-          "id": "S-2006",
-          "level": "Story",
-          "js": 3,
-          "cw": 0.25,
-          "rs": 1.0,
-          "score": 0.75,
-          "evidence": [
-            "commit_author",
-            "issue_comment"
-          ],
-          "ratio": 0.272727,
-          "hours": 6.55
-        },
-        {
-          "id": "S-2008",
-          "level": "Story",
-          "js": 5,
-          "cw": 0.25,
-          "rs": 1.0,
-          "score": 1.25,
-          "evidence": [
-            "commit_author",
-            "issue_comment"
-          ],
-          "ratio": 0.454545,
-          "hours": 10.91
-        },
-        {
-          "id": "S-2107",
-          "level": "Story",
-          "js": 3,
-          "cw": 0.25,
-          "rs": 1.0,
-          "score": 0.75,
-          "evidence": [
-            "commit_author",
-            "issue_comment"
-          ],
-          "ratio": 0.272727,
-          "hours": 6.55
-        }
-      ],
-      "invariant_ok": true
-    },
-    {
-      "id": "kralova",
-      "name": "Marie Kralova",
-      "role": "PM",
-      "capacity": 40,
-      "total_derived": 40.0,
+      "total_derived": 24.0,
       "items": [
         {
           "id": "S-2202",
@@ -74,11 +22,11 @@
             "commit_author",
             "issue_comment"
           ],
-          "ratio": 0.214286,
-          "hours": 8.57
+          "ratio": 0.5,
+          "hours": 12.0
         },
         {
-          "id": "S-2006",
+          "id": "S-2203",
           "level": "Story",
           "js": 3,
           "cw": 0.25,
@@ -88,11 +36,21 @@
             "commit_author",
             "issue_comment"
           ],
-          "ratio": 0.214286,
-          "hours": 8.57
-        },
+          "ratio": 0.5,
+          "hours": 12.0
+        }
+      ],
+      "invariant_ok": true
+    },
+    {
+      "id": "kralova",
+      "name": "Marie Kralova",
+      "role": "PM",
+      "capacity": 40,
+      "total_derived": 40.0,
+      "items": [
         {
-          "id": "S-2008",
+          "id": "S-2106",
           "level": "Story",
           "js": 5,
           "cw": 0.25,
@@ -106,7 +64,35 @@
           "hours": 14.29
         },
         {
-          "id": "S-2107",
+          "id": "S-2205",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "commit_author",
+            "issue_comment"
+          ],
+          "ratio": 0.214286,
+          "hours": 8.57
+        },
+        {
+          "id": "S-2006",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "commit_author",
+            "issue_comment"
+          ],
+          "ratio": 0.214286,
+          "hours": 8.57
+        },
+        {
+          "id": "S-2203",
           "level": "Story",
           "js": 3,
           "cw": 0.25,
@@ -130,6 +116,19 @@
       "total_derived": 56.0,
       "items": [
         {
+          "id": "S-2205",
+          "level": "Story",
+          "js": 3,
+          "cw": 0.25,
+          "rs": 1.0,
+          "score": 0.75,
+          "evidence": [
+            "pr_reviewer"
+          ],
+          "ratio": 0.15,
+          "hours": 8.4
+        },
+        {
           "id": "S-2006",
           "level": "Story",
           "js": 3,
@@ -137,6 +136,7 @@
           "rs": 1.0,
           "score": 0.75,
           "evidence": [
+            "commit_author",
             "pr_reviewer"
           ],
           "ratio": 0.15,
@@ -169,20 +169,6 @@
           ],
           "ratio": 0.25,
           "hours": 14.0
-        },
-        {
-          "id": "S-2104",
-          "level": "Story",
-          "js": 3,
-          "cw": 0.25,
-          "rs": 1.0,
-          "score": 0.75,
-          "evidence": [
-            "commit_author",
-            "pr_reviewer"
-          ],
-          "ratio": 0.15,
-          "hours": 8.4
         },
         {
           "id": "S-2107",
@@ -480,7 +466,7 @@
           "hours": 11.52
         },
         {
-          "id": "S-2205",
+          "id": "S-2006",
           "level": "Story",
           "js": 3,
           "cw": 0.25,
@@ -553,7 +539,7 @@
       "invariant_ok": true
     }
   ],
-  "team_total": 440.0,
+  "team_total": 439.99,
   "all_invariants_passed": false,
   "items_count": 9,
   "commit_count": 84,

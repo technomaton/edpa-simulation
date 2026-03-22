@@ -1,6 +1,6 @@
 {
   "iteration": "PI-2026-1.2",
-  "frozen_at": "2026-03-22T18:49:11.035889+00:00",
+  "frozen_at": "2026-03-22T22:52:01.260448+00:00",
   "methodology": "EDPA v1.0.0",
   "team_capacity": 440,
   "items": [
@@ -16,8 +16,8 @@
       "body": "",
       "pr_author": "urbanek",
       "commit_authors": [
-        "urbanek",
-        "svoboda"
+        "svoboda",
+        "urbanek"
       ],
       "pr_reviewers": [],
       "commenters": []
@@ -35,8 +35,8 @@
       "pr_author": "urbanek",
       "commit_authors": [
         "urbanek",
-        "kralova",
-        "nemcova"
+        "nemcova",
+        "kralova"
       ],
       "pr_reviewers": [
         "nemcova"
@@ -57,13 +57,13 @@
       "body": "",
       "pr_author": "tuma",
       "commit_authors": [
-        "urbanek",
         "nemcova",
+        "urbanek",
         "tuma"
       ],
       "pr_reviewers": [
-        "urbanek",
-        "nemcova"
+        "nemcova",
+        "urbanek"
       ],
       "commenters": []
     },
@@ -79,14 +79,14 @@
       "body": "",
       "pr_author": "cerny",
       "commit_authors": [
+        "nemcova",
         "urbanek",
         "cerny",
-        "kralova",
-        "nemcova"
+        "kralova"
       ],
       "pr_reviewers": [
-        "urbanek",
-        "nemcova"
+        "nemcova",
+        "urbanek"
       ],
       "commenters": [
         "kralova"
@@ -104,10 +104,10 @@
       "body": "",
       "pr_author": "nemcova",
       "commit_authors": [
-        "urbanek",
         "svoboda",
-        "kralova",
-        "nemcova"
+        "urbanek",
+        "nemcova",
+        "kralova"
       ],
       "pr_reviewers": [
         "urbanek"
@@ -128,8 +128,8 @@
       "body": "",
       "pr_author": "cerny",
       "commit_authors": [
-        "urbanek",
         "novak",
+        "urbanek",
         "cerny",
         "kralova"
       ],
@@ -176,10 +176,10 @@
       "body": "",
       "pr_author": "svoboda",
       "commit_authors": [
-        "tuma",
-        "svoboda",
+        "nemcova",
         "novak",
-        "nemcova"
+        "svoboda",
+        "tuma"
       ],
       "pr_reviewers": [
         "nemcova"

@@ -4,7 +4,7 @@ EDPA GitHub Project Setup — Automated initialization of GitHub Projects v2.
 
 Creates a fully configured GitHub Project with:
 - Custom fields (Job Size, BV, TC, RR, WSJF Score, Team)
-- Issues for all backlog items (from .edpa/backlog.yaml)
+- Issues for all backlog items (from .edpa/ per-item YAML files)
 - Native Issue Types assigned via GraphQL (Initiative, Epic, Feature, Story)
 - Enabler label for technical work items
 - Field values set on all project items
@@ -16,7 +16,7 @@ Usage:
 
 Prerequisite:
     gh auth login (with project scope)
-    .edpa/backlog.yaml exists with work item hierarchy
+    .edpa/ directory with per-item YAML files (initiatives/, epics/, features/, stories/)
 """
 
 import argparse
@@ -89,8 +89,6 @@ def main():
     parser.add_argument("--repo", required=True, help="Repository name")
     parser.add_argument("--project-title", default="EDPA — Medical Platform",
                         help="Project title")
-    parser.add_argument("--backlog", default=".edpa/backlog.yaml",
-                        help="Path to backlog YAML")
     parser.add_argument("--dry-run", action="store_true",
                         help="Print plan without executing")
     args = parser.parse_args()
@@ -100,52 +98,42 @@ def main():
     print(f"\n{C.BOLD}{C.PURPLE}  EDPA GitHub Project Setup{C.RESET}")
     print(f"  {C.GRAY}Organization: {args.org}")
     print(f"  Repository:  {full_repo}")
-    print(f"  Backlog:     {args.backlog}{C.RESET}")
+    print(f"  Backlog:     .edpa/ (per-item files){C.RESET}")
 
     if args.dry_run:
         print(f"  {C.YELLOW}Mode: DRY RUN{C.RESET}")
 
-    # Load backlog
-    backlog_path = Path(args.backlog)
-    if not backlog_path.exists():
-        fail(f"Backlog not found: {args.backlog}")
+    # Load items from per-file .edpa/ directories
+    edpa_dir = Path(".edpa")
+    if not edpa_dir.is_dir():
+        fail("Cannot find .edpa/ directory")
         sys.exit(1)
 
-    with open(backlog_path) as f:
-        backlog = yaml.safe_load(f)
-
-    # Flatten items
     items = []
-    for init in backlog.get("initiatives", []):
-        items.append({"id": init["id"], "title": init["title"], "level": "Initiative",
-                       "js": 0, "bv": 0, "tc": 0, "rr": 0, "wsjf": 0,
-                       "status": init.get("status", "Active"),
-                       "type": init.get("type", "")})
-        for epic in init.get("epics", []):
-            items.append({"id": epic["id"], "title": epic["title"], "level": "Epic",
-                           "js": epic.get("js", 0), "bv": epic.get("bv", 0),
-                           "tc": epic.get("tc", 0), "rr": epic.get("rr", 0),
-                           "wsjf": epic.get("wsjf", 0),
-                           "status": epic.get("status", "Active"),
-                           "owner": epic.get("owner", ""),
-                           "type": epic.get("type", "")})
-            for feat in epic.get("features", []):
-                items.append({"id": feat["id"], "title": feat["title"], "level": "Feature",
-                               "js": feat.get("js", 0), "bv": feat.get("bv", 0),
-                               "tc": feat.get("tc", 0), "rr": feat.get("rr", 0),
-                               "wsjf": feat.get("wsjf", 0),
-                               "status": feat.get("status", "Active"),
-                               "owner": feat.get("owner", ""),
-                               "type": feat.get("type", "")})
-                for story in feat.get("stories", []):
-                    items.append({"id": story["id"], "title": story["title"], "level": "Story",
-                                   "js": story.get("js", 0), "bv": story.get("bv", 0),
-                                   "tc": story.get("tc", 0), "rr": story.get("rr", 0),
-                                   "wsjf": 0,
-                                   "status": story.get("status", "Planned"),
-                                   "assignee": story.get("assignee", ""),
-                                   "iteration": story.get("iteration", ""),
-                                   "type": story.get("type", "")})
+    for type_dir in ["initiatives", "epics", "features", "stories"]:
+        dir_path = edpa_dir / type_dir
+        if not dir_path.exists():
+            continue
+        for f in sorted(dir_path.glob("*.yaml")):
+            raw = yaml.safe_load(open(f))
+            if not raw:
+                continue
+            entry = {
+                "id": raw["id"],
+                "title": raw.get("title", ""),
+                "level": raw.get("type", ""),
+                "js": raw.get("js", 0),
+                "bv": raw.get("bv", 0),
+                "tc": raw.get("tc", 0),
+                "rr": raw.get("rr", 0),
+                "wsjf": raw.get("wsjf", 0),
+                "status": raw.get("status", "Active"),
+                "owner": raw.get("owner", ""),
+                "assignee": raw.get("assignee", ""),
+                "iteration": raw.get("iteration", ""),
+                "type": raw.get("epic_type", ""),
+            }
+            items.append(entry)
 
     print(f"\n  {C.BOLD}Backlog: {len(items)} items{C.RESET}")
     for level in ["Initiative", "Epic", "Feature", "Story"]:

@@ -19,6 +19,6 @@
 ## Evidence
 
 - **S-2206**: pr_reviewer
-- **S-2009**: commit_author, pr_reviewer
-- **S-2010**: pr_reviewer
+- **S-2009**: pr_reviewer
+- **S-2010**: commit_author, pr_reviewer
 - **S-2207**: pr_reviewer

@@ -1,6 +1,6 @@
 {
   "iteration": "PI-2026-1.4",
-  "frozen_at": "2026-03-22T18:49:14.237817+00:00",
+  "frozen_at": "2026-03-22T22:52:05.246904+00:00",
   "methodology": "EDPA v1.0.0",
   "team_capacity": 440,
   "items": [
@@ -78,9 +78,9 @@
       "body": "",
       "pr_author": "nemcova",
       "commit_authors": [
-        "tuma",
         "svoboda",
-        "nemcova"
+        "nemcova",
+        "tuma"
       ],
       "pr_reviewers": [
         "urbanek"
@@ -100,9 +100,9 @@
       "pr_author": "svoboda",
       "commit_authors": [
         "svoboda",
-        "cerny",
         "kralova",
-        "nemcova"
+        "nemcova",
+        "cerny"
       ],
       "pr_reviewers": [
         "nemcova"
@@ -124,8 +124,8 @@
       "pr_author": "tuma",
       "commit_authors": [
         "tuma",
-        "cerny",
-        "nemcova"
+        "nemcova",
+        "cerny"
       ],
       "pr_reviewers": [
         "nemcova"
@@ -144,10 +144,10 @@
       "body": "",
       "pr_author": "tuma",
       "commit_authors": [
-        "tuma",
         "svoboda",
-        "kralova",
-        "nemcova"
+        "tuma",
+        "nemcova",
+        "kralova"
       ],
       "pr_reviewers": [
         "nemcova"

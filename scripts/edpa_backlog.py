@@ -12,6 +12,7 @@ Usage:
     python scripts/edpa_backlog.py wsjf                    # WSJF ranking
     python scripts/edpa_backlog.py wsjf --level feature
     python scripts/edpa_backlog.py validate                # Integrity check
+    python scripts/edpa_backlog.py add --type Story --parent F-100 --title "New story" --js 5 --assignee turyna
 """
 
 import argparse
@@ -26,7 +27,7 @@ except ImportError:
     sys.exit(1)
 
 
-# ── ANSI Colors (EDPA palette) ──────────────────────────────────────────────
+# -- ANSI Colors (EDPA palette) -----------------------------------------------
 
 class C:
     """ANSI color codes matching EDPA design palette."""
@@ -59,36 +60,87 @@ def bold(text):
     return f"{C.BOLD}{text}{C.RESET}"
 
 
-# ── Box-drawing characters ──────────────────────────────────────────────────
+# -- Box-drawing characters ----------------------------------------------------
 
 PIPE   = "\u2502"   # |
 TEE    = "\u251c"   # |-
 ELBOW  = "\u2514"   # L
 DASH   = "\u2500"   # -
 DOT    = "\u2022"   # bullet
-ARROW  = "\u2192"   # →
+ARROW  = "\u2192"   # ->
 
 
-# ── Data Loading ────────────────────────────────────────────────────────────
+# -- Type-directory mapping ----------------------------------------------------
+
+TYPE_DIRS = {
+    "Initiative": "initiatives",
+    "Epic":       "epics",
+    "Feature":    "features",
+    "Story":      "stories",
+}
+
+PREFIX_TO_DIR = {
+    "I": "initiatives",
+    "E": "epics",
+    "F": "features",
+    "S": "stories",
+}
+
+
+# -- Data Loading (file-per-item) ----------------------------------------------
 
 def find_repo_root():
     """Walk up from CWD to find the repo root (contains .edpa/)."""
     p = Path.cwd()
     while p != p.parent:
-        if (p / ".edpa" / "backlog.yaml").exists():
+        if (p / ".edpa" / "people.yaml").exists():
             return p
         p = p.parent
     # Fallback: try the known project path
     fallback = Path("/Users/jurby/projects/edpa")
-    if (fallback / ".edpa" / "backlog.yaml").exists():
+    if (fallback / ".edpa" / "people.yaml").exists():
         return fallback
     return None
 
 
 def load_backlog(root):
-    path = root / ".edpa" / "backlog.yaml"
-    with open(path, "r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+    """Load backlog from file-per-item directory structure.
+
+    Reads project/people metadata from people.yaml, then globs all item
+    files from initiatives/, epics/, features/, stories/ subdirectories.
+    """
+    edpa = root / ".edpa"
+
+    # Load project/people metadata
+    people_path = edpa / "people.yaml"
+    backlog = yaml.safe_load(open(people_path, encoding="utf-8")) if people_path.exists() else {}
+
+    # Load all items from type directories
+    items = []
+    for type_dir in ["initiatives", "epics", "features", "stories"]:
+        dir_path = edpa / type_dir
+        if dir_path.exists():
+            for f in sorted(dir_path.glob("*.yaml")):
+                item = yaml.safe_load(open(f, encoding="utf-8"))
+                if item:
+                    items.append(item)
+
+    backlog["items"] = items
+    return backlog
+
+
+def load_item_direct(root, item_id):
+    """Load a single item by reading its file directly (O(1) file access)."""
+    prefix = item_id.split("-")[0] if "-" in item_id else ""
+    type_dir = PREFIX_TO_DIR.get(prefix)
+    if type_dir:
+        path = root / ".edpa" / type_dir / f"{item_id}.yaml"
+        if path.exists():
+            item = yaml.safe_load(open(path, encoding="utf-8"))
+            if item:
+                item["level"] = TYPE_TO_LEVEL.get(item.get("type", ""), item.get("type", ""))
+                return item
+    return None
 
 
 def load_iteration(root, iteration_id):
@@ -107,28 +159,60 @@ def load_config(root):
         return yaml.safe_load(f)
 
 
-# ── Utility: collect all items flat ─────────────────────────────────────────
+# -- Utility: collect all items flat -------------------------------------------
+
+TYPE_TO_LEVEL = {
+    "Initiative": "Initiative",
+    "Epic": "Epic",
+    "Feature": "Feature",
+    "Story": "Story",
+}
+
 
 def collect_items(backlog):
-    """Collect all items into a flat list with level annotation."""
+    """Collect all items into a flat list with level annotation.
+
+    Works with the flat 'items' structure. Each item has a 'type' field
+    (Initiative, Epic, Feature, Story) and a 'parent' reference.
+    """
     items = []
-    for init in backlog.get("initiatives", []):
-        items.append({"level": "Initiative", **init})
-        for epic in init.get("epics", []):
-            items.append({"level": "Epic", "parent": init["id"], **epic})
-            for feat in epic.get("features", []):
-                items.append({"level": "Feature", "parent": epic["id"], **feat})
-                for story in feat.get("stories", []):
-                    items.append({"level": "Story", "parent": feat["id"], **story})
+    for item in backlog.get("items", []):
+        entry = dict(item)
+        entry["level"] = TYPE_TO_LEVEL.get(item.get("type", ""), item.get("type", ""))
+        items.append(entry)
     return items
 
 
-def find_item(backlog, item_id):
-    """Find a single item by ID."""
-    for item in collect_items(backlog):
+def find_item(backlog, item_id, root=None):
+    """Find a single item by ID.
+
+    Tries direct file access first (fast path), then falls back to
+    searching the loaded items list.
+    """
+    # Fast path: direct file read
+    if root:
+        direct = load_item_direct(root, item_id)
+        if direct:
+            return direct
+
+    # Fallback: search in-memory items list
+    for item in backlog.get("items", []):
         if item.get("id") == item_id:
-            return item
+            entry = dict(item)
+            entry["level"] = TYPE_TO_LEVEL.get(item.get("type", ""), item.get("type", ""))
+            return entry
     return None
+
+
+def get_children(backlog, parent_id):
+    """Find all direct children of a given parent ID."""
+    children = []
+    for item in backlog.get("items", []):
+        if item.get("parent") == parent_id:
+            entry = dict(item)
+            entry["level"] = TYPE_TO_LEVEL.get(item.get("type", ""), item.get("type", ""))
+            children.append(entry)
+    return children
 
 
 def status_badge(status):
@@ -169,10 +253,45 @@ def wsjf_score(item):
     return round((bv + tc + rr) / js, 2)
 
 
-# ── Commands ────────────────────────────────────────────────────────────────
+def next_id_for_type(root, item_type):
+    """Determine the next available numeric ID for a given type.
+
+    Scans existing files in the type directory and returns the next
+    sequential ID string (e.g. 'S-227').
+    """
+    prefix_map = {
+        "Initiative": "I",
+        "Epic":       "E",
+        "Feature":    "F",
+        "Story":      "S",
+    }
+    prefix = prefix_map.get(item_type)
+    if not prefix:
+        raise ValueError(f"Unknown item type: {item_type}")
+
+    type_dir = TYPE_DIRS[item_type]
+    dir_path = root / ".edpa" / type_dir
+
+    max_num = 0
+    if dir_path.exists():
+        for f in dir_path.glob("*.yaml"):
+            stem = f.stem  # e.g. "S-226"
+            parts = stem.split("-")
+            if len(parts) == 2:
+                try:
+                    num = int(parts[1])
+                    if num > max_num:
+                        max_num = num
+                except ValueError:
+                    pass
+
+    return f"{prefix}-{max_num + 1}"
+
+
+# -- Commands ------------------------------------------------------------------
 
 def cmd_tree(backlog, args):
-    """Display the work item hierarchy as a tree."""
+    """Display the work item hierarchy as a tree, built from parent references."""
     level_filter = getattr(args, "level", None)
     iter_filter = getattr(args, "iteration", None)
 
@@ -181,12 +300,13 @@ def cmd_tree(backlog, args):
     print(color(f"  {backlog['project']['name']}", C.MUTED))
     print()
 
-    for init in backlog.get("initiatives", []):
-        if level_filter and level_filter not in ("init", "initiative"):
-            pass  # still show initiative as root context
+    # Get all initiatives (items with no parent / parent=null)
+    initiatives = [i for i in backlog.get("items", []) if i.get("type") == "Initiative"]
+
+    for init in initiatives:
         print(f"  {color(DOT, C.INIT)} {color(bold(init['id']), C.INIT)} {color(init['title'], C.INIT)}  {status_badge(init.get('status'))}")
 
-        epics = init.get("epics", [])
+        epics = get_children(backlog, init["id"])
         for ei, epic in enumerate(epics):
             is_last_epic = ei == len(epics) - 1
             econ = ELBOW if is_last_epic else TEE
@@ -202,7 +322,7 @@ def cmd_tree(backlog, args):
             if level_filter in ("epic", "epics"):
                 continue
 
-            features = epic.get("features", [])
+            features = get_children(backlog, epic["id"])
             for fi, feat in enumerate(features):
                 is_last_feat = fi == len(features) - 1
                 fcon = ELBOW if is_last_feat else TEE
@@ -218,7 +338,7 @@ def cmd_tree(backlog, args):
                 if level_filter in ("feature", "features"):
                     continue
 
-                stories = feat.get("stories", [])
+                stories = get_children(backlog, feat["id"])
                 # Apply iteration filter if provided
                 if iter_filter:
                     stories = [s for s in stories if s.get("iteration") == iter_filter]
@@ -243,10 +363,10 @@ def cmd_tree(backlog, args):
     print()
 
 
-def cmd_show(backlog, args):
+def cmd_show(backlog, args, root=None):
     """Show detailed information about a single item."""
     item_id = args.item_id
-    item = find_item(backlog, item_id)
+    item = find_item(backlog, item_id, root=root)
 
     if not item:
         print(color(f"  Error: Item '{item_id}' not found.", C.ERR))
@@ -358,30 +478,35 @@ def cmd_show(backlog, args):
             rs_str = f"  rs={rs}" if rs else ""
             print(f"    {DOT} {person:12s}  role={role:12s}  cw={cw}{rs_str}")
 
-    # Child items (for epics -> features, features -> stories)
-    if item.get("features"):
+    # Child items -- find children via parent references
+    children = get_children(backlog, item_id)
+    child_epics = [c for c in children if c.get("type") == "Epic"]
+    child_features = [c for c in children if c.get("type") == "Feature"]
+    child_stories = [c for c in children if c.get("type") == "Story"]
+
+    if child_epics:
+        print()
+        print(f"  {bold('Epics:')}")
+        for e in child_epics:
+            w = e.get("wsjf", wsjf_score(e))
+            print(f"    {TEE}{DASH}{DASH} {color(e['id'], C.EPIC)} {e['title']}  "
+                  f"{status_badge(e.get('status'))}  WSJF={w}")
+
+    if child_features:
         print()
         print(f"  {bold('Features:')}")
-        for f in item["features"]:
+        for f in child_features:
             w = f.get("wsjf", wsjf_score(f))
             print(f"    {TEE}{DASH}{DASH} {color(f['id'], C.FEAT)} {f['title']}  "
                   f"{status_badge(f.get('status'))}  WSJF={w}")
 
-    if item.get("stories"):
+    if child_stories:
         print()
         print(f"  {bold('Stories:')}")
-        for s in item["stories"]:
+        for s in child_stories:
             print(f"    {TEE}{DASH}{DASH} {color(s['id'], C.STORY)} {s['title']}  "
                   f"{status_badge(s.get('status'))}  JS={s.get('js',0)}  "
                   f"@{s.get('iteration','?')}")
-
-    if item.get("epics"):
-        print()
-        print(f"  {bold('Epics:')}")
-        for e in item["epics"]:
-            w = e.get("wsjf", wsjf_score(e))
-            print(f"    {TEE}{DASH}{DASH} {color(e['id'], C.EPIC)} {e['title']}  "
-                  f"{status_badge(e.get('status'))}  WSJF={w}")
 
     print()
 
@@ -560,6 +685,9 @@ def cmd_validate(backlog, args):
     errors = []
     warnings = []
 
+    # Build a set of all IDs for parent reference validation
+    all_ids = {i.get("id") for i in items if i.get("id")}
+
     print()
     print(bold(color("  EDPA Backlog Validation", C.HEADER)))
     print()
@@ -580,10 +708,15 @@ def cmd_validate(backlog, args):
         if js and js > 8:
             warnings.append(f"{s['id']} ({s.get('title','')}): JS={js} exceeds recommended max of 8")
 
-    # 4. All stories must have parent
-    for s in stories:
-        if not s.get("parent"):
-            errors.append(f"{s['id']} ({s.get('title','')}): missing parent feature")
+    # 4. All non-Initiative items must have a valid parent reference
+    for item in items:
+        if item.get("level") == "Initiative":
+            continue
+        parent = item.get("parent")
+        if not parent:
+            errors.append(f"{item['id']} ({item.get('title','')}): missing parent reference")
+        elif parent not in all_ids:
+            errors.append(f"{item['id']} ({item.get('title','')}): parent '{parent}' does not exist")
 
     # 5. All stories should have iteration
     for s in stories:
@@ -614,16 +747,44 @@ def cmd_validate(backlog, args):
             if cw < 0 or cw > 1.5:
                 warnings.append(f"{s['id']}: contributor {c.get('person','?')} has unusual cw={cw}")
 
+    # 9. Validate type field exists on all items
+    for item in items:
+        if not item.get("type"):
+            errors.append(f"{item.get('id', '?')}: missing 'type' field")
+
+    # 10. Validate parent type hierarchy (Initiative > Epic > Feature > Story)
+    valid_parent_type = {
+        "Epic": "Initiative",
+        "Feature": "Epic",
+        "Story": "Feature",
+    }
+    items_by_id = {i.get("id"): i for i in items if i.get("id")}
+    for item in items:
+        if item.get("level") == "Initiative":
+            continue
+        parent_id = item.get("parent")
+        if parent_id and parent_id in items_by_id:
+            parent_item = items_by_id[parent_id]
+            expected_parent_type = valid_parent_type.get(item.get("type"))
+            actual_parent_type = parent_item.get("type")
+            if expected_parent_type and actual_parent_type != expected_parent_type:
+                errors.append(
+                    f"{item['id']} ({item.get('title','')}): parent {parent_id} is "
+                    f"{actual_parent_type}, expected {expected_parent_type}"
+                )
+
     # Print results
     checks = [
         ("Story assignees present", not any("missing assignee" in e for e in errors)),
         ("Story JS values present", not any("missing JS" in e for e in errors)),
         ("Story JS <= 8", not any("exceeds recommended" in w for w in warnings)),
-        ("Parent references valid", not any("missing parent" in e for e in errors)),
+        ("Parent references valid", not any("parent" in e.lower() for e in errors)),
+        ("Parent type hierarchy", not any("expected" in e.lower() for e in errors)),
         ("Iteration assignments", not any("missing iteration" in w for w in warnings)),
         ("WSJF consistency", not any("stored WSJF" in w for w in warnings)),
         ("No duplicate IDs", not any("Duplicate ID" in e for e in errors)),
         ("CW values valid", not any("unusual cw" in w for w in warnings)),
+        ("Type fields present", not any("missing 'type'" in e for e in errors)),
     ]
 
     for label, passed in checks:
@@ -663,7 +824,84 @@ def cmd_validate(backlog, args):
     return len(errors)
 
 
-# ── Main ────────────────────────────────────────────────────────────────────
+def cmd_add(root, backlog, args):
+    """Add a new work item, creating a YAML file in the appropriate directory."""
+    item_type = args.type
+    parent_id = args.parent
+    title = args.title
+    js = args.js
+    assignee = getattr(args, "assignee", None)
+    status = getattr(args, "status", None) or "Planned"
+    iteration = getattr(args, "iteration", None)
+    bv = getattr(args, "bv", None)
+    tc = getattr(args, "tc", None)
+    rr = getattr(args, "rr", None)
+
+    # Validate type
+    if item_type not in TYPE_DIRS:
+        print(color(f"  Error: Invalid type '{item_type}'. Must be one of: {', '.join(TYPE_DIRS.keys())}", C.ERR))
+        sys.exit(1)
+
+    # Validate parent exists (unless Initiative)
+    if item_type != "Initiative":
+        if not parent_id:
+            print(color(f"  Error: --parent is required for type '{item_type}'.", C.ERR))
+            sys.exit(1)
+        parent_item = find_item(backlog, parent_id, root=root)
+        if not parent_item:
+            print(color(f"  Error: Parent '{parent_id}' not found.", C.ERR))
+            sys.exit(1)
+
+    # Generate next ID
+    new_id = next_id_for_type(root, item_type)
+
+    # Build item data
+    item_data = {
+        "id": new_id,
+        "type": item_type,
+        "title": title,
+        "status": status,
+        "parent": parent_id,
+    }
+
+    if js is not None:
+        item_data["js"] = js
+    if bv is not None:
+        item_data["bv"] = bv
+    if tc is not None:
+        item_data["tc"] = tc
+    if rr is not None:
+        item_data["rr"] = rr
+    if assignee:
+        item_data["assignee"] = assignee
+    if iteration:
+        item_data["iteration"] = iteration
+
+    # Compute WSJF if we have enough data
+    if js and js > 0:
+        _bv = bv or 0
+        _tc = tc or 0
+        _rr = rr or 0
+        if _bv or _tc or _rr:
+            item_data["wsjf"] = round((_bv + _tc + _rr) / js, 2)
+
+    # Ensure directory exists
+    type_dir = TYPE_DIRS[item_type]
+    dir_path = root / ".edpa" / type_dir
+    dir_path.mkdir(parents=True, exist_ok=True)
+
+    # Write YAML file
+    file_path = dir_path / f"{new_id}.yaml"
+    with open(file_path, "w", encoding="utf-8") as f:
+        yaml.dump(item_data, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+
+    print()
+    print(f"  {color('Created:', C.OK)} {color(bold(new_id), level_color(item_type))} {title}")
+    print(f"  {color('File:', C.MUTED)}    {file_path}")
+    print()
+
+
+# -- Main ----------------------------------------------------------------------
 
 def main():
     parser = argparse.ArgumentParser(
@@ -694,6 +932,20 @@ def main():
     # validate
     sub.add_parser("validate", help="Validate backlog integrity")
 
+    # add
+    p_add = sub.add_parser("add", help="Add a new work item")
+    p_add.add_argument("--type", required=True, choices=["Initiative", "Epic", "Feature", "Story"],
+                       help="Item type")
+    p_add.add_argument("--parent", help="Parent item ID (required for Epic, Feature, Story)")
+    p_add.add_argument("--title", required=True, help="Item title")
+    p_add.add_argument("--js", type=int, help="Job Size")
+    p_add.add_argument("--bv", type=int, help="Business Value")
+    p_add.add_argument("--tc", type=int, help="Time Criticality")
+    p_add.add_argument("--rr", type=int, help="Risk Reduction")
+    p_add.add_argument("--assignee", help="Assignee (person ID)")
+    p_add.add_argument("--status", default="Planned", help="Status (default: Planned)")
+    p_add.add_argument("--iteration", help="Iteration ID (e.g. PI-2026-1.3)")
+
     args = parser.parse_args()
 
     if not args.command:
@@ -702,7 +954,7 @@ def main():
 
     root = find_repo_root()
     if root is None:
-        print(color("Error: Cannot find .edpa/backlog.yaml. Run from the EDPA project directory.", C.ERR))
+        print(color("Error: Cannot find .edpa/ directory. Run from the EDPA project directory.", C.ERR))
         sys.exit(1)
 
     backlog = load_backlog(root)
@@ -710,7 +962,7 @@ def main():
     if args.command == "tree":
         cmd_tree(backlog, args)
     elif args.command == "show":
-        cmd_show(backlog, args)
+        cmd_show(backlog, args, root=root)
     elif args.command == "status":
         cmd_status(backlog, args)
     elif args.command == "wsjf":
@@ -718,6 +970,8 @@ def main():
     elif args.command == "validate":
         err_count = cmd_validate(backlog, args)
         sys.exit(1 if err_count else 0)
+    elif args.command == "add":
+        cmd_add(root, backlog, args)
 
 
 if __name__ == "__main__":

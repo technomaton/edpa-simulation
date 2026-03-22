@@ -11,14 +11,14 @@
 
 | Polozka | Uroven | JS | CW | Score | Podil | Hodiny |
 |---------|--------|----|----|-------|-------|--------|
-| S-2202 | Story | 3 | 0.25 | 0.75 | 21.4% | 8.6h |
+| S-2106 | Story | 5 | 0.25 | 1.25 | 35.7% | 14.3h |
+| S-2205 | Story | 3 | 0.25 | 0.75 | 21.4% | 8.6h |
 | S-2006 | Story | 3 | 0.25 | 0.75 | 21.4% | 8.6h |
-| S-2008 | Story | 5 | 0.25 | 1.25 | 35.7% | 14.3h |
-| S-2107 | Story | 3 | 0.25 | 0.75 | 21.4% | 8.6h |
+| S-2203 | Story | 3 | 0.25 | 0.75 | 21.4% | 8.6h |
 
 ## Evidence
 
-- **S-2202**: commit_author, issue_comment
+- **S-2106**: commit_author, issue_comment
+- **S-2205**: commit_author, issue_comment
 - **S-2006**: commit_author, issue_comment
-- **S-2008**: commit_author, issue_comment
-- **S-2107**: commit_author, issue_comment
+- **S-2203**: commit_author, issue_comment

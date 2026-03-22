@@ -1,6 +1,6 @@
 {
   "iteration": "PI-2026-1.3",
-  "frozen_at": "2026-03-22T18:49:12.738684+00:00",
+  "frozen_at": "2026-03-22T22:52:03.370309+00:00",
   "methodology": "EDPA v1.0.0",
   "team_capacity": 440,
   "items": [
@@ -16,14 +16,14 @@
       "body": "",
       "pr_author": "svoboda",
       "commit_authors": [
-        "urbanek",
+        "nemcova",
         "svoboda",
-        "cerny",
-        "nemcova"
+        "urbanek",
+        "cerny"
       ],
       "pr_reviewers": [
-        "urbanek",
-        "nemcova"
+        "nemcova",
+        "urbanek"
       ],
       "commenters": []
     },
@@ -40,8 +40,8 @@
       "pr_author": "tuma",
       "commit_authors": [
         "tuma",
-        "cerny",
-        "urbanek"
+        "urbanek",
+        "cerny"
       ],
       "pr_reviewers": [
         "urbanek"
@@ -60,10 +60,10 @@
       "body": "",
       "pr_author": "svoboda",
       "commit_authors": [
-        "tuma",
+        "nemcova",
         "svoboda",
-        "kralova",
-        "nemcova"
+        "tuma",
+        "kralova"
       ],
       "pr_reviewers": [
         "nemcova"
@@ -84,9 +84,9 @@
       "body": "",
       "pr_author": "nemcova",
       "commit_authors": [
+        "nemcova",
         "novak",
-        "cerny",
-        "nemcova"
+        "cerny"
       ],
       "pr_reviewers": [
         "urbanek"
@@ -107,10 +107,10 @@
       "body": "",
       "pr_author": "tuma",
       "commit_authors": [
-        "tuma",
+        "nemcova",
         "svoboda",
-        "cerny",
-        "nemcova"
+        "tuma",
+        "cerny"
       ],
       "pr_reviewers": [
         "nemcova"
@@ -130,9 +130,9 @@
       "pr_author": "nemcova",
       "commit_authors": [
         "novak",
-        "cerny",
         "svoboda",
-        "nemcova"
+        "nemcova",
+        "cerny"
       ],
       "pr_reviewers": [
         "urbanek"
@@ -153,8 +153,8 @@
       "body": "",
       "pr_author": "nemcova",
       "commit_authors": [
-        "urbanek",
         "kralova",
+        "urbanek",
         "nemcova"
       ],
       "pr_reviewers": [
@@ -176,13 +176,13 @@
       "body": "",
       "pr_author": "cerny",
       "commit_authors": [
+        "nemcova",
         "urbanek",
-        "cerny",
-        "nemcova"
+        "cerny"
       ],
       "pr_reviewers": [
-        "urbanek",
-        "nemcova"
+        "nemcova",
+        "urbanek"
       ],
       "commenters": []
     }
