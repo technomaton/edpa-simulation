@@ -1,6 +1,6 @@
 # EDPA CW Heuristics -- Calibrated via multi-scenario analysis
-# Generated: 2026-03-21 22:33 UTC
-# MAD reduction: 6.7%
+# Generated: 2026-03-25 11:59 UTC
+# MAD reduction: 9.3%
 #
 # role_weights: single-value defaults (backward compatible)
 # role_overrides: per-team-role fine-tuned weights
@@ -14,7 +14,7 @@ role_overrides:
   Arch:
     key: 0.6
     owner: 1.0
-    reviewer: 0.3
+    reviewer: 0.35
   BO:
     consulted: 0.3
     reviewer: 0.35
@@ -30,7 +30,7 @@ role_overrides:
     consulted: 0.25
     reviewer: 0.25
   QA:
-    key: 0.55
+    key: 0.6
     reviewer: 0.25
 signal_weights:
   assignee: 4.0
@@ -48,7 +48,7 @@ calibration:
   method: multi-scenario statistical calibration
   scenarios: 8
   records_analyzed: see calibration_report.json
-  mad_before: 0.042004
-  mad_after: 0.039192
-  mad_reduction_pct: 6.7
-  calibrated_at: '2026-03-21T22:33:23.569616+00:00'
+  mad_before: 0.043162
+  mad_after: 0.039165
+  mad_reduction_pct: 9.3
+  calibrated_at: '2026-03-25T11:59:55.196246+00:00'

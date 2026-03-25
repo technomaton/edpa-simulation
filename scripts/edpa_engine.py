@@ -67,6 +67,16 @@ def detect_evidence(people, items, iteration_id):
 
         for person in people:
             pid = person["id"]
+
+            # Check evidence_scope
+            scope = person.get("evidence_scope")
+            if scope:
+                import fnmatch
+                if not any(fnmatch.fnmatch(item_id, pattern) for pattern in scope):
+                    # Item doesn't match this contract's scope
+                    if not person.get("evidence_default", False):
+                        continue  # Skip — not in scope and not default
+
             signals = []
             score = 0.0
 
@@ -113,8 +123,12 @@ def detect_evidence(people, items, iteration_id):
     return evidence
 
 
-def compute_cw(evidence_entry, heuristics):
-    """Compute Contribution Weight from evidence signals."""
+def compute_cw(evidence_entry, heuristics, person_role=None):
+    """Compute Contribution Weight from evidence signals.
+
+    Uses role_overrides (Monte Carlo calibrated) when person_role is known,
+    falling back to generic role_weights otherwise.
+    """
     if evidence_entry.get("manual_cw") is not None:
         return evidence_entry["manual_cw"]
 
@@ -131,11 +145,20 @@ def compute_cw(evidence_entry, heuristics):
                      "commit_author", "pr_reviewer", "issue_comment"]
 
     role_weights = heuristics.get("role_weights", {})
+    role_overrides = heuristics.get("role_overrides", {})
 
     for signal in role_priority:
         if signal in evidence_entry["signals"]:
-            role = signal_to_role[signal]
-            return role_weights.get(role, 0.15)
+            evidence_role = signal_to_role[signal]
+
+            # Check role_overrides first (Monte Carlo calibrated)
+            if person_role and person_role in role_overrides:
+                override = role_overrides[person_role]
+                if evidence_role in override:
+                    return override[evidence_role]
+
+            # Fallback to generic weights
+            return role_weights.get(evidence_role, 0.15)
 
     return 0.15
 
@@ -171,7 +194,7 @@ def run_edpa(capacity_config, heuristics, items, mode="simple"):
             if ev["evidence_score"] < threshold:
                 continue
 
-            cw = compute_cw(ev, heuristics)
+            cw = compute_cw(ev, heuristics, person_role=person.get("role"))
             js = item.get("job_size", 0)
 
             if js <= 0:
@@ -240,11 +263,24 @@ def run_edpa(capacity_config, heuristics, items, mode="simple"):
 
 
 def generate_demo_data():
-    """Generate sample data for demonstration."""
+    """Generate sample data for demonstration (multi-contract).
+
+    Alice is split into two contracts:
+      - alice-arch  (Arch, 40h) — scoped to Stories (S-*), evidence_default=true
+      - alice-pm    (PM,  20h) — scoped to Epics/Features (E-*, F-*)
+    Total team capacity: 40 + 20 + 80 + 60 = 200h.
+    """
     capacity = {
+        "teams": [
+            {"id": "Alpha", "planning_factor": 0.8},
+        ],
         "people": [
-            {"id": "alice", "name": "Alice (Arch)", "role": "Arch", "team": "Alpha",
-             "fte": 0.5, "capacity_per_iteration": 40, "email": "alice@example.com"},
+            {"id": "alice-arch", "name": "Alice (Arch)", "role": "Arch", "team": "Alpha",
+             "fte": 0.5, "capacity_per_iteration": 40, "email": "alice@example.com",
+             "evidence_scope": ["S-*"], "evidence_default": True},
+            {"id": "alice-pm", "name": "Alice (PM)", "role": "PM", "team": "Alpha",
+             "fte": 0.25, "capacity_per_iteration": 20, "email": "alice@example.com",
+             "evidence_scope": ["E-*", "F-*"]},
             {"id": "bob", "name": "Bob (Dev)", "role": "Dev", "team": "Alpha",
              "fte": 1.0, "capacity_per_iteration": 80, "email": "bob@example.com"},
             {"id": "carol", "name": "Carol (Dev)", "role": "Dev", "team": "Alpha",
@@ -256,6 +292,12 @@ def generate_demo_data():
         "version": "2.2",
         "evidence_threshold": 1.0,
         "role_weights": {"owner": 1.0, "key": 0.6, "reviewer": 0.25, "consulted": 0.15},
+        "role_overrides": {
+            "BO":   {"owner": 1.00, "key": 0.60, "reviewer": 0.35, "consulted": 0.30},
+            "PM":   {"owner": 1.00, "key": 0.60, "reviewer": 0.25, "consulted": 0.20},
+            "Arch": {"owner": 1.00, "key": 0.60, "reviewer": 0.30, "consulted": 0.15},
+            "Dev":  {"owner": 1.00, "key": 0.60, "reviewer": 0.25, "consulted": 0.15},
+        },
         "signals": {"assignee": 4.0, "contribute_command": 3.0, "pr_author": 2.0,
                      "commit_author": 1.0, "pr_reviewer": 1.0, "issue_comment": 0.5},
     }
@@ -264,30 +306,34 @@ def generate_demo_data():
         {"id": "S-101", "level": "Story", "job_size": 5,
          "assignees": [{"login": "bob"}],
          "body": "", "pr_author": "bob", "commit_authors": ["bob", "carol"],
-         "pr_reviewers": ["alice"], "commenters": []},
+         "pr_reviewers": ["alice-arch"], "commenters": []},
         {"id": "S-102", "level": "Story", "job_size": 8,
          "assignees": [{"login": "carol"}],
-         "body": "/contribute @alice weight:0.6", "pr_author": "carol",
+         "body": "/contribute @alice-arch weight:0.6", "pr_author": "carol",
          "commit_authors": ["carol"], "pr_reviewers": ["bob"],
-         "commenters": ["alice"]},
+         "commenters": ["alice-arch"]},
         {"id": "S-103", "level": "Story", "job_size": 3,
          "assignees": [{"login": "bob"}],
          "body": "", "pr_author": "bob", "commit_authors": ["bob"],
-         "pr_reviewers": ["alice"], "commenters": []},
+         "pr_reviewers": ["alice-arch"], "commenters": []},
         {"id": "F-10", "level": "Feature", "job_size": 13,
-         "assignees": [{"login": "alice"}],
+         "assignees": [{"login": "alice-pm"}],
          "body": "", "pr_author": None, "commit_authors": [],
          "pr_reviewers": [], "commenters": ["bob", "carol"]},
         {"id": "S-104", "level": "Story", "job_size": 5,
          "assignees": [{"login": "carol"}],
          "body": "", "pr_author": "carol", "commit_authors": ["carol", "bob"],
-         "pr_reviewers": ["alice"], "commenters": []},
+         "pr_reviewers": ["alice-arch"], "commenters": []},
+        {"id": "E-10", "level": "Epic", "job_size": 21,
+         "assignees": [{"login": "alice-pm"}],
+         "body": "", "pr_author": None, "commit_authors": [],
+         "pr_reviewers": [], "commenters": ["bob"]},
     ]
 
     return capacity, heuristics, items
 
 
-def print_summary(results, mode, iteration_id):
+def print_summary(results, mode, iteration_id, planning_factor=0.8):
     """Print human-readable summary table."""
     print(f"\n{'='*70}")
     print(f"EDPA v2.2 — Iteration {iteration_id} ({mode} mode)")
@@ -308,7 +354,9 @@ def print_summary(results, mode, iteration_id):
         print(f"{r['name']:<25} {r['role']:<8} {r['capacity']:>7}h {r['total_derived']:>7}h {len(r['items']):>6} {ok:>4}")
 
     print(f"{'-'*70}")
+    team_planning = round(team_capacity * planning_factor, 1)
     print(f"{'TEAM TOTAL':<25} {'':8} {team_capacity:>7}h {team_derived:>7}h")
+    print(f"{'PLANNING CAPACITY':<25} {'':8} {team_planning:>7}h  (factor: {planning_factor})")
     print(f"\nAll invariants passed: {'YES' if all_ok else 'NO'}")
 
     # Per-person detail
@@ -355,6 +403,13 @@ def main():
         print(f"      or use the Claude Code /edpa close-iteration command for automated gathering.")
         items = []
 
+    # Resolve planning_factor from teams (team-level decision, not cadence)
+    teams = capacity.get("teams", [])
+    if teams:
+        planning_factor = teams[0].get("planning_factor", 0.8)
+    else:
+        planning_factor = 0.8
+
     results = run_edpa(capacity, heuristics, items, mode=args.mode)
 
     all_passed = all(r["invariant_ok"] for r in results if r["items"])
@@ -365,6 +420,7 @@ def main():
         "mode": args.mode,
         "computed_at": datetime.now(timezone.utc).isoformat(),
         "methodology": "EDPA v2.2",
+        "planning_factor": planning_factor,
         "people": results,
         "team_total": round(team_total, 2),
         "all_invariants_passed": all_passed,
@@ -384,7 +440,7 @@ def main():
             json.dump(output, f, indent=2, ensure_ascii=False)
         print(f"\nResults written to: {output_path}")
 
-    print_summary(results, args.mode, iteration_id)
+    print_summary(results, args.mode, iteration_id, planning_factor)
 
     if not all_passed:
         sys.exit(1)
