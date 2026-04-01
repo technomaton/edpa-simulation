@@ -1,5 +1,5 @@
 # Configuration for S-1101: REST endpoint /datasets
-# Part of Katalog datasetů
+# Part of Katalog datasetu
 
 service:
   name: "katalog-datasetu"
