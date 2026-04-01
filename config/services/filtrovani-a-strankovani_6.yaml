@@ -1,5 +1,5 @@
-# Configuration for S-1102: Filtrování a stránkování
-# Part of Katalog datasetů
+# Configuration for S-1102: Filtrovani a strankovani
+# Part of Katalog datasetu
 
 service:
   name: "katalog-datasetu"
