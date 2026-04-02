@@ -127,7 +127,7 @@ def main():
                 "tc": raw.get("tc", 0),
                 "rr": raw.get("rr", 0),
                 "wsjf": raw.get("wsjf", 0),
-                "status": raw.get("status", "Active"),
+                "status": raw.get("status", "Implementing"),
                 "owner": raw.get("owner", ""),
                 "assignee": raw.get("assignee", ""),
                 "iteration": raw.get("iteration", ""),
@@ -307,9 +307,21 @@ def main():
     step(7, "Setting custom field values on project items")
 
     status_map = {
+        # SAFe Delivery statuses
         "Done": option_ids.get("Status:Done"),
-        "In Progress": option_ids.get("Status:In Progress"),
+        "Implementing": option_ids.get("Status:In Progress"),
+        "Validating": option_ids.get("Status:In Progress"),
+        "Deploying": option_ids.get("Status:In Progress"),
+        "Releasing": option_ids.get("Status:In Progress"),
+        "Backlog": option_ids.get("Status:Todo"),
+        "Funnel": option_ids.get("Status:Todo"),
+        "Analyzing": option_ids.get("Status:Todo"),
+        # SAFe Portfolio statuses
+        "Ready": option_ids.get("Status:Todo"),
+        "Reviewing": option_ids.get("Status:Todo"),
+        # Legacy fallbacks
         "Active": option_ids.get("Status:In Progress"),
+        "In Progress": option_ids.get("Status:In Progress"),
         "Planned": option_ids.get("Status:Todo"),
         "Todo": option_ids.get("Status:Todo"),
     }

@@ -43,7 +43,17 @@ class C:
     EPIC     = "\033[38;5;93m"
     FEAT     = "\033[36m"
     STORY    = "\033[32m"
-    DONE     = "\033[32m"
+    DONE        = "\033[32m"
+    IMPLEMENTING = "\033[33m"
+    VALIDATING  = "\033[34m"
+    DEPLOYING   = "\033[34m"
+    RELEASING   = "\033[34m"
+    BACKLOG     = "\033[37m"
+    FUNNEL      = "\033[37m"
+    ANALYZING   = "\033[36m"
+    READY       = "\033[36m"
+    REVIEWING   = "\033[36m"
+    # Legacy aliases
     ACTIVE   = "\033[33m"
     PROGRESS = "\033[34m"
     PLANNED  = "\033[37m"
@@ -1028,9 +1038,14 @@ def cmd_status(root, sync_config, args):
 
     print()
     print(f"  {bold('By status:')}")
-    for status in ("Done", "In Progress", "Active", "Planned"):
+    for status in ("Done", "Implementing", "Validating", "Backlog", "Funnel", "Analyzing", "Ready"):
         count = statuses.get(status, 0)
-        sc = {"Done": C.DONE, "In Progress": C.PROGRESS, "Active": C.ACTIVE, "Planned": C.PLANNED}.get(status, C.RESET)
+        if count == 0:
+            continue
+        sc = {
+            "Done": C.DONE, "Implementing": C.IMPLEMENTING, "Validating": C.VALIDATING,
+            "Backlog": C.BACKLOG, "Funnel": C.FUNNEL, "Analyzing": C.ANALYZING, "Ready": C.READY,
+        }.get(status, C.RESET)
         print(f"    {color(f'{status}:', sc):22s} {count}")
 
     print()

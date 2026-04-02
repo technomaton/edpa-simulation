@@ -331,7 +331,7 @@ def cmd_instructions(args):
 
         if view["type"] == "Board":
             print(f"  {C.BOLD}3.{C.RESET} Zvol layout: {C.YELLOW}Board{C.RESET}")
-            print(f"  {C.GRAY}   Board automaticky seskupí podle Status (Todo/In Progress/Done){C.RESET}")
+            print(f"  {C.GRAY}   Board automaticky seskupí podle Status (Funnel/Backlog/Implementing/Validating/Done){C.RESET}")
         else:
             print(f"  {C.BOLD}3.{C.RESET} Zvol layout: {C.YELLOW}Table{C.RESET}")
 

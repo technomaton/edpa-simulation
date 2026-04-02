@@ -40,10 +40,20 @@ class C:
     FEAT     = "\033[36m"       # Cyan -- Feature
     STORY    = "\033[32m"       # Green -- Story
     # Status colors
-    DONE     = "\033[32m"       # Green
-    ACTIVE   = "\033[33m"       # Yellow
-    PROGRESS = "\033[34m"       # Blue
-    PLANNED  = "\033[37m"       # Light gray
+    DONE        = "\033[32m"       # Green
+    IMPLEMENTING = "\033[33m"      # Yellow
+    VALIDATING  = "\033[34m"       # Blue
+    DEPLOYING   = "\033[34m"       # Blue
+    RELEASING   = "\033[34m"       # Blue
+    BACKLOG     = "\033[37m"       # Light gray
+    FUNNEL      = "\033[37m"       # Light gray
+    ANALYZING   = "\033[36m"       # Cyan
+    READY       = "\033[36m"       # Cyan
+    REVIEWING   = "\033[36m"       # Cyan
+    # Legacy aliases
+    ACTIVE   = "\033[33m"       # Yellow (deprecated)
+    PROGRESS = "\033[34m"       # Blue (deprecated)
+    PLANNED  = "\033[37m"       # Light gray (deprecated)
     # Utility
     WARN     = "\033[33m"
     ERR      = "\033[31m"
@@ -58,6 +68,12 @@ def color(text, code):
 
 def bold(text):
     return f"{C.BOLD}{text}{C.RESET}"
+
+
+# -- SAFe Status Workflows -----------------------------------------------------
+
+PORTFOLIO_STATUSES = ["Funnel", "Reviewing", "Analyzing", "Ready", "Implementing", "Done"]
+DELIVERY_STATUSES = ["Funnel", "Analyzing", "Backlog", "Implementing", "Validating", "Deploying", "Releasing", "Done"]
 
 
 # -- Box-drawing characters ----------------------------------------------------
@@ -218,16 +234,22 @@ def get_children(backlog, parent_id):
 def status_badge(status):
     """Return colored status badge."""
     s = status or "Unknown"
-    if s == "Done":
-        return color(f"[{s}]", C.DONE)
-    elif s == "Active":
-        return color(f"[{s}]", C.ACTIVE)
-    elif s == "In Progress":
-        return color(f"[{s}]", C.PROGRESS)
-    elif s == "Planned":
-        return color(f"[{s}]", C.PLANNED)
-    else:
-        return f"[{s}]"
+    status_colors = {
+        "Done": C.DONE,
+        "Implementing": C.IMPLEMENTING,
+        "Validating": C.VALIDATING,
+        "Deploying": C.DEPLOYING,
+        "Releasing": C.RELEASING,
+        "Backlog": C.BACKLOG,
+        "Funnel": C.FUNNEL,
+        "Analyzing": C.ANALYZING,
+        "Ready": C.READY,
+        "Reviewing": C.REVIEWING,
+    }
+    c = status_colors.get(s)
+    if c:
+        return color(f"[{s}]", c)
+    return f"[{s}]"
 
 
 def level_color(level):
@@ -526,8 +548,8 @@ def cmd_status(backlog, args):
     epics = [i for i in items if i["level"] == "Epic"]
 
     done_stories = [s for s in stories if s.get("status") == "Done"]
-    in_progress = [s for s in stories if s.get("status") == "In Progress"]
-    planned = [s for s in stories if s.get("status") == "Planned"]
+    in_progress = [s for s in stories if s.get("status") in ("Implementing", "Validating", "Deploying", "Releasing")]
+    planned = [s for s in stories if s.get("status") in ("Backlog", "Funnel", "Analyzing")]
 
     total_sp = sum(s.get("js", 0) for s in stories)
     done_sp = sum(s.get("js", 0) for s in done_stories)
@@ -551,8 +573,8 @@ def cmd_status(backlog, args):
     print(f"  {bold('Story Points:')}")
     print(f"    Total:        {total_sp} SP")
     print(f"    {color('Done:', C.DONE)}         {done_sp} SP  ({len(done_stories)} stories)")
-    print(f"    {color('In Progress:', C.PROGRESS)}  {ip_sp} SP  ({len(in_progress)} stories)")
-    print(f"    {color('Planned:', C.PLANNED)}      {sum(s.get('js', 0) for s in planned)} SP  ({len(planned)} stories)")
+    print(f"    {color('Implementing:', C.IMPLEMENTING)} {ip_sp} SP  ({len(in_progress)} stories)")
+    print(f"    {color('Backlog:', C.BACKLOG)}       {sum(s.get('js', 0) for s in planned)} SP  ({len(planned)} stories)")
     print()
 
     print(f"  {bold('Hierarchy:')}")
@@ -831,7 +853,7 @@ def cmd_add(root, backlog, args):
     title = args.title
     js = args.js
     assignee = getattr(args, "assignee", None)
-    status = getattr(args, "status", None) or "Planned"
+    status = getattr(args, "status", None) or "Funnel"
     iteration = getattr(args, "iteration", None)
     bv = getattr(args, "bv", None)
     tc = getattr(args, "tc", None)
@@ -943,7 +965,7 @@ def main():
     p_add.add_argument("--tc", type=int, help="Time Criticality")
     p_add.add_argument("--rr", type=int, help="Risk Reduction")
     p_add.add_argument("--assignee", help="Assignee (person ID)")
-    p_add.add_argument("--status", default="Planned", help="Status (default: Planned)")
+    p_add.add_argument("--status", default="Funnel", help="Status (default: Funnel)")
     p_add.add_argument("--iteration", help="Iteration ID (e.g. PI-2026-1.3)")
 
     args = parser.parse_args()
