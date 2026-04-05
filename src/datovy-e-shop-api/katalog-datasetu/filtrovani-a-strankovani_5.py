@@ -1,8 +1,8 @@
 """
-Module for S-1102: Filtrování a stránkování
+Module for S-1102: Filtrovani a strankovani
 
-Part of Datový e-shop API -- Katalog datasetů
-Story: S-1102 -- Filtrování a stránkování
+Part of Datovy e-shop API -- Katalog datasetu
+Story: S-1102 -- Filtrovani a strankovani
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class FiltrovaniAStrankovani:
     """
-    Implements S-1102 -- Filtrování a stránkování
+    Implements S-1102 -- Filtrovani a strankovani
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
