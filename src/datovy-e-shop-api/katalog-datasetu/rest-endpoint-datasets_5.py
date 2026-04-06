@@ -1,7 +1,7 @@
 """
 Module for S-1101: REST endpoint /datasets
 
-Part of Datový e-shop API -- Katalog datasetů
+Part of Datovy e-shop API -- Katalog datasetu
 Story: S-1101 -- REST endpoint /datasets
 """
 
