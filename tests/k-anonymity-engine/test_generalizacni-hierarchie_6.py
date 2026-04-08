@@ -1,5 +1,5 @@
 """
-Tests for S-1002: Generalizační hierarchie
+Tests for S-1002: Generalizacni hierarchie
 """
 
 import pytest
