@@ -1,0 +1,19 @@
+# API Specification for S-1102: Filtrování a stránkování
+# Part of Katalog datasetů
+
+openapi: "3.0.3"
+info:
+  title: "Katalog datasetů"
+  version: "1.0.0"
+paths:
+  /filtrovani_a_strankovani:
+    get:
+      summary: "List filtrovani_a_strankovani"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create filtrovani_a_strankovani item"
+      responses:
+        "201":
+          description: "Created"
