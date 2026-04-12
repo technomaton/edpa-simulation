@@ -1,0 +1,19 @@
+# API Specification for S-1201: Alembic migrace OMOP tabulek
+# Part of OMOP schéma migrace
+
+openapi: "3.0.3"
+info:
+  title: "OMOP schéma migrace"
+  version: "1.0.0"
+paths:
+  /alembic_migrace_omop_tabulek:
+    get:
+      summary: "List alembic_migrace_omop_tabulek"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create alembic_migrace_omop_tabulek item"
+      responses:
+        "201":
+          description: "Created"

@@ -1,0 +1,16 @@
+# Configuration for S-1201: Alembic migrace OMOP tabulek
+# Part of OMOP schéma migrace
+
+service:
+  name: "omop-schema-migrace"
+  version: "1.0.0"
+
+settings:
+  enabled: true
+  log_level: INFO
+  max_retries: 3
+  timeout_seconds: 30
+
+database:
+  pool_size: 5
+  max_overflow: 10
