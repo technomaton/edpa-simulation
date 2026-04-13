@@ -1,7 +1,7 @@
 """
 Module for S-1001: Implementace QI detekce
 
-Part of Anonymizační modul -- K-anonymity engine
+Part of Anonymizacni modul -- K-anonymity engine
 Story: S-1001 -- Implementace QI detekce
 """
 
