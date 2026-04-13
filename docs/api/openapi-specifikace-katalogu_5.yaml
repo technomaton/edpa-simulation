@@ -1,0 +1,19 @@
+# API Specification for S-1103: OpenAPI specifikace katalogu
+# Part of Katalog datasetů
+
+openapi: "3.0.3"
+info:
+  title: "Katalog datasetů"
+  version: "1.0.0"
+paths:
+  /openapi_specifikace_katalogu:
+    get:
+      summary: "List openapi_specifikace_katalogu"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create openapi_specifikace_katalogu item"
+      responses:
+        "201":
+          description: "Created"
