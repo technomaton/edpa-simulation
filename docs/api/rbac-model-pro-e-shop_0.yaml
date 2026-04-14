@@ -1,0 +1,19 @@
+# API Specification for S-1107: RBAC model pro e-shop
+# Part of Autorizace a přístupová práva
+
+openapi: "3.0.3"
+info:
+  title: "Autorizace a přístupová práva"
+  version: "1.0.0"
+paths:
+  /rbac_model_pro_e_shop:
+    get:
+      summary: "List rbac_model_pro_e_shop"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create rbac_model_pro_e_shop item"
+      responses:
+        "201":
+          description: "Created"
