@@ -1,0 +1,19 @@
+# API Specification for S-1101: REST endpoint /datasets
+# Part of Katalog datasetů
+
+openapi: "3.0.3"
+info:
+  title: "Katalog datasetů"
+  version: "1.0.0"
+paths:
+  /rest_endpoint_datasets:
+    get:
+      summary: "List rest_endpoint_datasets"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create rest_endpoint_datasets item"
+      responses:
+        "201":
+          description: "Created"
