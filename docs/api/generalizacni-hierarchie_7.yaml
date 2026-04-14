@@ -1,0 +1,19 @@
+# API Specification for S-1002: Generalizační hierarchie
+# Part of K-anonymity engine
+
+openapi: "3.0.3"
+info:
+  title: "K-anonymity engine"
+  version: "1.0.0"
+paths:
+  /generalizacni_hierarchie:
+    get:
+      summary: "List generalizacni_hierarchie"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create generalizacni_hierarchie item"
+      responses:
+        "201":
+          description: "Created"
