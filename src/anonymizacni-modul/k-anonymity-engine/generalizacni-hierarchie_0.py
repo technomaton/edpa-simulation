@@ -1,8 +1,8 @@
 """
-Module for S-1002: Generalizační hierarchie
+Module for S-1002: Generalizacni hierarchie
 
-Part of Anonymizační modul -- K-anonymity engine
-Story: S-1002 -- Generalizační hierarchie
+Part of Anonymizacni modul -- K-anonymity engine
+Story: S-1002 -- Generalizacni hierarchie
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class GeneralizacniHierarchie:
     """
-    Implements S-1002 -- Generalizační hierarchie
+    Implements S-1002 -- Generalizacni hierarchie
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
