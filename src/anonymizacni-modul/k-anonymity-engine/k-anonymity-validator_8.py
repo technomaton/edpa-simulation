@@ -1,8 +1,8 @@
 """
-Module for S-1003: K-anonymity validátor
+Module for S-1003: K-anonymity validator
 
-Part of Anonymizační modul -- K-anonymity engine
-Story: S-1003 -- K-anonymity validátor
+Part of Anonymizacni modul -- K-anonymity engine
+Story: S-1003 -- K-anonymity validator
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class Validator:
     """
-    Implements S-1003 -- K-anonymity validátor
+    Implements S-1003 -- K-anonymity validator
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
