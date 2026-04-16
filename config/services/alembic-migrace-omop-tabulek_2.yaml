@@ -1,5 +1,5 @@
 # Configuration for S-1201: Alembic migrace OMOP tabulek
-# Part of OMOP schéma migrace
+# Part of OMOP schema migrace
 
 service:
   name: "omop-schema-migrace"
