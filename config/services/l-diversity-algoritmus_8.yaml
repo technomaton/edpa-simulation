@@ -1,5 +1,5 @@
 # Configuration for S-1005: L-diversity algoritmus
-# Part of L-diversity rozšíření
+# Part of L-diversity rozsireni
 
 service:
   name: "l-diversity-rozsireni"
