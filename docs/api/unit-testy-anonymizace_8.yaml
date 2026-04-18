@@ -1,0 +1,19 @@
+# API Specification for S-1004: Unit testy anonymizace
+# Part of K-anonymity engine
+
+openapi: "3.0.3"
+info:
+  title: "K-anonymity engine"
+  version: "1.0.0"
+paths:
+  /unit_testy_anonymizace:
+    get:
+      summary: "List unit_testy_anonymizace"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create unit_testy_anonymizace item"
+      responses:
+        "201":
+          description: "Created"
