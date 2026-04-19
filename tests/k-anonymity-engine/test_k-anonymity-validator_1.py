@@ -1,5 +1,5 @@
 """
-Tests for S-1003: K-anonymity validátor
+Tests for S-1003: K-anonymity validator
 """
 
 import pytest
