@@ -1,8 +1,8 @@
 """
-Module for S-1104: Nákupní košík API
+Module for S-1104: Nakupni kosik API
 
-Part of Datový e-shop API -- Objednávkový proces
-Story: S-1104 -- Nákupní košík API
+Part of Datovy e-shop API -- Objednavkovy proces
+Story: S-1104 -- Nakupni kosik API
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class NakupniKosikApi:
     """
-    Implements S-1104 -- Nákupní košík API
+    Implements S-1104 -- Nakupni kosik API
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
