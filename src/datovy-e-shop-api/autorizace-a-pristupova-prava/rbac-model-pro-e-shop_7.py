@@ -1,7 +1,7 @@
 """
 Module for S-1107: RBAC model pro e-shop
 
-Part of Datový e-shop API -- Autorizace a přístupová práva
+Part of Datovy e-shop API -- Autorizace a pristupova prava
 Story: S-1107 -- RBAC model pro e-shop
 """
 
