@@ -1,5 +1,5 @@
-# Configuration for S-1105: Platební integrace mock
-# Part of Objednávkový proces
+# Configuration for S-1105: Platebni integrace mock
+# Part of Objednavkovy proces
 
 service:
   name: "objednavkovy-proces"
