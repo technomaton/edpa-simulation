@@ -1,9 +1,9 @@
-# API Specification for S-1105: Platební integrace mock
-# Part of Objednávkový proces
+# API Specification for S-1105: Platebni integrace mock
+# Part of Objednavkovy proces
 
 openapi: "3.0.3"
 info:
-  title: "Objednávkový proces"
+  title: "Objednavkovy proces"
   version: "1.0.0"
 paths:
   /platebni_integrace_mock:
