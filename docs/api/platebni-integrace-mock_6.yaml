@@ -1,0 +1,19 @@
+# API Specification for S-1105: Platební integrace mock
+# Part of Objednávkový proces
+
+openapi: "3.0.3"
+info:
+  title: "Objednávkový proces"
+  version: "1.0.0"
+paths:
+  /platebni_integrace_mock:
+    get:
+      summary: "List platebni_integrace_mock"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create platebni_integrace_mock item"
+      responses:
+        "201":
+          description: "Created"
