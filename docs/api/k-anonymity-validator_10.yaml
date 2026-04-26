@@ -1,0 +1,19 @@
+# API Specification for S-1003: K-anonymity validátor
+# Part of K-anonymity engine
+
+openapi: "3.0.3"
+info:
+  title: "K-anonymity engine"
+  version: "1.0.0"
+paths:
+  /k_anonymity_validator:
+    get:
+      summary: "List k_anonymity_validator"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create k_anonymity_validator item"
+      responses:
+        "201":
+          description: "Created"
