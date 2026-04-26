@@ -1,7 +1,7 @@
 """
 Module for S-1201: Alembic migrace OMOP tabulek
 
-Part of OMOP CDM integrace -- OMOP schéma migrace
+Part of OMOP CDM integrace -- OMOP schema migrace
 Story: S-1201 -- Alembic migrace OMOP tabulek
 """
 
