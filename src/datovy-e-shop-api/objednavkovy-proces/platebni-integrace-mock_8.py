@@ -1,8 +1,8 @@
 """
-Module for S-1105: Platební integrace mock
+Module for S-1105: Platebni integrace mock
 
-Part of Datový e-shop API -- Objednávkový proces
-Story: S-1105 -- Platební integrace mock
+Part of Datovy e-shop API -- Objednavkovy proces
+Story: S-1105 -- Platebni integrace mock
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class PlatebniIntegraceMock:
     """
-    Implements S-1105 -- Platební integrace mock
+    Implements S-1105 -- Platebni integrace mock
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):

@@ -1,5 +1,5 @@
 """
-Tests for S-1105: Platební integrace mock
+Tests for S-1105: Platebni integrace mock
 """
 
 import pytest
