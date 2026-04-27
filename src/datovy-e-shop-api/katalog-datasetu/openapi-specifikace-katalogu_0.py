@@ -1,7 +1,7 @@
 """
 Module for S-1103: OpenAPI specifikace katalogu
 
-Part of Datový e-shop API -- Katalog datasetů
+Part of Datovy e-shop API -- Katalog datasetu
 Story: S-1103 -- OpenAPI specifikace katalogu
 """
 
