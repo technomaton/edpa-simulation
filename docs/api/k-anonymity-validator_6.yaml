@@ -1,4 +1,4 @@
-# API Specification for S-1003: K-anonymity validátor
+# API Specification for S-1003: K-anonymity validator
 # Part of K-anonymity engine
 
 openapi: "3.0.3"
