@@ -1,5 +1,5 @@
-# Configuration for S-1104: Nákupní košík API
-# Part of Objednávkový proces
+# Configuration for S-1104: Nakupni kosik API
+# Part of Objednavkovy proces
 
 service:
   name: "objednavkovy-proces"
