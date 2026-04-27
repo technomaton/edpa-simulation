@@ -1,0 +1,19 @@
+# API Specification for S-1104: Nákupní košík API
+# Part of Objednávkový proces
+
+openapi: "3.0.3"
+info:
+  title: "Objednávkový proces"
+  version: "1.0.0"
+paths:
+  /nakupni_kosik_api:
+    get:
+      summary: "List nakupni_kosik_api"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create nakupni_kosik_api item"
+      responses:
+        "201":
+          description: "Created"
