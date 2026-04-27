@@ -1,7 +1,7 @@
 """
 Module for S-1005: L-diversity algoritmus
 
-Part of Anonymizační modul -- L-diversity rozšíření
+Part of Anonymizacni modul -- L-diversity rozsireni
 Story: S-1005 -- L-diversity algoritmus
 """
 
