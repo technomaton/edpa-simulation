@@ -1,0 +1,19 @@
+# API Specification for S-1005: L-diversity algoritmus
+# Part of L-diversity rozšíření
+
+openapi: "3.0.3"
+info:
+  title: "L-diversity rozšíření"
+  version: "1.0.0"
+paths:
+  /l_diversity_algoritmus:
+    get:
+      summary: "List l_diversity_algoritmus"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create l_diversity_algoritmus item"
+      responses:
+        "201":
+          description: "Created"
