@@ -1,9 +1,9 @@
-# API Specification for S-1007: Benchmark výkonu anonymizace
-# Part of L-diversity rozšíření
+# API Specification for S-1007: Benchmark vykonu anonymizace
+# Part of L-diversity rozsireni
 
 openapi: "3.0.3"
 info:
-  title: "L-diversity rozšíření"
+  title: "L-diversity rozsireni"
   version: "1.0.0"
 paths:
   /benchmark_vykonu_anonymizace:
