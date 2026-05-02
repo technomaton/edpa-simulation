@@ -1,5 +1,5 @@
 """
-Tests for S-1202: ETL transformace zdrojových dat
+Tests for S-1202: ETL transformace zdrojovych dat
 """
 
 import pytest
