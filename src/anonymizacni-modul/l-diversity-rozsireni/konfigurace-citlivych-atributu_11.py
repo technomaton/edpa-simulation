@@ -1,8 +1,8 @@
 """
-Module for S-1006: Konfigurace citlivých atributů
+Module for S-1006: Konfigurace citlivych atributu
 
-Part of Anonymizační modul -- L-diversity rozšíření
-Story: S-1006 -- Konfigurace citlivých atributů
+Part of Anonymizacni modul -- L-diversity rozsireni
+Story: S-1006 -- Konfigurace citlivych atributu
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class KonfiguraceCitlivychAtributu:
     """
-    Implements S-1006 -- Konfigurace citlivých atributů
+    Implements S-1006 -- Konfigurace citlivych atributu
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
