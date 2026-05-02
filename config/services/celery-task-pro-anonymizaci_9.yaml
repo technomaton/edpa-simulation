@@ -1,5 +1,5 @@
 # Configuration for S-1008: Celery task pro anonymizaci
-# Part of Anonymizační pipeline
+# Part of Anonymizacni pipeline
 
 service:
   name: "anonymizacni-pipeline"
