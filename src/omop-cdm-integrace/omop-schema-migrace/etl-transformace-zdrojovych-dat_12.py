@@ -1,8 +1,8 @@
 """
-Module for S-1202: ETL transformace zdrojových dat
+Module for S-1202: ETL transformace zdrojovych dat
 
-Part of OMOP CDM integrace -- OMOP schéma migrace
-Story: S-1202 -- ETL transformace zdrojových dat
+Part of OMOP CDM integrace -- OMOP schema migrace
+Story: S-1202 -- ETL transformace zdrojovych dat
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class EtlTransformaceZdrojovychDat:
     """
-    Implements S-1202 -- ETL transformace zdrojových dat
+    Implements S-1202 -- ETL transformace zdrojovych dat
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
