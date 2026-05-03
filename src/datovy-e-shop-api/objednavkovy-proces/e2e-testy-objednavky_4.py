@@ -1,8 +1,8 @@
 """
-Module for S-1106: E2E testy objednávky
+Module for S-1106: E2E testy objednavky
 
-Part of Datový e-shop API -- Objednávkový proces
-Story: S-1106 -- E2E testy objednávky
+Part of Datovy e-shop API -- Objednavkovy proces
+Story: S-1106 -- E2E testy objednavky
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class TestyObjednavky:
     """
-    Implements S-1106 -- E2E testy objednávky
+    Implements S-1106 -- E2E testy objednavky
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
