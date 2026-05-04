@@ -1,5 +1,5 @@
-# Configuration for S-1007: Benchmark výkonu anonymizace
-# Part of L-diversity rozšíření
+# Configuration for S-1007: Benchmark vykonu anonymizace
+# Part of L-diversity rozsireni
 
 service:
   name: "l-diversity-rozsireni"
