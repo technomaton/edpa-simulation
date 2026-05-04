@@ -1,8 +1,8 @@
 """
-Module for S-1007: Benchmark výkonu anonymizace
+Module for S-1007: Benchmark vykonu anonymizace
 
-Part of Anonymizační modul -- L-diversity rozšíření
-Story: S-1007 -- Benchmark výkonu anonymizace
+Part of Anonymizacni modul -- L-diversity rozsireni
+Story: S-1007 -- Benchmark vykonu anonymizace
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class BenchmarkVykonuAnonymizace:
     """
-    Implements S-1007 -- Benchmark výkonu anonymizace
+    Implements S-1007 -- Benchmark vykonu anonymizace
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
