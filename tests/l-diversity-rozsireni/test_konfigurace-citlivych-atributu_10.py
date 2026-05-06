@@ -1,5 +1,5 @@
 """
-Tests for S-1006: Konfigurace citlivých atributů
+Tests for S-1006: Konfigurace citlivych atributu
 """
 
 import pytest
