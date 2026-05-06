@@ -1,7 +1,7 @@
 """
 Module for S-1204: Vocabulary lookup API
 
-Part of OMOP CDM integrace -- OMOP vocabulář služba
+Part of OMOP CDM integrace -- OMOP vocabular sluzba
 Story: S-1204 -- Vocabulary lookup API
 """
 
