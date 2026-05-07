@@ -1,0 +1,19 @@
+# API Specification for S-1203: Validace OMOP integrity
+# Part of OMOP schéma migrace
+
+openapi: "3.0.3"
+info:
+  title: "OMOP schéma migrace"
+  version: "1.0.0"
+paths:
+  /validace_omop_integrity:
+    get:
+      summary: "List validace_omop_integrity"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create validace_omop_integrity item"
+      responses:
+        "201":
+          description: "Created"
