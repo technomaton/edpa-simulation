@@ -1,0 +1,19 @@
+# API Specification for S-1006: Konfigurace citlivých atributů
+# Part of L-diversity rozšíření
+
+openapi: "3.0.3"
+info:
+  title: "L-diversity rozšíření"
+  version: "1.0.0"
+paths:
+  /konfigurace_citlivych_atributu:
+    get:
+      summary: "List konfigurace_citlivych_atributu"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create konfigurace_citlivych_atributu item"
+      responses:
+        "201":
+          description: "Created"
