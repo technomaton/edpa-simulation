@@ -1,9 +1,9 @@
-# API Specification for S-1106: E2E testy objednávky
-# Part of Objednávkový proces
+# API Specification for S-1106: E2E testy objednavky
+# Part of Objednavkovy proces
 
 openapi: "3.0.3"
 info:
-  title: "Objednávkový proces"
+  title: "Objednavkovy proces"
   version: "1.0.0"
 paths:
   /e2e_testy_objednavky:
