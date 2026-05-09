@@ -1,5 +1,5 @@
 """
-Tests for S-1106: E2E testy objednávky
+Tests for S-1106: E2E testy objednavky
 """
 
 import pytest
