@@ -1,9 +1,9 @@
 # API Specification for S-1108: JWT token management
-# Part of Autorizace a přístupová práva
+# Part of Autorizace a pristupova prava
 
 openapi: "3.0.3"
 info:
-  title: "Autorizace a přístupová práva"
+  title: "Autorizace a pristupova prava"
   version: "1.0.0"
 paths:
   /jwt_token_management:
