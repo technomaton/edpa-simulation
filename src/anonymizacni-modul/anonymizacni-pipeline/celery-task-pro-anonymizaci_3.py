@@ -1,7 +1,7 @@
 """
 Module for S-1008: Celery task pro anonymizaci
 
-Part of Anonymizační modul -- Anonymizační pipeline
+Part of Anonymizacni modul -- Anonymizacni pipeline
 Story: S-1008 -- Celery task pro anonymizaci
 """
 
