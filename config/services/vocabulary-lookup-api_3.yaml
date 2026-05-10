@@ -1,5 +1,5 @@
 # Configuration for S-1204: Vocabulary lookup API
-# Part of OMOP vocabulář služba
+# Part of OMOP vocabular sluzba
 
 service:
   name: "omop-vocabular-sluzba"
