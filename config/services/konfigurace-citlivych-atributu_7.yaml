@@ -1,5 +1,5 @@
-# Configuration for S-1006: Konfigurace citlivých atributů
-# Part of L-diversity rozšíření
+# Configuration for S-1006: Konfigurace citlivych atributu
+# Part of L-diversity rozsireni
 
 service:
   name: "l-diversity-rozsireni"
