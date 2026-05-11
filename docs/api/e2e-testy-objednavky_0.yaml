@@ -1,0 +1,19 @@
+# API Specification for S-1106: E2E testy objednávky
+# Part of Objednávkový proces
+
+openapi: "3.0.3"
+info:
+  title: "Objednávkový proces"
+  version: "1.0.0"
+paths:
+  /e2e_testy_objednavky:
+    get:
+      summary: "List e2e_testy_objednavky"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create e2e_testy_objednavky item"
+      responses:
+        "201":
+          description: "Created"
