@@ -1,5 +1,5 @@
-# Configuration for S-1106: E2E testy objednávky
-# Part of Objednávkový proces
+# Configuration for S-1106: E2E testy objednavky
+# Part of Objednavkovy proces
 
 service:
   name: "objednavkovy-proces"
