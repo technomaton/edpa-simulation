@@ -1,0 +1,19 @@
+# API Specification for S-1109: Audit log přístupů
+# Part of Autorizace a přístupová práva
+
+openapi: "3.0.3"
+info:
+  title: "Autorizace a přístupová práva"
+  version: "1.0.0"
+paths:
+  /audit_log_pristupu:
+    get:
+      summary: "List audit_log_pristupu"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create audit_log_pristupu item"
+      responses:
+        "201":
+          description: "Created"
