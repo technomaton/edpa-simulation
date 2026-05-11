@@ -1,5 +1,5 @@
-# Configuration for S-1202: ETL transformace zdrojových dat
-# Part of OMOP schéma migrace
+# Configuration for S-1202: ETL transformace zdrojovych dat
+# Part of OMOP schema migrace
 
 service:
   name: "omop-schema-migrace"

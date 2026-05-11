@@ -1,9 +1,9 @@
-# API Specification for S-1202: ETL transformace zdrojových dat
-# Part of OMOP schéma migrace
+# API Specification for S-1202: ETL transformace zdrojovych dat
+# Part of OMOP schema migrace
 
 openapi: "3.0.3"
 info:
-  title: "OMOP schéma migrace"
+  title: "OMOP schema migrace"
   version: "1.0.0"
 paths:
   /etl_transformace_zdrojovych_dat:
