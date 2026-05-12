@@ -1,9 +1,9 @@
 # API Specification for S-1203: Validace OMOP integrity
-# Part of OMOP schéma migrace
+# Part of OMOP schema migrace
 
 openapi: "3.0.3"
 info:
-  title: "OMOP schéma migrace"
+  title: "OMOP schema migrace"
   version: "1.0.0"
 paths:
   /validace_omop_integrity:
