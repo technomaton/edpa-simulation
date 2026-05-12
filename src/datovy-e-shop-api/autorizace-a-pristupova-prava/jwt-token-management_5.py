@@ -1,7 +1,7 @@
 """
 Module for S-1108: JWT token management
 
-Part of Datový e-shop API -- Autorizace a přístupová práva
+Part of Datovy e-shop API -- Autorizace a pristupova prava
 Story: S-1108 -- JWT token management
 """
 

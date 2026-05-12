@@ -1,5 +1,5 @@
 # Configuration for S-1108: JWT token management
-# Part of Autorizace a přístupová práva
+# Part of Autorizace a pristupova prava
 
 service:
   name: "autorizace-a-pristupova-prava"
