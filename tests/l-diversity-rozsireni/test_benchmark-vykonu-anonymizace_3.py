@@ -1,5 +1,5 @@
 """
-Tests for S-1007: Benchmark výkonu anonymizace
+Tests for S-1007: Benchmark vykonu anonymizace
 """
 
 import pytest
