@@ -1,5 +1,5 @@
-# Configuration for S-1011: Integrační testy pipeline
-# Part of Anonymizační pipeline
+# Configuration for S-1011: Integracni testy pipeline
+# Part of Anonymizacni pipeline
 
 service:
   name: "anonymizacni-pipeline"
