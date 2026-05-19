@@ -1,7 +1,7 @@
 """
 Module for S-1010: Error handling a retry logika
 
-Part of Anonymizační modul -- Anonymizační pipeline
+Part of Anonymizacni modul -- Anonymizacni pipeline
 Story: S-1010 -- Error handling a retry logika
 """
 
