@@ -1,8 +1,8 @@
 """
-Module for S-1205: Concept mapping nástroj
+Module for S-1205: Concept mapping nastroj
 
-Part of OMOP CDM integrace -- OMOP vocabulář služba
-Story: S-1205 -- Concept mapping nástroj
+Part of OMOP CDM integrace -- OMOP vocabular sluzba
+Story: S-1205 -- Concept mapping nastroj
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class ConceptMappingNastroj:
     """
-    Implements S-1205 -- Concept mapping nástroj
+    Implements S-1205 -- Concept mapping nastroj
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
