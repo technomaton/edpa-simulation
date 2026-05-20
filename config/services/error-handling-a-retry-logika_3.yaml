@@ -1,5 +1,5 @@
 # Configuration for S-1010: Error handling a retry logika
-# Part of Anonymizační pipeline
+# Part of Anonymizacni pipeline
 
 service:
   name: "anonymizacni-pipeline"
