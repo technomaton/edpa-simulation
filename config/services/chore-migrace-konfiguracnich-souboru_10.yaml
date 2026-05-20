@@ -1,0 +1,16 @@
+# Configuration for S-9001: Chore: migrace konfiguracnich souboru
+# Part of Autorizace a pristupova prava
+
+service:
+  name: "autorizace-a-pristupova-prava"
+  version: "1.0.0"
+
+settings:
+  enabled: true
+  log_level: INFO
+  max_retries: 3
+  timeout_seconds: 30
+
+database:
+  pool_size: 5
+  max_overflow: 10
