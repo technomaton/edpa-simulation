@@ -1,0 +1,19 @@
+# API Specification for S-1205: Concept mapping nastroj
+# Part of OMOP vocabular sluzba
+
+openapi: "3.0.3"
+info:
+  title: "OMOP vocabular sluzba"
+  version: "1.0.0"
+paths:
+  /concept_mapping_nastroj:
+    get:
+      summary: "List concept_mapping_nastroj"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create concept_mapping_nastroj item"
+      responses:
+        "201":
+          description: "Created"
