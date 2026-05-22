@@ -1,5 +1,5 @@
-# Configuration for S-1205: Concept mapping nástroj
-# Part of OMOP vocabulář služba
+# Configuration for S-1205: Concept mapping nastroj
+# Part of OMOP vocabular sluzba
 
 service:
   name: "omop-vocabular-sluzba"
