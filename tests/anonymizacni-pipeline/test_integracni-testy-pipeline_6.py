@@ -1,5 +1,5 @@
 """
-Tests for S-1011: Integrační testy pipeline
+Tests for S-1011: Integracni testy pipeline
 """
 
 import pytest
