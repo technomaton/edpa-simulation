@@ -1,0 +1,19 @@
+# API Specification for S-1010: Error handling a retry logika
+# Part of Anonymizační pipeline
+
+openapi: "3.0.3"
+info:
+  title: "Anonymizační pipeline"
+  version: "1.0.0"
+paths:
+  /error_handling_a_retry_logika:
+    get:
+      summary: "List error_handling_a_retry_logika"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create error_handling_a_retry_logika item"
+      responses:
+        "201":
+          description: "Created"
