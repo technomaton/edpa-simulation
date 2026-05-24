@@ -1,0 +1,17 @@
+# CI/CD configuration for S-9001
+# Managed by DevSecOps
+
+name: autorizace-a-pristupova-prava
+on:
+  push:
+    branches: [main, "feature/**"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: pytest tests/ -v --cov
+      - name: Security scan
+        run: bandit -r src/ -ll
