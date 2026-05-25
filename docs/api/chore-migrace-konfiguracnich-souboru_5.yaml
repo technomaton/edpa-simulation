@@ -1,0 +1,19 @@
+# API Specification for S-9001: Chore: migrace konfiguracnich souboru
+# Part of Autorizace a pristupova prava
+
+openapi: "3.0.3"
+info:
+  title: "Autorizace a pristupova prava"
+  version: "1.0.0"
+paths:
+  /chore_migrace_konfiguracnich_souboru:
+    get:
+      summary: "List chore_migrace_konfiguracnich_souboru"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create chore_migrace_konfiguracnich_souboru item"
+      responses:
+        "201":
+          description: "Created"
