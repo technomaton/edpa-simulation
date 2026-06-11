@@ -1,0 +1,19 @@
+# API Specification for S-2201: OpenTelemetry integrace
+# Part of Observabilita
+
+openapi: "3.0.3"
+info:
+  title: "Observabilita"
+  version: "1.0.0"
+paths:
+  /opentelemetry_integrace:
+    get:
+      summary: "List opentelemetry_integrace"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create opentelemetry_integrace item"
+      responses:
+        "201":
+          description: "Created"
