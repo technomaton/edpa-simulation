@@ -1,8 +1,8 @@
 """
-Module for S-2002: Korelační analýza služba
+Module for S-2002: Korelacni analyza sluzba
 
-Part of Pokročilá analytika -- Statistický engine
-Story: S-2002 -- Korelační analýza služba
+Part of Pokrocila analytika -- Statisticky engine
+Story: S-2002 -- Korelacni analyza sluzba
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class KorelacniAnalyzaSluzba:
     """
-    Implements S-2002 -- Korelační analýza služba
+    Implements S-2002 -- Korelacni analyza sluzba
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
