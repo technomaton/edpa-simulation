@@ -1,0 +1,19 @@
+# API Specification for S-2002: Korelacni analyza sluzba
+# Part of Statisticky engine
+
+openapi: "3.0.3"
+info:
+  title: "Statisticky engine"
+  version: "1.0.0"
+paths:
+  /korelacni_analyza_sluzba:
+    get:
+      summary: "List korelacni_analyza_sluzba"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create korelacni_analyza_sluzba item"
+      responses:
+        "201":
+          description: "Created"
