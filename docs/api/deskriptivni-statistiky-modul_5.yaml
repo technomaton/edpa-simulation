@@ -1,0 +1,19 @@
+# API Specification for S-2001: Deskriptivni statistiky modul
+# Part of Statisticky engine
+
+openapi: "3.0.3"
+info:
+  title: "Statisticky engine"
+  version: "1.0.0"
+paths:
+  /deskriptivni_statistiky_modul:
+    get:
+      summary: "List deskriptivni_statistiky_modul"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create deskriptivni_statistiky_modul item"
+      responses:
+        "201":
+          description: "Created"
