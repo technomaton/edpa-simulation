@@ -1,0 +1,19 @@
+# API Specification for S-2105: Retention policy model
+# Part of Data retention engine
+
+openapi: "3.0.3"
+info:
+  title: "Data retention engine"
+  version: "1.0.0"
+paths:
+  /retention_policy_model:
+    get:
+      summary: "List retention_policy_model"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create retention_policy_model item"
+      responses:
+        "201":
+          description: "Created"
