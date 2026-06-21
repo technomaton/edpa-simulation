@@ -1,8 +1,8 @@
 """
-Module for S-2001: Deskriptivní statistiky modul
+Module for S-2001: Deskriptivni statistiky modul
 
-Part of Pokročilá analytika -- Statistický engine
-Story: S-2001 -- Deskriptivní statistiky modul
+Part of Pokrocila analytika -- Statisticky engine
+Story: S-2001 -- Deskriptivni statistiky modul
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class DeskriptivniStatistikyModul:
     """
-    Implements S-2001 -- Deskriptivní statistiky modul
+    Implements S-2001 -- Deskriptivni statistiky modul
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):

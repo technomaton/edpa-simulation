@@ -1,5 +1,5 @@
-# Configuration for S-2001: Deskriptivní statistiky modul
-# Part of Statistický engine
+# Configuration for S-2001: Deskriptivni statistiky modul
+# Part of Statisticky engine
 
 service:
   name: "statisticky-engine"
