@@ -1,0 +1,19 @@
+# API Specification for S-2101: Consent storage model
+# Part of Consent management
+
+openapi: "3.0.3"
+info:
+  title: "Consent management"
+  version: "1.0.0"
+paths:
+  /consent_storage_model:
+    get:
+      summary: "List consent_storage_model"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create consent_storage_model item"
+      responses:
+        "201":
+          description: "Created"
