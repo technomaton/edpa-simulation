@@ -1,0 +1,19 @@
+# API Specification for S-2102: Consent collection UI API
+# Part of Consent management
+
+openapi: "3.0.3"
+info:
+  title: "Consent management"
+  version: "1.0.0"
+paths:
+  /consent_collection_ui_api:
+    get:
+      summary: "List consent_collection_ui_api"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create consent_collection_ui_api item"
+      responses:
+        "201":
+          description: "Created"
