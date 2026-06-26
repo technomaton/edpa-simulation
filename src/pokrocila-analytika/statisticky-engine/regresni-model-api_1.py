@@ -1,8 +1,8 @@
 """
-Module for S-2003: Regresní model API
+Module for S-2003: Regresni model API
 
-Part of Pokročilá analytika -- Statistický engine
-Story: S-2003 -- Regresní model API
+Part of Pokrocila analytika -- Statisticky engine
+Story: S-2003 -- Regresni model API
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class RegresniModelApi:
     """
-    Implements S-2003 -- Regresní model API
+    Implements S-2003 -- Regresni model API
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
