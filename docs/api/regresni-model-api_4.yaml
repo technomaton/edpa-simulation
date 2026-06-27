@@ -1,0 +1,19 @@
+# API Specification for S-2003: Regresni model API
+# Part of Statisticky engine
+
+openapi: "3.0.3"
+info:
+  title: "Statisticky engine"
+  version: "1.0.0"
+paths:
+  /regresni_model_api:
+    get:
+      summary: "List regresni_model_api"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create regresni_model_api item"
+      responses:
+        "201":
+          description: "Created"
