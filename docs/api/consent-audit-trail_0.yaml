@@ -1,0 +1,19 @@
+# API Specification for S-2103: Consent audit trail
+# Part of Consent management
+
+openapi: "3.0.3"
+info:
+  title: "Consent management"
+  version: "1.0.0"
+paths:
+  /consent_audit_trail:
+    get:
+      summary: "List consent_audit_trail"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create consent_audit_trail item"
+      responses:
+        "201":
+          description: "Created"
