@@ -1,5 +1,5 @@
-# Configuration for S-2003: Regresní model API
-# Part of Statistický engine
+# Configuration for S-2003: Regresni model API
+# Part of Statisticky engine
 
 service:
   name: "statisticky-engine"
