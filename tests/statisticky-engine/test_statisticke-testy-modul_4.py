@@ -1,5 +1,5 @@
 """
-Tests for S-2004: Statistické testy modul
+Tests for S-2004: Statisticke testy modul
 """
 
 import pytest
