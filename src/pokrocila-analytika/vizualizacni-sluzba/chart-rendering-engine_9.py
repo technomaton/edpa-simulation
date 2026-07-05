@@ -1,7 +1,7 @@
 """
 Module for S-2005: Chart rendering engine
 
-Part of Pokročilá analytika -- Vizualizační služba
+Part of Pokrocila analytika -- Vizualizacni sluzba
 Story: S-2005 -- Chart rendering engine
 """
 
