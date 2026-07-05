@@ -1,5 +1,5 @@
-# Configuration for S-2004: Statistické testy modul
-# Part of Statistický engine
+# Configuration for S-2004: Statisticke testy modul
+# Part of Statisticky engine
 
 service:
   name: "statisticky-engine"

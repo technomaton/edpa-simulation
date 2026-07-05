@@ -1,0 +1,19 @@
+# API Specification for S-2004: Statisticke testy modul
+# Part of Statisticky engine
+
+openapi: "3.0.3"
+info:
+  title: "Statisticky engine"
+  version: "1.0.0"
+paths:
+  /statisticke_testy_modul:
+    get:
+      summary: "List statisticke_testy_modul"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create statisticke_testy_modul item"
+      responses:
+        "201":
+          description: "Created"
