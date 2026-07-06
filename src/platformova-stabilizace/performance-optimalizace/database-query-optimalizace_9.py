@@ -1,7 +1,7 @@
 """
 Module for S-2204: Database query optimalizace
 
-Part of Platformová stabilizace -- Performance optimalizace
+Part of Platformova stabilizace -- Performance optimalizace
 Story: S-2204 -- Database query optimalizace
 """
 

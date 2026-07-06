@@ -1,0 +1,19 @@
+# API Specification for S-2204: Database query optimalizace
+# Part of Performance optimalizace
+
+openapi: "3.0.3"
+info:
+  title: "Performance optimalizace"
+  version: "1.0.0"
+paths:
+  /database_query_optimalizace:
+    get:
+      summary: "List database_query_optimalizace"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create database_query_optimalizace item"
+      responses:
+        "201":
+          description: "Created"
