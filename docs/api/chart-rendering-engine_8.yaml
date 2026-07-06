@@ -1,0 +1,19 @@
+# API Specification for S-2005: Chart rendering engine
+# Part of Vizualizační služba
+
+openapi: "3.0.3"
+info:
+  title: "Vizualizační služba"
+  version: "1.0.0"
+paths:
+  /chart_rendering_engine:
+    get:
+      summary: "List chart_rendering_engine"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create chart_rendering_engine item"
+      responses:
+        "201":
+          description: "Created"
