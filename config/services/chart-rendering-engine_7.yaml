@@ -1,5 +1,5 @@
 # Configuration for S-2005: Chart rendering engine
-# Part of Vizualizační služba
+# Part of Vizualizacni sluzba
 
 service:
   name: "vizualizacni-sluzba"
