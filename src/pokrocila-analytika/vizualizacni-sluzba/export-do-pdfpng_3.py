@@ -1,7 +1,7 @@
 """
 Module for S-2007: Export do PDF/PNG
 
-Part of Pokročilá analytika -- Vizualizační služba
+Part of Pokrocila analytika -- Vizualizacni sluzba
 Story: S-2007 -- Export do PDF/PNG
 """
 
