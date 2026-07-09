@@ -1,5 +1,5 @@
 # Configuration for S-2007: Export do PDF/PNG
-# Part of Vizualizační služba
+# Part of Vizualizacni sluzba
 
 service:
   name: "vizualizacni-sluzba"
