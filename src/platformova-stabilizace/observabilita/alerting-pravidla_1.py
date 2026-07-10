@@ -1,7 +1,7 @@
 """
 Module for S-2203: Alerting pravidla
 
-Part of Platformová stabilizace -- Observabilita
+Part of Platformova stabilizace -- Observabilita
 Story: S-2203 -- Alerting pravidla
 """
 
