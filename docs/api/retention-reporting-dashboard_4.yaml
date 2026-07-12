@@ -1,0 +1,19 @@
+# API Specification for S-2107: Retention reporting dashboard
+# Part of Data retention engine
+
+openapi: "3.0.3"
+info:
+  title: "Data retention engine"
+  version: "1.0.0"
+paths:
+  /retention_reporting_dashboard:
+    get:
+      summary: "List retention_reporting_dashboard"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create retention_reporting_dashboard item"
+      responses:
+        "201":
+          description: "Created"
