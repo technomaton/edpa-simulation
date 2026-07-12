@@ -1,7 +1,7 @@
 """
 Module for S-2008: Jupyter notebook integrace
 
-Part of Pokročilá analytika -- Analytický sandbox
+Part of Pokrocila analytika -- Analyticky sandbox
 Story: S-2008 -- Jupyter notebook integrace
 """
 
