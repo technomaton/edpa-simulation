@@ -1,7 +1,7 @@
 """
 Module for S-2205: Redis caching vrstva
 
-Part of Platformová stabilizace -- Performance optimalizace
+Part of Platformova stabilizace -- Performance optimalizace
 Story: S-2205 -- Redis caching vrstva
 """
 
