@@ -1,0 +1,16 @@
+# Configuration for S-2203: Alerting pravidla
+# Part of Observabilita
+
+service:
+  name: "observabilita"
+  version: "1.0.0"
+
+settings:
+  enabled: true
+  log_level: INFO
+  max_retries: 3
+  timeout_seconds: 30
+
+database:
+  pool_size: 5
+  max_overflow: 10
