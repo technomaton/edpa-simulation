@@ -1,8 +1,8 @@
 """
-Module for S-2106: Automatická expirační služba
+Module for S-2106: Automaticka expiracni sluzba
 
 Part of Compliance a GDPR modul -- Data retention engine
-Story: S-2106 -- Automatická expirační služba
+Story: S-2106 -- Automaticka expiracni sluzba
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class AutomatickaExpiracniSluzba:
     """
-    Implements S-2106 -- Automatická expirační služba
+    Implements S-2106 -- Automaticka expiracni sluzba
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
