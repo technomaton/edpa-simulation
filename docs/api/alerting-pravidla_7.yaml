@@ -1,0 +1,19 @@
+# API Specification for S-2203: Alerting pravidla
+# Part of Observabilita
+
+openapi: "3.0.3"
+info:
+  title: "Observabilita"
+  version: "1.0.0"
+paths:
+  /alerting_pravidla:
+    get:
+      summary: "List alerting_pravidla"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create alerting_pravidla item"
+      responses:
+        "201":
+          description: "Created"
