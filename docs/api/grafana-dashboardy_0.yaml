@@ -1,0 +1,19 @@
+# API Specification for S-2202: Grafana dashboardy
+# Part of Observabilita
+
+openapi: "3.0.3"
+info:
+  title: "Observabilita"
+  version: "1.0.0"
+paths:
+  /grafana_dashboardy:
+    get:
+      summary: "List grafana_dashboardy"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create grafana_dashboardy item"
+      responses:
+        "201":
+          description: "Created"
