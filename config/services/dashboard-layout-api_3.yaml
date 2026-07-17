@@ -1,0 +1,16 @@
+# Configuration for S-2006: Dashboard layout API
+# Part of Vizualizacni sluzba
+
+service:
+  name: "vizualizacni-sluzba"
+  version: "1.0.0"
+
+settings:
+  enabled: true
+  log_level: INFO
+  max_retries: 3
+  timeout_seconds: 30
+
+database:
+  pool_size: 5
+  max_overflow: 10
