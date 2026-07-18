@@ -1,0 +1,19 @@
+# API Specification for S-2104: Consent withdrawal workflow
+# Part of Consent management
+
+openapi: "3.0.3"
+info:
+  title: "Consent management"
+  version: "1.0.0"
+paths:
+  /consent_withdrawal_workflow:
+    get:
+      summary: "List consent_withdrawal_workflow"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create consent_withdrawal_workflow item"
+      responses:
+        "201":
+          description: "Created"
