@@ -1,9 +1,9 @@
 # API Specification for S-2006: Dashboard layout API
-# Part of Vizualizační služba
+# Part of Vizualizacni sluzba
 
 openapi: "3.0.3"
 info:
-  title: "Vizualizační služba"
+  title: "Vizualizacni sluzba"
   version: "1.0.0"
 paths:
   /dashboard_layout_api:
