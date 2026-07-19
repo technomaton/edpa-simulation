@@ -1,0 +1,19 @@
+# API Specification for S-2106: Automaticka expiracni sluzba
+# Part of Data retention engine
+
+openapi: "3.0.3"
+info:
+  title: "Data retention engine"
+  version: "1.0.0"
+paths:
+  /automaticka_expiracni_sluzba:
+    get:
+      summary: "List automaticka_expiracni_sluzba"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create automaticka_expiracni_sluzba item"
+      responses:
+        "201":
+          description: "Created"
