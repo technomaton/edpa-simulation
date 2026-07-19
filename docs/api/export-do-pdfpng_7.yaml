@@ -1,0 +1,19 @@
+# API Specification for S-2007: Export do PDF/PNG
+# Part of Vizualizační služba
+
+openapi: "3.0.3"
+info:
+  title: "Vizualizační služba"
+  version: "1.0.0"
+paths:
+  /export_do_pdfpng:
+    get:
+      summary: "List export_do_pdfpng"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create export_do_pdfpng item"
+      responses:
+        "201":
+          description: "Created"
