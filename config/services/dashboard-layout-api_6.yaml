@@ -1,5 +1,5 @@
 # Configuration for S-2006: Dashboard layout API
-# Part of Vizualizační služba
+# Part of Vizualizacni sluzba
 
 service:
   name: "vizualizacni-sluzba"
