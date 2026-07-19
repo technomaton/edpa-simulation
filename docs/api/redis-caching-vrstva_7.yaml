@@ -1,0 +1,19 @@
+# API Specification for S-2205: Redis caching vrstva
+# Part of Performance optimalizace
+
+openapi: "3.0.3"
+info:
+  title: "Performance optimalizace"
+  version: "1.0.0"
+paths:
+  /redis_caching_vrstva:
+    get:
+      summary: "List redis_caching_vrstva"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create redis_caching_vrstva item"
+      responses:
+        "201":
+          description: "Created"
