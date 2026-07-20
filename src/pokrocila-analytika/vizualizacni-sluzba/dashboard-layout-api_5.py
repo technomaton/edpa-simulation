@@ -1,7 +1,7 @@
 """
 Module for S-2006: Dashboard layout API
 
-Part of Pokročilá analytika -- Vizualizační služba
+Part of Pokrocila analytika -- Vizualizacni sluzba
 Story: S-2006 -- Dashboard layout API
 """
 
