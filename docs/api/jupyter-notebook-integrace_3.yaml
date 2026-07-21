@@ -1,9 +1,9 @@
 # API Specification for S-2008: Jupyter notebook integrace
-# Part of Analytický sandbox
+# Part of Analyticky sandbox
 
 openapi: "3.0.3"
 info:
-  title: "Analytický sandbox"
+  title: "Analyticky sandbox"
   version: "1.0.0"
 paths:
   /jupyter_notebook_integrace:
