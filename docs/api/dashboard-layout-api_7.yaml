@@ -1,0 +1,19 @@
+# API Specification for S-2006: Dashboard layout API
+# Part of Vizualizacni sluzba
+
+openapi: "3.0.3"
+info:
+  title: "Vizualizacni sluzba"
+  version: "1.0.0"
+paths:
+  /dashboard_layout_api:
+    get:
+      summary: "List dashboard_layout_api"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create dashboard_layout_api item"
+      responses:
+        "201":
+          description: "Created"
