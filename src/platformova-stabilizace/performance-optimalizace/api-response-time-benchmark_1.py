@@ -1,7 +1,7 @@
 """
 Module for S-2207: API response time benchmark
 
-Part of Platformová stabilizace -- Performance optimalizace
+Part of Platformova stabilizace -- Performance optimalizace
 Story: S-2207 -- API response time benchmark
 """
 
