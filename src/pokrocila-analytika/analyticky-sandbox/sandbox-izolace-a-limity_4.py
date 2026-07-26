@@ -1,7 +1,7 @@
 """
 Module for S-2009: Sandbox izolace a limity
 
-Part of Pokročilá analytika -- Analytický sandbox
+Part of Pokrocila analytika -- Analyticky sandbox
 Story: S-2009 -- Sandbox izolace a limity
 """
 
