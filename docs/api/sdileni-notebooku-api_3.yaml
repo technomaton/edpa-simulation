@@ -1,0 +1,19 @@
+# API Specification for S-2010: Sdileni notebooku API
+# Part of Analyticky sandbox
+
+openapi: "3.0.3"
+info:
+  title: "Analyticky sandbox"
+  version: "1.0.0"
+paths:
+  /sdileni_notebooku_api:
+    get:
+      summary: "List sdileni_notebooku_api"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create sdileni_notebooku_api item"
+      responses:
+        "201":
+          description: "Created"
