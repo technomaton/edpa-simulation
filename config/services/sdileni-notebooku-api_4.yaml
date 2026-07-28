@@ -1,5 +1,5 @@
-# Configuration for S-2010: Sdílení notebooků API
-# Part of Analytický sandbox
+# Configuration for S-2010: Sdileni notebooku API
+# Part of Analyticky sandbox
 
 service:
   name: "analyticky-sandbox"
