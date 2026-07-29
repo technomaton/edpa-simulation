@@ -1,0 +1,19 @@
+# API Specification for S-2009: Sandbox izolace a limity
+# Part of Analyticky sandbox
+
+openapi: "3.0.3"
+info:
+  title: "Analyticky sandbox"
+  version: "1.0.0"
+paths:
+  /sandbox_izolace_a_limity:
+    get:
+      summary: "List sandbox_izolace_a_limity"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create sandbox_izolace_a_limity item"
+      responses:
+        "201":
+          description: "Created"
