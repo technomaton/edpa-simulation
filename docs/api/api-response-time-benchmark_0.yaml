@@ -1,0 +1,19 @@
+# API Specification for S-2207: API response time benchmark
+# Part of Performance optimalizace
+
+openapi: "3.0.3"
+info:
+  title: "Performance optimalizace"
+  version: "1.0.0"
+paths:
+  /api_response_time_benchmark:
+    get:
+      summary: "List api_response_time_benchmark"
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      summary: "Create api_response_time_benchmark item"
+      responses:
+        "201":
+          description: "Created"
