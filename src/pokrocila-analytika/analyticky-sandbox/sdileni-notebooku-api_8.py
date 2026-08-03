@@ -1,8 +1,8 @@
 """
-Module for S-2010: Sdílení notebooků API
+Module for S-2010: Sdileni notebooku API
 
-Part of Pokročilá analytika -- Analytický sandbox
-Story: S-2010 -- Sdílení notebooků API
+Part of Pokrocila analytika -- Analyticky sandbox
+Story: S-2010 -- Sdileni notebooku API
 """
 
 import logging
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 class SdileniNotebookuApi:
     """
-    Implements S-2010 -- Sdílení notebooků API
+    Implements S-2010 -- Sdileni notebooku API
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
